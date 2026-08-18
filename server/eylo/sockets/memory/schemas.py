@@ -1,0 +1,37 @@
+"""Memory socket exports for vendor-neutral contracts."""
+
+from eylo.common.contracts import memory as memory_contracts
+
+Memory = memory_contracts.Memory
+MemoryActor = memory_contracts.MemoryActor
+MemoryActorKind = memory_contracts.MemoryActorKind
+MemoryCapabilities = memory_contracts.MemoryCapabilities
+MemoryChange = memory_contracts.MemoryChange
+MemoryError = memory_contracts.MemoryError
+MemoryEvent = memory_contracts.MemoryEvent
+MemoryExtractionAuthority = memory_contracts.MemoryExtractionAuthority
+MemoryInputMessage = memory_contracts.MemoryInputMessage
+MemoryLevel = memory_contracts.MemoryLevel
+MemoryMessageRole = memory_contracts.MemoryMessageRole
+MemoryOperation = memory_contracts.MemoryOperation
+MemoryOutcomeCounts = memory_contracts.MemoryOutcomeCounts
+MemoryOrigin = memory_contracts.MemoryOrigin
+MemoryProvenance = memory_contracts.MemoryProvenance
+MemoryResult = memory_contracts.MemoryResult
+MemoryScope = memory_contracts.MemoryScope
+MemorySourceReference = memory_contracts.MemorySourceReference
+MemoryUpdateResult = memory_contracts.MemoryUpdateResult
+
+MEMORY_MAX_EXCHANGE_BYTES = memory_contracts.MEMORY_MAX_EXCHANGE_BYTES
+MEMORY_MAX_EXTRACTOR_RESPONSE_BYTES = (
+    memory_contracts.MEMORY_MAX_EXTRACTOR_RESPONSE_BYTES
+)
+MEMORY_MAX_FACT_BYTES = memory_contracts.MEMORY_MAX_FACT_BYTES
+MEMORY_MAX_FACT_CHARS = memory_contracts.MEMORY_MAX_FACT_CHARS
+MEMORY_MAX_OPERATIONS = memory_contracts.MEMORY_MAX_OPERATIONS
+MEMORY_MAX_QUERY_BYTES = memory_contracts.MEMORY_MAX_QUERY_BYTES
+MEMORY_MAX_QUERY_CHARS = memory_contracts.MEMORY_MAX_QUERY_CHARS
+MEMORY_MAX_SEARCH_RESULTS = memory_contracts.MEMORY_MAX_SEARCH_RESULTS
+MEMORY_MAX_WINDOW_MESSAGES = memory_contracts.MEMORY_MAX_WINDOW_MESSAGES
+require_memory_fact = memory_contracts.require_memory_fact
+require_memory_query = memory_contracts.require_memory_query

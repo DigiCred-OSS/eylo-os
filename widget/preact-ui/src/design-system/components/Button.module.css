@@ -1,0 +1,159 @@
+/* Button Component Styles */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ew-spacing-xs);
+  white-space: nowrap;
+  border-radius: var(--ew-radius);
+  font-size: var(--ew-text-sm);
+  font-weight: var(--ew-font-medium);
+  transition: var(--ew-transition-default);
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+
+/* SVG icon sizing - shadcn pattern */
+.button svg {
+  pointer-events: none;
+  width: var(--ew-spacing);
+  height: var(--ew-spacing);
+  flex-shrink: 0;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px oklch(var(--ew-ring) / 0.5);
+}
+
+.button:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  border-color: oklch(var(--ew-border));
+  background-color: oklch(var(--ew-muted));
+  color: oklch(var(--ew-muted-foreground));
+  box-shadow: none;
+}
+
+.button:active:not(:disabled):not([aria-haspopup="true"]) {
+  transform: translateY(1px);
+}
+
+/* Width Variants */
+.width-auto {
+  width: auto;
+}
+
+.width-full {
+  width: 100%;
+}
+
+.width-fit {
+  width: fit-content;
+}
+
+/* Sizes - aligned with shadcn (h-9, h-8, h-10) */
+.sm {
+  height: 2rem;
+  /* 32px = h-8 */
+  padding: 0 var(--ew-spacing-sm);
+  font-size: var(--ew-text-xs);
+  gap: var(--ew-spacing-xs);
+}
+
+.sm:has(> svg) {
+  padding: 0 var(--ew-spacing-xs);
+}
+
+.md {
+  height: 2.25rem;
+  /* 36px = h-9 */
+  padding: 0 var(--ew-spacing-sm);
+}
+
+.md:has(> svg) {
+  padding: 0 var(--ew-spacing-sm);
+}
+
+.lg {
+  height: 2.5rem;
+  /* 40px = h-10 */
+  padding: 0 var(--ew-spacing);
+}
+
+.lg:has(> svg) {
+  padding: 0 var(--ew-spacing-sm);
+}
+
+.icon {
+  height: 2.25rem;
+  width: 2.25rem;
+  padding: 0;
+}
+
+/* Variants - with shadows like shadcn */
+.default {
+  background-color: oklch(var(--ew-primary));
+  color: oklch(var(--ew-primary-foreground));
+}
+
+.default:hover:not(:disabled) {
+  background-color: oklch(var(--ew-primary) / 0.9);
+}
+
+.destructive {
+  background-color: oklch(var(--ew-destructive));
+  color: oklch(var(--ew-destructive-foreground));
+}
+
+.destructive:hover:not(:disabled) {
+  background-color: oklch(var(--ew-destructive) / 0.9);
+}
+
+.destructive:focus-visible {
+  box-shadow: 0 0 0 3px oklch(var(--ew-destructive) / 0.2);
+}
+
+.outline {
+  border: 1px solid oklch(var(--ew-border));
+  background-color: oklch(var(--ew-background));
+  color: oklch(var(--ew-foreground));
+}
+
+.outline:hover:not(:disabled) {
+  background-color: oklch(var(--ew-accent));
+  color: oklch(var(--ew-accent-foreground));
+}
+
+.secondary {
+  background-color: oklch(var(--ew-secondary));
+  color: oklch(var(--ew-secondary-foreground));
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: oklch(var(--ew-secondary) / 0.8);
+}
+
+.ghost {
+  background-color: transparent;
+  color: oklch(var(--ew-foreground));
+}
+
+.ghost:hover:not(:disabled) {
+  background-color: oklch(var(--ew-accent));
+  color: oklch(var(--ew-accent-foreground));
+}
+
+.link {
+  background-color: transparent;
+  color: oklch(var(--ew-primary));
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.link:hover:not(:disabled) {
+  text-decoration: none;
+}

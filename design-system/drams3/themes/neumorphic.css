@@ -1,0 +1,810 @@
+/**
+ * DRAMS3 Neumorphic Theme
+ *
+ * Soft UI / Neumorphism — extruded shapes with soft shadows.
+ * Elements appear to push out from or sink into the background.
+ * Key: background and elements share the same base color.
+ *
+ * Usage:
+ *   <html data-theme="neumorphic">
+ *   <html data-theme="neumorphic" data-mode="dark">
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   NEUMORPHIC THEME — LIGHT MODE
+   Soft extruded surfaces with dual shadows
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-theme="neumorphic"],
+[data-theme="neumorphic"][data-mode="light"] {
+    /* ───────────────────────────────────────────────────────────
+       BASE COLOR
+         Warm stone base with white highlight / taupe shadow
+       ─────────────────────────────────────────────────────────── */
+
+    --neu-base: #e6ddd1;
+    --neu-light: rgba(255, 251, 245, 0.92);
+    --neu-dark: rgba(167, 152, 133, 0.42);
+
+    /* ───────────────────────────────────────────────────────────
+       SURFACES
+       All surfaces use the same base color — depth via shadows
+       ─────────────────────────────────────────────────────────── */
+
+    --surface-background: var(--neu-base);
+    --surface-page: var(--neu-base);
+    --surface-default: var(--neu-base);
+    --surface-raised: #ebe3d8;
+    --surface-overlay: #eee7dd;
+    --surface-card: #eae2d7;
+
+    --surface-hover: #ddd3c6;
+    --surface-pressed: #ddd4c8;
+    --surface-muted: #d7ccbe;
+    --surface-subtle: #f1e9df;
+
+    /* Control surfaces — same base, shadows create depth */
+    --surface-control: var(--neu-base);
+    --surface-control-disabled: #dbd1c5;
+
+    /* ───────────────────────────────────────────────────────────
+       BORDERS
+       Minimal — shadows define edges, not borders
+       ─────────────────────────────────────────────────────────── */
+
+    --border-default: transparent;
+    --border-strong: #c8bbab;
+    --border-muted: transparent;
+    --color-border-default: var(--border-default);
+    --color-border-strong: var(--border-strong);
+
+    /* ───────────────────────────────────────────────────────────
+       NEUMORPHIC SHADOWS
+       Dual shadows: light (top-left) + dark (bottom-right)
+       ─────────────────────────────────────────────────────────── */
+
+    /* Default/rest state — subtle extrusion */
+    --neu-shadow-convex:
+        -2px -2px 4px var(--neu-light),
+        2px 2px 4px var(--neu-dark);
+
+    /* Pressed state — deep inset */
+    --neu-shadow-concave:
+        inset -10px -10px 20px var(--neu-light),
+        inset 10px 10px 20px var(--neu-dark);
+
+    /* Active/on state — subtle inset */
+    --neu-shadow-concave-sm:
+        inset -2px -2px 4px var(--neu-light),
+        inset 2px 2px 4px var(--neu-dark);
+
+    /* Flat with subtle depth */
+    --neu-shadow-flat:
+        -2px -2px 4px var(--neu-light),
+        2px 2px 4px var(--neu-dark);
+
+    /* Small elements — same as default */
+    --neu-shadow-sm:
+        -2px -2px 4px var(--neu-light),
+        2px 2px 4px var(--neu-dark);
+
+    /* Switch thumb should read tighter than larger controls */
+    --neu-shadow-thumb:
+        -1px -1px 2px var(--neu-light),
+        1.5px 1.5px 3px rgba(167, 152, 133, 0.34);
+
+    --neu-shadow-thumb-raised:
+        -2px -2px 4px rgba(255, 251, 245, 0.9),
+        2px 2px 5px rgba(167, 152, 133, 0.34);
+
+    --neu-shadow-sm-concave:
+        inset -2px -2px 4px var(--neu-light),
+        inset 2px 2px 4px var(--neu-dark);
+
+    /* Hover state — slightly larger shadow */
+    --neu-shadow-lg:
+        -4px -4px 8px var(--neu-light),
+        4px 4px 8px var(--neu-dark);
+
+    /* ───────────────────────────────────────────────────────────
+       ELEVATION (mapped to neumorphic shadows)
+       ─────────────────────────────────────────────────────────── */
+
+    --elevation-rest: var(--neu-shadow-convex);
+    --elevation-hover: var(--neu-shadow-lg);
+    --elevation-pressed: var(--neu-shadow-concave);
+    --elevation-active: var(--neu-shadow-concave-sm);
+    --elevation-card: var(--neu-shadow-lg);
+    --elevation-dropdown: var(--neu-shadow-lg);
+    --elevation-modal:
+        -15px -15px 30px var(--neu-light),
+        15px 15px 30px var(--neu-dark);
+    --elevation-inset: var(--neu-shadow-concave-sm);
+    --elevation-raised: var(--neu-shadow-convex);
+
+    /* Focus — soft glow */
+    --elevation-focus:
+        var(--neu-shadow-convex),
+        0 0 0 3px rgba(255, 85, 0, 0.2);
+
+    /* ───────────────────────────────────────────────────────────
+       RADII
+       Subtle rounding — not overly soft
+       ─────────────────────────────────────────────────────────── */
+
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+    --radius-control: 6px;
+    --radius-button: 8px;
+    --radius-input: 6px;
+    --radius-card: 12px;
+    --radius-modal: 12px;
+    --radius-badge: 4px;
+
+    /* ───────────────────────────────────────────────────────────
+       TEXT
+       Slightly muted for soft look
+       ─────────────────────────────────────────────────────────── */
+
+    --text-primary: #4a433b;
+    --text-secondary: #665d53;
+    --text-muted: #877c6e;
+    --text-inverse: #fffaf4;
+    --color-text-primary: var(--text-primary);
+    --color-text-secondary: var(--text-secondary);
+    --color-text-muted: var(--text-muted);
+    --color-text-inverse: var(--text-inverse);
+
+    /* Keep semantic control tokens aligned for compositions that bypass
+         the component-specific theme overrides. */
+    --control-default: #5b5146;
+    --control-default-subtle: #d9cec1;
+    --control-disabled: #a19485;
+    --control-disabled-subtle: #ddd3c7;
+
+    /* ───────────────────────────────────────────────────────────
+       ACCENT
+       Soft, desaturated accent
+       ─────────────────────────────────────────────────────────── */
+
+    --color-accent: #ff6b35;
+    --color-accent-light: #ff8a5c;
+    --color-accent-dark: #e55a2b;
+    --color-accent-muted: rgba(255, 107, 53, 0.15);
+
+    /* ───────────────────────────────────────────────────────────
+       CONTROL HEIGHTS
+       ─────────────────────────────────────────────────────────── */
+
+    --control-height-xs: 28px;
+    --control-height-sm: 36px;
+    --control-height-default: 44px;
+    --control-height-lg: 52px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NEUMORPHIC THEME — DARK MODE
+   Dark soft UI with inverted shadow logic
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-theme="neumorphic"][data-mode="dark"],
+[data-theme="neumorphic"].dark {
+    /* ───────────────────────────────────────────────────────────
+       BASE COLOR
+       Dark base — subtle highlight, stronger shadow for depth
+       ─────────────────────────────────────────────────────────── */
+
+    --neu-base: #24272C;
+    --neu-light: rgba(255, 255, 255, 0.07);
+    --neu-dark: rgba(0, 0, 0, 0.5);
+
+    /* ───────────────────────────────────────────────────────────
+       SURFACES
+       ─────────────────────────────────────────────────────────── */
+
+    --surface-background: var(--neu-base);
+    --surface-page: var(--neu-base);
+    --surface-default: var(--neu-base);
+    --surface-raised: var(--neu-base);
+    --surface-overlay: #2d3136;
+    --surface-card: var(--neu-base);
+
+    --surface-hover: #2a2d32;
+    --surface-pressed: var(--neu-base);
+    --surface-muted: #1e2125;
+    --surface-subtle: #2a2d32;
+
+    --surface-control: var(--neu-base);
+    --surface-control-disabled: #1e2125;
+
+    /* ───────────────────────────────────────────────────────────
+       BORDERS
+       ─────────────────────────────────────────────────────────── */
+
+    --border-default: transparent;
+    --border-strong: #3a3d42;
+    --border-muted: transparent;
+    --color-border-default: var(--border-default);
+    --color-border-strong: var(--border-strong);
+
+    /* ───────────────────────────────────────────────────────────
+       NEUMORPHIC SHADOWS (Dark)
+       From design: light top-left (-x,-y), dark bottom-right (+x,+y)
+       ─────────────────────────────────────────────────────────── */
+
+    /* Default/rest state — subtle extrusion */
+    --neu-shadow-convex:
+        -2px -2px 4px var(--neu-light),
+        2px 2px 4px var(--neu-dark);
+
+    /* Pressed state — deep inset */
+    --neu-shadow-concave:
+        inset -10px -10px 20px var(--neu-light),
+        inset 10px 10px 20px var(--neu-dark);
+
+    /* Active/on state — subtle inset */
+    --neu-shadow-concave-sm:
+        inset -2px -2px 4px var(--neu-light),
+        inset 2px 2px 4px var(--neu-dark);
+
+    --neu-shadow-flat:
+        -2px -2px 4px var(--neu-light),
+        2px 2px 4px var(--neu-dark);
+
+    /* Small elements — same as default */
+    --neu-shadow-sm:
+        -2px -2px 4px var(--neu-light),
+        2px 2px 4px var(--neu-dark);
+
+    --neu-shadow-thumb:
+        -1px -1px 2px var(--neu-light),
+        1.5px 1.5px 3px rgba(0, 0, 0, 0.36);
+
+    --neu-shadow-thumb-raised:
+        -2px -2px 4px rgba(255, 255, 255, 0.08),
+        2px 2px 5px rgba(0, 0, 0, 0.36);
+
+    --neu-shadow-sm-concave:
+        inset -2px -2px 4px var(--neu-light),
+        inset 2px 2px 4px var(--neu-dark);
+
+    /* Hover state — slightly larger shadow */
+    --neu-shadow-lg:
+        -4px -4px 8px var(--neu-light),
+        4px 4px 8px var(--neu-dark);
+
+    /* Elevation overrides */
+    --elevation-rest: var(--neu-shadow-convex);
+    --elevation-hover: var(--neu-shadow-lg);
+    --elevation-pressed: var(--neu-shadow-concave);
+    --elevation-active: var(--neu-shadow-concave-sm);
+    --elevation-card: var(--neu-shadow-lg);
+    --elevation-dropdown: var(--neu-shadow-lg);
+    --elevation-modal:
+        -15px -15px 30px var(--neu-light),
+        15px 15px 30px var(--neu-dark);
+    --elevation-inset: var(--neu-shadow-concave-sm);
+
+    --elevation-focus:
+        var(--neu-shadow-convex),
+        0 0 0 3px rgba(255, 107, 53, 0.3);
+
+    /* ───────────────────────────────────────────────────────────
+       TEXT
+       ─────────────────────────────────────────────────────────── */
+
+    --text-primary: #e2e8f0;
+    --text-secondary: #a0aec0;
+    --text-muted: #718096;
+    --text-inverse: #1a202c;
+    --color-text-primary: var(--text-primary);
+    --color-text-secondary: var(--text-secondary);
+    --color-text-muted: var(--text-muted);
+    --color-text-inverse: var(--text-inverse);
+
+    --control-default: #d7dde5;
+    --control-default-subtle: #34383d;
+    --control-disabled: #5d6773;
+    --control-disabled-subtle: #2a2d32;
+
+    /* ───────────────────────────────────────────────────────────
+       ACCENT
+       Brighter for dark mode
+       ─────────────────────────────────────────────────────────── */
+
+    --color-accent: #ff7849;
+    --color-accent-light: #ff9a70;
+    --color-accent-dark: #e86835;
+    --color-accent-muted: rgba(255, 120, 73, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPONENT-SPECIFIC ENHANCEMENTS
+   Neumorphic treatments for components
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Button — extruded soft surface */
+[data-theme="neumorphic"] .drams-button {
+    background: var(--neu-base);
+    border: none;
+    box-shadow: var(--neu-shadow-convex);
+    color: var(--text-primary);
+    transition: box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+[data-theme="neumorphic"] .drams-button:hover:not(:disabled) {
+    background: var(--neu-base);
+    color: var(--text-primary);
+    box-shadow: var(--neu-shadow-lg);
+}
+
+[data-theme="neumorphic"] .drams-button:active:not(:disabled) {
+    background: var(--neu-base);
+    color: var(--text-primary);
+    box-shadow: var(--neu-shadow-concave);
+    transform: scale(0.98);
+}
+
+[data-theme="neumorphic"] .drams-button:disabled {
+    background: var(--surface-control-disabled);
+    color: var(--control-disabled);
+    box-shadow: none;
+    border-color: transparent;
+    opacity: 0.5;
+}
+
+/* Button accent — same shadow as default, just colored background */
+[data-theme="neumorphic"] .drams-button.accent,
+[data-theme="neumorphic"] .drams-button[data-variant="primary"] {
+    background: var(--accent);
+    color: white;
+    box-shadow: var(--neu-shadow-convex);
+}
+
+[data-theme="neumorphic"] .drams-button.accent:hover:not(:disabled),
+[data-theme="neumorphic"] .drams-button[data-variant="primary"]:hover:not(:disabled) {
+    background: var(--accent);
+    color: white;
+    box-shadow: var(--neu-shadow-lg);
+}
+
+[data-theme="neumorphic"] .drams-button.accent:active:not(:disabled),
+[data-theme="neumorphic"] .drams-button[data-variant="primary"]:active:not(:disabled) {
+    background: var(--accent);
+    color: white;
+    box-shadow: var(--neu-shadow-concave);
+}
+
+/* Button ghost — flat, no shadow, only shadow on hover */
+[data-theme="neumorphic"] .drams-button[data-variant="ghost"] {
+    background: transparent;
+    color: var(--text-primary);
+    box-shadow: none;
+}
+
+[data-theme="neumorphic"] .drams-button[data-variant="ghost"]:hover:not(:disabled) {
+    background: transparent;
+    color: var(--text-primary);
+    box-shadow: var(--neu-shadow-sm);
+}
+
+[data-theme="neumorphic"] .drams-button[data-variant="ghost"]:active:not(:disabled) {
+    background: transparent;
+    color: var(--text-primary);
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+/* Button outline — subtle border, shadow on hover */
+[data-theme="neumorphic"] .drams-button[data-variant="outline"] {
+    background: transparent;
+    color: var(--text-primary);
+    box-shadow: none;
+    border: 1px solid rgba(200, 187, 171, 0.65);
+}
+
+[data-theme="neumorphic"] .drams-button[data-variant="outline"]:hover:not(:disabled) {
+    background: transparent;
+    color: var(--text-primary);
+    box-shadow: var(--neu-shadow-sm);
+}
+
+[data-theme="neumorphic"] .drams-button[data-variant="outline"]:active:not(:disabled) {
+    background: transparent;
+    color: var(--text-primary);
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-button[data-variant="outline"].accent {
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    box-shadow: none;
+}
+
+[data-theme="neumorphic"] .drams-button[data-variant="outline"].accent:hover:not(:disabled) {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: var(--neu-shadow-sm);
+}
+
+[data-theme="neumorphic"] .drams-button[data-variant="outline"].accent:active:not(:disabled) {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+/* Button link — text only, no neumorphic surface */
+[data-theme="neumorphic"] .drams-button[data-variant="link"] {
+    background: transparent;
+    color: var(--accent);
+    box-shadow: none;
+    border: none;
+}
+
+[data-theme="neumorphic"] .drams-button[data-variant="link"]:hover:not(:disabled),
+[data-theme="neumorphic"] .drams-button[data-variant="link"]:active:not(:disabled) {
+    background: transparent;
+    color: var(--accent-pressed);
+    box-shadow: none;
+}
+
+/* Button secondary — same as default */
+[data-theme="neumorphic"] .drams-button[data-variant="secondary"] {
+    background: var(--neu-base);
+    color: var(--text-primary);
+    box-shadow: var(--neu-shadow-convex);
+}
+
+[data-theme="neumorphic"] .drams-button[data-variant="secondary"]:hover:not(:disabled) {
+    background: var(--neu-base);
+    color: var(--text-primary);
+    box-shadow: var(--neu-shadow-lg);
+}
+
+[data-theme="neumorphic"] .drams-button[data-variant="secondary"]:active:not(:disabled) {
+    background: var(--neu-base);
+    color: var(--text-primary);
+    box-shadow: var(--neu-shadow-concave);
+}
+
+/* Button groups — outline buttons should still read as raised controls */
+[data-theme="neumorphic"] [data-composition="button-group"]>.drams-button[data-variant="outline"] {
+    background: var(--neu-base);
+    box-shadow: var(--neu-shadow-sm);
+    border: 1px solid rgba(200, 187, 171, 0.45);
+}
+
+[data-theme="neumorphic"] [data-composition="button-group"]>.drams-button[data-variant="outline"]:hover:not(:disabled) {
+    background: var(--neu-base);
+    color: var(--text-primary);
+    box-shadow: var(--neu-shadow-sm);
+}
+
+[data-theme="neumorphic"] [data-composition="button-group"]>.drams-button[data-variant="outline"]:active:not(:disabled) {
+    background: var(--neu-base);
+    color: var(--text-primary);
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] [data-composition="button-group"]>.drams-button[data-variant="outline"].accent {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+[data-theme="neumorphic"] [data-composition="button-group"]>.drams-button[data-variant="outline"].accent:hover:not(:disabled),
+[data-theme="neumorphic"] [data-composition="button-group"]>.drams-button[data-variant="outline"].accent:active:not(:disabled) {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* Input — recessed/inset appearance (subtle inset, not deep) */
+[data-theme="neumorphic"] .drams-input,
+[data-theme="neumorphic"] .drams-select-trigger,
+[data-theme="neumorphic"] textarea.drams-input {
+    background: var(--neu-base);
+    border: none;
+    box-shadow: var(--neu-shadow-sm-concave);
+    color: var(--text-primary);
+}
+
+[data-theme="neumorphic"] .drams-input:hover:not(:disabled):not(:focus),
+[data-theme="neumorphic"] textarea.drams-input:hover:not(:disabled):not(:focus),
+[data-theme="neumorphic"] .drams-select-trigger:hover:not([data-disabled]) {
+    background: var(--neu-base);
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-input:focus,
+[data-theme="neumorphic"] .drams-select-trigger:focus {
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-select-trigger[data-state="open"] {
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-input:disabled,
+[data-theme="neumorphic"] textarea.drams-input:disabled,
+[data-theme="neumorphic"] .drams-select-trigger[data-disabled] {
+    background: var(--surface-control-disabled);
+    color: var(--control-disabled);
+    box-shadow: none;
+    opacity: 0.55;
+}
+
+/* Switch — pill with concave track */
+[data-theme="neumorphic"] .drams-switch {
+    background: var(--neu-base);
+    border: none;
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-switch:hover:not([data-disabled]) {
+    background: var(--neu-base);
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-switch[data-state="checked"] {
+    background: var(--accent);
+    box-shadow:
+        inset 2px 2px 4px rgba(0, 0, 0, 0.15),
+        inset -2px -2px 4px rgba(255, 255, 255, 0.1);
+}
+
+/* Switch thumb — raised ball */
+[data-theme="neumorphic"] .drams-switch-thumb {
+    background: var(--neu-base);
+    border: none;
+    box-shadow: var(--neu-shadow-thumb-raised);
+}
+
+[data-theme="neumorphic"] .drams-switch:hover:not([data-disabled]) .drams-switch-thumb {
+    box-shadow: var(--neu-shadow-thumb-raised);
+}
+
+[data-theme="neumorphic"] .drams-switch[data-state="checked"] .drams-switch-thumb {
+    box-shadow: none;
+}
+
+[data-theme="neumorphic"] .drams-switch[data-disabled] {
+    background: var(--surface-control-disabled);
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+[data-theme="neumorphic"] .drams-switch[data-disabled] .drams-switch-thumb {
+    background: #d7cdc0;
+    box-shadow: none;
+}
+
+/* Checkbox — soft inset, square */
+[data-theme="neumorphic"] .drams-checkbox {
+    background: var(--neu-base);
+    border: none;
+    border-radius: 4px;
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-checkbox:hover:not([data-disabled]) {
+    background: var(--neu-base);
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+/* Radio — soft inset, stays round */
+[data-theme="neumorphic"] .drams-radio {
+    background: var(--neu-base);
+    border: none;
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-radio:hover:not([data-disabled]) {
+    background: var(--neu-base);
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-checkbox[data-state="checked"] {
+    background: var(--neu-base);
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-checkbox[data-state="checked"]:hover:not([data-disabled]) {
+    background: var(--neu-base);
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-checkbox[data-disabled] {
+    background: var(--surface-control-disabled);
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+[data-theme="neumorphic"] .drams-radio[data-state="checked"] {
+    background: var(--neu-base);
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-radio[data-state="checked"]:hover:not([data-disabled]) {
+    background: var(--neu-base);
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-radio[data-disabled] {
+    background: var(--surface-control-disabled);
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+/* Card — large soft extrusion */
+[data-theme="neumorphic"] .drams-card,
+[data-theme="neumorphic"] .drams-box--surface {
+    background: var(--neu-base);
+    border: none;
+    box-shadow: var(--neu-shadow-lg);
+}
+
+/* Progress — inset track, raised bar */
+[data-theme="neumorphic"] .drams-progress {
+    background: var(--neu-base);
+    border: none;
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-progress-bar {
+    background: var(--accent);
+    border-radius: inherit;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Slider track — groove */
+[data-theme="neumorphic"] .drams-slider-track {
+    background: var(--neu-base);
+    border: none;
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+/* Slider thumb — raised knob */
+[data-theme="neumorphic"] .drams-slider-thumb {
+    background: var(--neu-base);
+    border: none;
+    box-shadow: var(--neu-shadow-sm);
+}
+
+[data-theme="neumorphic"] .drams-slider-thumb:hover {
+    box-shadow: var(--neu-shadow-lg);
+}
+
+[data-theme="neumorphic"] .drams-slider-thumb:active {
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-slider[data-disabled] {
+    opacity: 0.45;
+}
+
+[data-theme="neumorphic"] .drams-slider[data-disabled] .drams-slider-track,
+[data-theme="neumorphic"] .drams-slider[data-disabled] .drams-slider-range,
+[data-theme="neumorphic"] .drams-slider[data-disabled] .drams-slider-thumb {
+    box-shadow: none;
+}
+
+[data-theme="neumorphic"] .drams-slider[data-disabled] .drams-slider-track,
+[data-theme="neumorphic"] .drams-slider[data-disabled] .drams-slider-thumb {
+    background: var(--surface-control-disabled);
+}
+
+[data-theme="neumorphic"] .drams-slider[data-disabled] .drams-slider-range {
+    background: #b5a99a;
+}
+
+/* Toggle — soft pill */
+[data-theme="neumorphic"] .drams-toggle,
+.drams-toggle:hover:not([data-disabled]) {
+    background: var(--neu-base);
+    border: none;
+    box-shadow: var(--neu-shadow-convex);
+}
+
+[data-theme="neumorphic"] .drams-toggle[data-state="on"] {
+    box-shadow: var(--neu-shadow-sm-concave);
+}
+
+[data-theme="neumorphic"] .drams-toggle.accent[data-state="on"] {
+    background: var(--accent);
+    color: white;
+}
+
+[data-theme="neumorphic"] .drams-toggle[data-disabled],
+[data-theme="neumorphic"] .drams-toggle:disabled {
+    background: var(--surface-control-disabled);
+    color: var(--control-disabled);
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+/* Spinner — soft ring */
+[data-theme="neumorphic"] .drams-spinner {
+    border-width: 3px;
+    border-color: var(--neu-dark);
+    border-top-color: var(--accent);
+}
+
+/* Skeleton — pulse animation with neumorphic inset */
+[data-theme="neumorphic"] .drams-skeleton {
+    background-color: var(--neu-base);
+    box-shadow: var(--neu-shadow-sm-concave);
+    animation: drams-skeleton-pulse-neu 1.5s ease-in-out infinite;
+}
+
+@keyframes drams-skeleton-pulse-neu {
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: var(--neu-shadow-sm-concave);
+    }
+
+    50% {
+        opacity: 0.6;
+        box-shadow: inset -1px -1px 2px var(--neu-light), inset 1px 1px 2px var(--neu-dark);
+    }
+}
+
+/* Badge — small soft extrusion */
+[data-theme="neumorphic"] .drams-badge {
+    background: var(--neu-base);
+    color: var(--text-primary);
+    box-shadow: var(--neu-shadow-sm);
+    border: none;
+}
+
+[data-theme="neumorphic"] .drams-badge.accent {
+    background: var(--accent);
+    color: white;
+}
+
+/* Alert — soft panel */
+[data-theme="neumorphic"] .drams-alert {
+    background: var(--neu-base);
+    border: none;
+    border-left: 3px solid var(--accent);
+    box-shadow: var(--neu-shadow-convex);
+}
+
+/* Select content dropdown */
+[data-theme="neumorphic"] .drams-select-content {
+    background: var(--neu-base);
+    border: none;
+    box-shadow: var(--neu-shadow-lg);
+}
+
+[data-theme="neumorphic"] .drams-select-item:hover {
+    box-shadow: var(--neu-shadow-sm);
+}
+
+/* Separator — subtle line */
+[data-theme="neumorphic"] .drams-separator {
+    background: transparent;
+    box-shadow:
+        1px 1px 1px var(--neu-dark),
+        -1px -1px 1px var(--neu-light);
+}
+
+/* Avatar — soft raised circle */
+[data-theme="neumorphic"] .drams-avatar {
+    background: var(--neu-base);
+    border: none;
+    box-shadow: var(--neu-shadow-convex);
+}
+
+[data-theme="neumorphic"] .drams-avatar-fallback {
+    background: var(--neu-base);
+    color: var(--text-primary);
+}
+
+[data-theme="neumorphic"] .drams-avatar-group .drams-avatar {
+    border: 2px solid var(--neu-base);
+    box-shadow: var(--neu-shadow-sm);
+}

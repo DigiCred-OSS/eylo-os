@@ -1,0 +1,72 @@
+/* Alert Component Styles */
+
+.alert {
+  position: relative;
+  width: 100%;
+  border-radius: var(--ew-radius);
+  border: 1px solid oklch(var(--ew-border));
+  padding: var(--ew-spacing);
+  display: flex;
+  gap: var(--ew-spacing-sm);
+}
+
+.icon {
+  flex-shrink: 0;
+  width: var(--ew-spacing);
+  height: var(--ew-spacing);
+  margin-top: var(--ew-spacing-2xs);
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  margin-bottom: var(--ew-spacing-xs);
+  font-size: var(--ew-text-sm);
+  font-weight: var(--ew-font-medium);
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.description {
+  font-size: var(--ew-text-sm);
+  line-height: 1.4;
+  color: oklch(var(--ew-muted-foreground));
+}
+
+/* Variants */
+.default {
+  background-color: oklch(var(--ew-background));
+  color: oklch(var(--ew-foreground));
+}
+
+.destructive {
+  border-color: oklch(var(--ew-destructive) / 0.5);
+  background-color: oklch(var(--ew-destructive) / 0.1);
+  color: oklch(var(--ew-destructive));
+}
+
+.destructive .description {
+  color: oklch(var(--ew-destructive) / 0.9);
+}
+
+.success {
+  border-color: oklch(var(--ew-success) / 0.5);
+  background-color: oklch(var(--ew-success) / 0.1);
+  color: oklch(var(--ew-success));
+}
+
+.success .description {
+  color: oklch(var(--ew-success) / 0.9);
+}
+
+.warning {
+  border-color: oklch(var(--ew-warning) / 0.5);
+  background-color: oklch(var(--ew-warning) / 0.1);
+  color: oklch(var(--ew-warning));
+}
+
+.warning .description {
+  color: oklch(var(--ew-warning) / 0.9);
+}

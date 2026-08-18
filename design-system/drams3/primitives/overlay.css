@@ -1,0 +1,277 @@
+/**
+ * DRAMS3 Overlay Primitive
+ *
+ * Modal, dialog, and dropdown surfaces.
+ * Elevated above page content with backdrop.
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   BACKDROP
+   Semi-transparent layer behind overlay.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: var(--surface-backdrop);
+    z-index: 50;
+
+    /* Animation */
+    opacity: 0;
+    transition: opacity var(--duration-slow) var(--ease-out);
+}
+
+.drams-backdrop[data-state="open"] {
+    opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MODAL
+   Centered dialog surface.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 51;
+
+    /* Surface */
+    background-color: var(--surface-overlay);
+    border-radius: var(--radius-modal);
+    box-shadow: var(--elevation-modal);
+
+    /* Size */
+    width: 90vw;
+    max-width: 500px;
+    max-height: 85vh;
+    overflow: auto;
+
+    /* Padding */
+    padding: var(--space-6);
+
+    /* Animation */
+    opacity: 0;
+    transform: translate(-50%, -48%);
+    transition:
+        opacity var(--duration-slow) var(--ease-out),
+        transform var(--duration-slow) var(--ease-out);
+}
+
+.drams-modal[data-state="open"] {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+/* Modal sizes */
+.drams-modal[data-size="sm"] {
+    max-width: 380px;
+}
+
+.drams-modal[data-size="lg"] {
+    max-width: 640px;
+}
+
+.drams-modal[data-size="xl"] {
+    max-width: 800px;
+}
+
+.drams-modal[data-size="full"] {
+    max-width: calc(100vw - var(--space-8));
+    max-height: calc(100vh - var(--space-8));
+}
+
+/* Modal header */
+.drams-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+}
+
+.drams-modal-title {
+    font: var(--type-heading-4);
+    color: var(--text-primary);
+}
+
+.drams-modal-close {
+    padding: var(--space-1);
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-colors);
+}
+
+.drams-modal-close:hover {
+    color: var(--text-primary);
+    background-color: var(--surface-hover);
+}
+
+/* Modal body */
+.drams-modal-body {
+    color: var(--text-primary);
+}
+
+/* Modal footer */
+.drams-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DROPDOWN
+   Positioned popup surface.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-dropdown {
+    position: absolute;
+    z-index: 40;
+
+    /* Surface */
+    background-color: var(--surface-overlay);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--elevation-dropdown);
+    border: 1px solid var(--border-default);
+
+    /* Size */
+    min-width: 180px;
+    max-height: 300px;
+    overflow: auto;
+
+    /* Padding */
+    padding: var(--space-1);
+
+    /* Animation */
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+        opacity var(--duration-fast) var(--ease-out),
+        transform var(--duration-fast) var(--ease-out);
+}
+
+.drams-dropdown[data-state="open"] {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Dropdown item */
+.drams-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    font: var(--type-body-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition-colors);
+}
+
+.drams-dropdown-item:hover {
+    background-color: var(--surface-hover);
+}
+
+.drams-dropdown-item:active {
+    background-color: var(--surface-pressed);
+    color: var(--text-primary);
+}
+
+.drams-dropdown-item[data-selected="true"] {
+    background-color: var(--control-active-subtle);
+    color: var(--text-primary);
+}
+
+/* Brand selection — opt in on the menu. */
+.drams-dropdown-content.accent .drams-dropdown-item[data-selected="true"],
+.drams-dropdown-content[data-accent] .drams-dropdown-item[data-selected="true"] {
+    background-color: var(--accent-subtle);
+    color: var(--accent-pressed);
+}
+
+.drams-dropdown-item:disabled,
+.drams-dropdown-item[data-disabled="true"] {
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+/* Dropdown separator */
+.drams-dropdown-separator {
+    height: 1px;
+    background-color: var(--border-default);
+    margin: var(--space-1) 0;
+}
+
+/* Dropdown label */
+.drams-dropdown-label {
+    padding: var(--space-2) var(--space-3);
+    font: var(--type-caption);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   POPOVER
+   Generic positioned surface.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-popover {
+    position: absolute;
+    z-index: 40;
+
+    /* Surface */
+    background-color: var(--surface-overlay);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--elevation-dropdown);
+    border: 1px solid var(--border-default);
+
+    /* Padding */
+    padding: var(--space-4);
+
+    /* Animation */
+    opacity: 0;
+    transform: scale(0.95);
+    transition:
+        opacity var(--duration-fast) var(--ease-out),
+        transform var(--duration-fast) var(--ease-out);
+}
+
+.drams-popover[data-state="open"] {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TOOLTIP
+   Small informational popup.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-tooltip {
+    position: absolute;
+    z-index: 60;
+
+    /* Surface */
+    background-color: var(--surface-inverse);
+    border-radius: var(--radius-sm);
+
+    /* Typography */
+    font: var(--type-caption);
+    color: var(--text-inverse);
+
+    /* Padding */
+    padding: var(--space-1) var(--space-2);
+
+    /* Size */
+    max-width: 250px;
+
+    /* Animation */
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--ease-out);
+    pointer-events: none;
+}
+
+.drams-tooltip[data-state="open"] {
+    opacity: 1;
+}

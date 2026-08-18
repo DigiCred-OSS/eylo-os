@@ -1,0 +1,150 @@
+/* Dropdown Menu Component */
+.dropdownMenuTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdownMenuContent {
+  position: absolute;
+  z-index: 50;
+  min-width: var(--ew-spacing-4xl);
+  padding: var(--ew-spacing-xs);
+  background-color: oklch(var(--ew-popover));
+  border: 1px solid oklch(var(--ew-border));
+  border-radius: var(--ew-radius);
+  box-shadow: var(--ew-shadow-lg);
+  animation: slideDown 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--ew-spacing-sm) * -1));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Menu Item */
+.dropdownMenuItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--ew-spacing-sm) var(--ew-spacing-sm);
+  font-size: var(--ew-text-sm);
+  line-height: 1.25rem;
+  border-radius: var(--ew-radius-sm);
+  cursor: pointer;
+  user-select: none;
+  color: oklch(var(--ew-foreground));
+  transition: var(--ew-transition-default);
+  outline: none;
+}
+
+.dropdownMenuItem:hover {
+  background-color: oklch(var(--ew-accent));
+}
+
+.dropdownMenuItem:focus-visible {
+  background-color: oklch(var(--ew-accent));
+  outline: 2px solid oklch(var(--ew-ring));
+  outline-offset: -2px;
+}
+
+.dropdownMenuItem[data-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.dropdownMenuItem[data-destructive="true"] {
+  color: oklch(var(--ew-destructive));
+}
+
+.dropdownMenuItem[data-destructive="true"]:hover {
+  background-color: oklch(var(--ew-destructive));
+  color: oklch(var(--ew-destructive-foreground));
+}
+
+/* Item with icon */
+.dropdownMenuItemIcon {
+  margin-right: var(--ew-spacing-sm);
+  width: var(--ew-spacing);
+  height: var(--ew-spacing);
+  flex-shrink: 0;
+}
+
+/* Item shortcut */
+.dropdownMenuItemShortcut {
+  margin-left: auto;
+  font-size: var(--ew-text-xs);
+  color: oklch(var(--ew-muted-foreground));
+  letter-spacing: 0.05em;
+}
+
+/* Checkbox Item */
+.dropdownMenuCheckboxItem {
+  padding-left: var(--ew-spacing-xl);
+}
+
+.dropdownMenuItemIndicator {
+  position: absolute;
+  left: var(--ew-spacing-sm);
+  width: var(--ew-spacing);
+  height: var(--ew-spacing);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Radio Item */
+.dropdownMenuRadioItem {
+  padding-left: 2rem;
+}
+
+/* Label */
+.dropdownMenuLabel {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: oklch(var(--ew-muted-foreground));
+  user-select: none;
+}
+
+/* Separator */
+.dropdownMenuSeparator {
+  height: 1px;
+  margin: 0.25rem -0.25rem;
+  background-color: oklch(var(--ew-border));
+}
+
+/* Sub-menu */
+.dropdownMenuSub {
+  position: relative;
+}
+
+.dropdownMenuSubTrigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdownMenuSubTrigger::after {
+  content: "›";
+  margin-left: auto;
+  font-size: 1rem;
+  opacity: 0.5;
+}
+
+.dropdownMenuSubContent {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: 0.25rem;
+}

@@ -1,0 +1,123 @@
+/* Stack Component Styles */
+
+.stack {
+  display: flex;
+}
+
+/* Direction */
+.direction-vertical {
+  flex-direction: column;
+}
+
+.direction-horizontal {
+  flex-direction: row;
+}
+
+/* Spacing */
+.spacing-none {
+  gap: 0;
+}
+
+.spacing-2xs {
+  gap: var(--ew-spacing-2xs);
+}
+
+.spacing-xs {
+  gap: var(--ew-spacing-xs);
+}
+
+.spacing-sm {
+  gap: var(--ew-spacing-sm);
+}
+
+.spacing-md {
+  gap: var(--ew-spacing);
+}
+
+.spacing-lg {
+  gap: var(--ew-spacing-lg);
+}
+
+.spacing-xl {
+  gap: var(--ew-spacing-xl);
+}
+
+.spacing-2xl {
+  gap: var(--ew-spacing-2xl);
+}
+
+.spacing-3xl {
+  gap: var(--ew-spacing-3xl);
+}
+
+.spacing-4xl {
+  gap: var(--ew-spacing-4xl);
+}
+
+/* Alignment */
+.align-start {
+  align-items: flex-start;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.align-stretch {
+  align-items: stretch;
+}
+
+/* Border */
+.border {
+  border: 1px solid oklch(var(--ew-border));
+}
+
+/* Border Radius */
+.radius-sm {
+  border-radius: var(--ew-radius-sm);
+}
+
+.radius-md {
+  border-radius: var(--ew-radius-md);
+}
+
+.radius-lg {
+  border-radius: var(--ew-radius-lg);
+}
+
+.radius-xl {
+  border-radius: var(--ew-radius-xl);
+}
+
+.radius-full {
+  border-radius: var(--ew-radius-full);
+}
+
+/* Shadow */
+.shadow-xs {
+  box-shadow: var(--ew-shadow-xs);
+}
+
+.shadow-sm {
+  box-shadow: var(--ew-shadow-sm);
+}
+
+.shadow-md {
+  box-shadow: var(--ew-shadow-md);
+}
+
+.shadow-lg {
+  box-shadow: var(--ew-shadow-lg);
+}
+
+.shadow-xl {
+  box-shadow: var(--ew-shadow-xl);
+}
+
+.shadow-none {
+  box-shadow: none;
+}

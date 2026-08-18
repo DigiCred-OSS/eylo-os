@@ -1,0 +1,97 @@
+/* List Component Styles */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* List Variants */
+.listCompact .item {
+  padding: var(--ew-spacing-2) var(--ew-spacing-3);
+  gap: var(--ew-spacing-1);
+}
+
+.listRelaxed .item {
+  padding: var(--ew-spacing-6) var(--ew-spacing-6);
+  gap: var(--ew-spacing-4);
+}
+
+.item {
+  padding: var(--ew-spacing) var(--ew-spacing-md);
+  cursor: pointer;
+  transition: var(--ew-transition-default);
+  border-radius: var(--ew-radius);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--ew-spacing-sm);
+}
+
+/* Item Variants */
+.itemCompact {
+  padding: var(--ew-spacing-2) var(--ew-spacing-3);
+  gap: var(--ew-spacing-1);
+}
+
+.itemRelaxed {
+  padding: var(--ew-spacing-6) var(--ew-spacing-6);
+  gap: var(--ew-spacing-4);
+}
+
+.item:hover {
+  background-color: oklch(var(--ew-accent));
+}
+
+.item:focus {
+  outline: 2px solid oklch(var(--ew-ring));
+  outline-offset: -2px;
+}
+
+.itemActive {
+  background-color: oklch(var(--ew-accent));
+  font-weight: 500;
+}
+
+.itemDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.itemIcon {
+  flex-shrink: 0;
+  width: var(--ew-spacing);
+  height: var(--ew-spacing);
+}
+
+.itemContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ew-spacing-xs);
+}
+
+.itemLabel {
+  font-size: var(--ew-text-sm);
+  color: oklch(var(--ew-foreground));
+  font-weight: var(--ew-font-medium);
+}
+
+.itemDescription {
+  font-size: 0.75rem;
+  color: oklch(var(--ew-muted-foreground));
+  margin-top: 0.125rem;
+}
+
+.itemAction {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.divider {
+  height: 1px;
+  background-color: oklch(var(--ew-border));
+  margin: 0.5rem 0;
+}

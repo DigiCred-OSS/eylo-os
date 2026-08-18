@@ -1,0 +1,152 @@
+/**
+ * DRAMS3 Slider Primitive
+ *
+ * Range input using Radix UI Slider.
+ *
+ * SHADCN COMPATIBILITY:
+ * - Slider with single value or range (array)
+ * - Orientation: horizontal | vertical
+ *
+ * @see https://ui.shadcn.com/docs/components/slider
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   SLIDER ROOT
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-slider {
+    position: relative;
+    display: flex;
+    touch-action: none;
+    user-select: none;
+}
+
+/* Horizontal (default) */
+.drams-slider[data-orientation="horizontal"],
+.drams-slider--horizontal {
+    width: 100%;
+    height: 20px;
+    align-items: center;
+}
+
+/* Vertical */
+.drams-slider[data-orientation="vertical"],
+.drams-slider--vertical {
+    flex-direction: column;
+    width: 20px;
+    height: 200px;
+    justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SLIDER TRACK
+   The background track.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-slider-track {
+    position: relative;
+    flex-grow: 1;
+    background-color: var(--surface-pressed);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+/* Horizontal track */
+.drams-slider[data-orientation="horizontal"] .drams-slider-track,
+.drams-slider--horizontal .drams-slider-track {
+    height: 6px;
+}
+
+/* Vertical track */
+.drams-slider[data-orientation="vertical"] .drams-slider-track,
+.drams-slider--vertical .drams-slider-track {
+    width: 6px;
+    height: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SLIDER RANGE
+   The filled portion between thumbs.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-slider-range {
+    position: absolute;
+    background-color: var(--text-primary);
+    border-radius: inherit;
+}
+
+/* Horizontal range */
+.drams-slider[data-orientation="horizontal"] .drams-slider-range,
+.drams-slider--horizontal .drams-slider-range {
+    height: 100%;
+}
+
+/* Vertical range */
+.drams-slider[data-orientation="vertical"] .drams-slider-range,
+.drams-slider--vertical .drams-slider-range {
+    width: 100%;
+}
+
+/* Accent variant */
+.drams-slider--accent .drams-slider-range {
+    background-color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SLIDER THUMB
+   The draggable handle.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-slider-thumb {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--surface-background);
+    border: 2px solid var(--text-primary);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition-control);
+
+    /* Physical appearance */
+    box-shadow: var(--elevation-raised);
+}
+
+.drams-slider-thumb:hover {
+    box-shadow: var(--elevation-hover);
+    transform: scale(1.05);
+}
+
+.drams-slider-thumb:focus {
+    outline: none;
+    box-shadow:
+        inset 0 0 0 1px var(--text-primary),
+        0 0 0 2px var(--surface-muted);
+}
+
+.drams-slider-thumb:active {
+    transform: scale(0.98);
+    box-shadow: var(--elevation-pressed);
+}
+
+/* Accent variant focus */
+.drams-slider--accent .drams-slider-thumb {
+    border-color: var(--accent);
+}
+
+.drams-slider--accent .drams-slider-thumb:focus {
+    box-shadow: var(--focus-ring);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DISABLED STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-slider[data-disabled] {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.drams-slider[data-disabled] .drams-slider-thumb {
+    cursor: not-allowed;
+    box-shadow: none;
+}

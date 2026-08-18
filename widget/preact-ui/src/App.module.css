@@ -1,0 +1,3 @@
+.appContainer {
+  display: contents; /* Doesn't add any extra DOM element, just renders children */
+}

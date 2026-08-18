@@ -1,0 +1,304 @@
+/**
+ * DRAMS3 Layout Primitives
+ *
+ * Structural elements: Page, Section, Box, Flex, Grid
+ * These are containers — they organize, not decorate.
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   PAGE
+   The root container — sets background surface.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-page {
+    min-height: 100vh;
+    background-color: var(--surface-page);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTION
+   Semantic grouping of content.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-section {
+    padding: var(--space-section) 0;
+}
+
+.drams-section--contained {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ARTICLE
+   Self-contained content block.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-article {
+    max-width: 65ch;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER / FOOTER / NAV / ASIDE
+   Semantic landmarks.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-header {
+    display: flex;
+    align-items: center;
+    padding: var(--space-4) var(--space-6);
+    background-color: var(--surface-card);
+    box-shadow: var(--elevation-card);
+}
+
+.drams-footer {
+    padding: var(--space-6);
+    background-color: var(--surface-muted);
+    color: var(--text-secondary);
+}
+
+.drams-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.drams-aside {
+    padding: var(--space-4);
+    background-color: var(--surface-section);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BOX
+   Generic container with optional surface elevation.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-box {
+    padding: var(--space-card);
+}
+
+.drams-box--surface {
+    background-color: var(--surface-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--elevation-card);
+}
+
+.drams-box--bordered {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-card);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FLEX
+   Flexbox layout utility.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-flex {
+    display: flex;
+}
+
+.drams-flex--inline {
+    display: inline-flex;
+}
+
+/* Direction */
+.drams-flex--row {
+    flex-direction: row;
+}
+
+.drams-flex--col {
+    flex-direction: column;
+}
+
+.drams-flex--row-reverse {
+    flex-direction: row-reverse;
+}
+
+.drams-flex--col-reverse {
+    flex-direction: column-reverse;
+}
+
+/* Alignment */
+.drams-flex--start {
+    justify-content: flex-start;
+}
+
+.drams-flex--center {
+    justify-content: center;
+}
+
+.drams-flex--end {
+    justify-content: flex-end;
+}
+
+.drams-flex--between {
+    justify-content: space-between;
+}
+
+.drams-flex--around {
+    justify-content: space-around;
+}
+
+/* Cross-axis alignment */
+.drams-flex--items-start {
+    align-items: flex-start;
+}
+
+.drams-flex--items-center {
+    align-items: center;
+}
+
+.drams-flex--items-end {
+    align-items: flex-end;
+}
+
+.drams-flex--items-stretch {
+    align-items: stretch;
+}
+
+/* Wrap */
+.drams-flex--wrap {
+    flex-wrap: wrap;
+}
+
+.drams-flex--nowrap {
+    flex-wrap: nowrap;
+}
+
+/* Gap */
+.drams-flex--gap-1 {
+    gap: var(--space-1);
+}
+
+.drams-flex--gap-2 {
+    gap: var(--space-2);
+}
+
+.drams-flex--gap-3 {
+    gap: var(--space-3);
+}
+
+.drams-flex--gap-4 {
+    gap: var(--space-4);
+}
+
+.drams-flex--gap-6 {
+    gap: var(--space-6);
+}
+
+.drams-flex--gap-8 {
+    gap: var(--space-8);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GRID
+   CSS Grid layout utility.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-grid {
+    display: grid;
+}
+
+/* Columns */
+.drams-grid--cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.drams-grid--cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.drams-grid--cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.drams-grid--cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.drams-grid--cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.drams-grid--cols-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+/* Auto columns */
+.drams-grid--auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.drams-grid--auto-fill {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/* Gap */
+.drams-grid--gap-2 {
+    gap: var(--space-2);
+}
+
+.drams-grid--gap-4 {
+    gap: var(--space-4);
+}
+
+.drams-grid--gap-6 {
+    gap: var(--space-6);
+}
+
+.drams-grid--gap-8 {
+    gap: var(--space-8);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STACK (vertical spacing utility)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-stack {
+    display: flex;
+    flex-direction: column;
+}
+
+.drams-stack--2 {
+    gap: var(--space-2);
+}
+
+.drams-stack--3 {
+    gap: var(--space-3);
+}
+
+.drams-stack--4 {
+    gap: var(--space-4);
+}
+
+.drams-stack--6 {
+    gap: var(--space-6);
+}
+
+.drams-stack--8 {
+    gap: var(--space-8);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CLUSTER (horizontal spacing utility)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.drams-cluster--2 {
+    gap: var(--space-2);
+}
+
+.drams-cluster--3 {
+    gap: var(--space-3);
+}
+
+.drams-cluster--4 {
+    gap: var(--space-4);
+}

@@ -1,0 +1,48 @@
+.conversationItem {
+  gap: var(--ew-spacing-2xs);
+  padding: var(--ew-spacing-sm) var(--ew-spacing);
+  border-bottom: 1px solid oklch(var(--ew-border));
+}
+
+.conversationItem:last-child {
+  border-bottom: 0;
+}
+
+.conversationItem:focus-visible {
+  outline: none;
+  background-color: oklch(var(--ew-muted));
+  box-shadow: inset 0 0 0 2px oklch(var(--ew-ring) / 0.5);
+}
+
+.conversationHeader {
+  gap: var(--ew-spacing-2xs);
+}
+
+.conversationTopLine,
+.conversationTitle,
+.messagePreview {
+  min-width: 0;
+}
+
+.conversationTitle {
+  display: -webkit-box;
+  flex: 1;
+  overflow: hidden;
+  font-size: var(--ew-text-sm);
+  line-height: 1.3;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.messagePreview {
+  overflow: hidden;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timestamp {
+  font-size: var(--ew-text-xs);
+  line-height: 1.3;
+}

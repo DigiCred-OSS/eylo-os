@@ -1,0 +1,60 @@
+/* Skeleton Component Styles */
+
+.skeleton {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-radius: var(--ew-radius);
+  background-color: oklch(var(--ew-muted));
+}
+
+/* Height variants using design tokens */
+.height-2xs {
+  height: var(--ew-spacing-2xs);
+}
+
+.height-xs {
+  height: var(--ew-spacing-xs);
+}
+
+.height-sm {
+  height: var(--ew-spacing-sm);
+}
+
+.height-md {
+  height: var(--ew-spacing-md);
+}
+
+.height-lg {
+  height: var(--ew-spacing-lg);
+}
+
+.height-xl {
+  height: var(--ew-spacing-xl);
+}
+
+.height-2xl {
+  height: var(--ew-spacing-2xl);
+}
+
+.height-3xl {
+  height: var(--ew-spacing-3xl);
+}
+
+.height-4xl {
+  height: var(--ew-spacing-4xl);
+}
+
+/* Width variants */
+.widthFull {
+  width: 100%;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * shadcn/ui default theme — UNTOUCHED.
+ *
+ * Every variable below is shadcn's own stock neutral theme, verbatim. DRAMS
+ * does not override shadcn's colour, radius or ring, exactly as it does not
+ * override Astryx's. shadcn is already a complete neutral system.
+ */
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 3.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 3.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 3.9%;
+        --primary: 0 0% 9%;
+        --primary-foreground: 0 0% 98%;
+        --secondary: 0 0% 96.1%;
+        --secondary-foreground: 0 0% 9%;
+        --muted: 0 0% 96.1%;
+        --muted-foreground: 0 0% 45.1%;
+        --accent: 0 0% 96.1%;
+        --accent-foreground: 0 0% 9%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 89.8%;
+        --input: 0 0% 89.8%;
+        --ring: 0 0% 3.9%;
+        --radius: 0.5rem;
+
+        /* ─────────────────────────────────────────────────────────────────
+           DRAMS' ONLY CONTRIBUTION — the brand seam.
+
+           NOTE the naming. shadcn already has `--accent`, and it means
+           something else entirely: the subtle grey used for hover and muted
+           backgrounds. Reusing that name would repaint every hover state in
+           the brand. So DRAMS contributes `--brand`, and the opt-in class is
+           still called `.accent` to match the CSS system and Preact adapter.
+
+           Swap these two values and DRAMS becomes another brand's system.
+           ───────────────────────────────────────────────────────────────── */
+        --brand: 20 100% 50%;
+        /* Braun Orange #FF5500 */
+        --brand-foreground: 0 0% 100%;
+    }
+
+    .dark {
+        --background: 0 0% 3.9%;
+        --foreground: 0 0% 98%;
+        --card: 0 0% 3.9%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 3.9%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 0 0% 98%;
+        --primary-foreground: 0 0% 9%;
+        --secondary: 0 0% 14.9%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 14.9%;
+        --muted-foreground: 0 0% 63.9%;
+        --accent: 0 0% 14.9%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 14.9%;
+        --input: 0 0% 14.9%;
+        --ring: 0 0% 83.1%;
+
+        --brand: 20 100% 60%;
+        /* lifted for dark, like every other status colour */
+        --brand-foreground: 0 0% 100%;
+    }
+
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/**
+ * The accent opt-in.
+ *
+ * Identical contract to the CSS system and the Preact adapter: a control
+ * carries `.accent` and the brand replaces neutral on the surface that
+ * engages, and on the focus ring. Nothing else changes.
+ *
+ * Written as CSS rather than Tailwind classes so the opt-in stays a single
+ * declaration on the component, exactly as `class="accent"` does elsewhere.
+ */
+@layer components {
+
+    /* Filled controls — the engaged surface takes the brand. */
+    .accent[data-slot='button'],
+    .accent[data-slot='badge'],
+    .accent[data-state='checked'],
+    .accent[data-state='on'] {
+        background-color: hsl(var(--brand));
+        color: hsl(var(--brand-foreground));
+        border-color: hsl(var(--brand));
+    }
+
+    /* Radix renders the moving/filling part as a child. */
+    .accent [data-slot='indicator'],
+    .accent [data-slot='range'] {
+        background-color: hsl(var(--brand));
+    }
+
+    /* Focus follows the brand too. */
+    .accent:focus-visible,
+    .accent:has(:focus-visible) {
+        outline-color: hsl(var(--brand));
+        --tw-ring-color: hsl(var(--brand));
+    }
+
+    /* Text-level brand (links). */
+    .accent[data-slot='link'] {
+        color: hsl(var(--brand));
+    }
+
+    /* Accent never survives disablement — a control that cannot be used
+       must not advertise the brand. */
+    .accent:disabled,
+    .accent[data-disabled] {
+        background-color: hsl(var(--muted));
+        color: hsl(var(--muted-foreground));
+        border-color: hsl(var(--border));
+    }
+}
+
+/* Showcase chrome only — never the components themselves. */
+.page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+}
+
+.masthead {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid hsl(var(--border));
+    flex-wrap: wrap;
+}
+
+.masthead h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+}
+
+.masthead p {
+    margin: 0;
+    max-width: 54ch;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+    line-height: 1.55;
+}
+
+.controls {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.controls-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: hsl(var(--muted-foreground));
+}
+
+.toggle {
+    font: inherit;
+    font-size: 0.8125rem;
+    padding: 6px 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: hsl(var(--foreground));
+    background-color: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+}
+
+.toggle[aria-pressed='true'] {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-color: transparent;
+}
+
+section.showcase {
+    margin-bottom: 2.5rem;
+}
+
+section.showcase>h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+}
+
+section.showcase>p.blurb {
+    margin: 0 0 1.25rem;
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+    max-width: 76ch;
+}
+
+.grid-demos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    align-items: start;
+}
+
+.demo {
+    padding: 1.25rem;
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+}
+
+.demo>h3 {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: hsl(var(--muted-foreground));
+    margin: 0 0 1rem;
+}
+
+.row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.note {
+    margin: 0.75rem 0 0;
+    font-size: 0.75rem;
+    color: hsl(var(--muted-foreground));
+}

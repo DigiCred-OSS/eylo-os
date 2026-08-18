@@ -1,0 +1,388 @@
+/**
+ * DRAMS3 Button Primitive
+ *
+ * Physical button with machined appearance.
+ *
+ * SHADCN COMPATIBILITY:
+ * - API matches shadcn/ui Button exactly for drop-in replacement
+ * - Extends shadcn with "accent" variant (DRAMS Orange)
+ * - Visual styling follows Dieter Rams philosophy, not shadcn aesthetics
+ *
+ * States:
+ * - Rest: Raised from background
+ * - Hover: Slight lift
+ * - Active/Pressed: Inset (compressed) — SHADOW ONLY, no color change
+ * - Disabled: Flat, muted
+ *
+ * PRINCIPLE: Pressing a physical button doesn't change its label.
+ * The button compresses (shadow/elevation change), that's all.
+ *
+ * @see https://ui.shadcn.com/docs/components/button
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   BASE BUTTON (variant="default")
+   Black/dark button — matches shadcn default.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button {
+    /* Reset */
+    appearance: none;
+    border: none;
+    cursor: pointer;
+
+    /* Typography */
+    font: var(--type-button);
+    text-align: center;
+    white-space: nowrap;
+
+    /* Layout */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-button-y) var(--space-button-x);
+    height: 36px;
+    /* default height */
+
+    /* Surface — dark/black (like shadcn default) */
+    background: var(--control-default);
+    border-radius: var(--radius-button);
+    box-shadow: var(--elevation-rest);
+
+    /* Colors — white text on dark */
+    color: var(--text-inverse);
+
+    /* Transitions */
+    transition: var(--transition-control);
+
+    /* Prevent text selection on double-click */
+    user-select: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HOVER STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button:hover:not(:disabled) {
+    background: var(--control-default);
+    box-shadow: var(--elevation-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ACTIVE/PRESSED STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button:active:not(:disabled) {
+    background: var(--control-default);
+    box-shadow: var(--elevation-pressed);
+    transform: translateY(1px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button:focus-visible {
+    outline: none;
+    box-shadow: var(--elevation-focus);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DISABLED STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button:disabled {
+    background: var(--control-disabled);
+    box-shadow: var(--elevation-disabled);
+    color: var(--control-disabled-subtle);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCENT MODIFIER
+   DRAMS Orange (Braun accent) — DRAMS3 extension.
+   Use for primary brand actions. Works with default and outline.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button.accent {
+    background: var(--accent);
+    color: var(--text-inverse);
+    box-shadow: var(--elevation-rest);
+}
+
+.drams-button.accent:hover:not(:disabled) {
+    background: var(--accent-hover);
+    box-shadow: var(--elevation-hover);
+}
+
+.drams-button.accent:active:not(:disabled) {
+    background: var(--accent-pressed);
+    box-shadow: var(--elevation-pressed);
+    transform: translateY(1px);
+}
+
+.drams-button.accent:disabled {
+    background: var(--control-disabled);
+    color: var(--control-disabled-subtle);
+}
+
+/* Accent + Outline combination */
+.drams-button[data-variant="outline"].accent {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--accent);
+    color: var(--accent);
+}
+
+.drams-button[data-variant="outline"].accent:hover:not(:disabled) {
+    background: var(--accent-subtle);
+    box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.drams-button[data-variant="outline"].accent:active:not(:disabled) {
+    background: var(--accent-subtle);
+    box-shadow: var(--elevation-pressed);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VARIANT: outline
+   Bordered, transparent background.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button[data-variant="outline"] {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--border-strong);
+    color: var(--text-primary);
+}
+
+.drams-button[data-variant="outline"]:hover:not(:disabled) {
+    background: var(--surface-hover);
+    box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+.drams-button[data-variant="outline"]:active:not(:disabled) {
+    background: var(--surface-pressed);
+    box-shadow: var(--elevation-pressed);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VARIANT: secondary
+   Muted filled background.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button[data-variant="secondary"] {
+    background: var(--surface-muted);
+    box-shadow: none;
+    color: var(--text-primary);
+}
+
+.drams-button[data-variant="secondary"]:hover:not(:disabled) {
+    background: var(--surface-hover);
+    box-shadow: none;
+}
+
+.drams-button[data-variant="secondary"]:active:not(:disabled) {
+    background: var(--surface-pressed);
+    box-shadow: var(--elevation-pressed);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VARIANT: ghost
+   No visible surface until interaction.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button[data-variant="ghost"] {
+    background: transparent;
+    box-shadow: none;
+    color: var(--text-primary);
+}
+
+.drams-button[data-variant="ghost"]:hover:not(:disabled) {
+    background: var(--surface-hover);
+    box-shadow: none;
+}
+
+.drams-button[data-variant="ghost"]:active:not(:disabled) {
+    background: var(--surface-pressed);
+    box-shadow: var(--elevation-pressed);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VARIANT: destructive
+   For destructive/dangerous actions.
+   Uses status-error color (Braun Red).
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button[data-variant="destructive"] {
+    background: var(--status-error);
+    color: var(--text-inverse);
+    box-shadow: var(--elevation-rest);
+}
+
+.drams-button[data-variant="destructive"]:hover:not(:disabled) {
+    background: var(--status-error);
+    box-shadow: var(--elevation-hover);
+}
+
+.drams-button[data-variant="destructive"]:active:not(:disabled) {
+    background: var(--status-error-emphasis);
+    box-shadow: var(--elevation-pressed);
+    transform: translateY(1px);
+}
+
+.drams-button[data-variant="destructive"]:disabled {
+    background: var(--control-disabled);
+    color: var(--text-disabled);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VARIANT: link
+   Looks like a text link.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button[data-variant="link"] {
+    background: transparent;
+    box-shadow: none;
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    height: auto;
+    padding: 0;
+}
+
+.drams-button[data-variant="link"]:hover:not(:disabled) {
+    background: transparent;
+    box-shadow: none;
+    color: var(--text-secondary);
+}
+
+/* Brand link — opt in with `accent`. */
+.drams-button[data-variant="link"].accent,
+.drams-button[data-variant="link"][data-accent] {
+    color: var(--accent);
+}
+
+.drams-button[data-variant="link"].accent:hover:not(:disabled),
+.drams-button[data-variant="link"][data-accent]:hover:not(:disabled) {
+    color: var(--accent-pressed);
+}
+
+.drams-button[data-variant="link"]:active:not(:disabled) {
+    background: transparent;
+    box-shadow: none;
+    color: var(--text-secondary);
+    transform: none;
+}
+
+.drams-button[data-variant="link"].accent:active:not(:disabled),
+.drams-button[data-variant="link"][data-accent]:active:not(:disabled) {
+    color: var(--accent-pressed);
+}
+
+.drams-button[data-variant="link"]:disabled {
+    background: transparent;
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZE: xs
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button[data-size="xs"] {
+    height: 28px;
+    font-size: var(--font-size-xs);
+    padding: var(--space-1) var(--space-2);
+    gap: var(--space-1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZE: sm
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button[data-size="sm"] {
+    height: 32px;
+    font-size: var(--font-size-xs);
+    padding: var(--space-1-5) var(--space-3);
+    gap: var(--space-1-5);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZE: lg
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button[data-size="lg"] {
+    height: 44px;
+    font-size: var(--font-size-base);
+    padding: var(--space-3) var(--space-6);
+    gap: var(--space-2);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZE: icon (default icon size)
+   Square button for icons only.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button[data-size="icon"] {
+    height: 36px;
+    width: 36px;
+    padding: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZE: icon-xs
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button[data-size="icon-xs"] {
+    height: 28px;
+    width: 28px;
+    padding: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZE: icon-sm
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button[data-size="icon-sm"] {
+    height: 32px;
+    width: 32px;
+    padding: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZE: icon-lg
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button[data-size="icon-lg"] {
+    height: 44px;
+    width: 44px;
+    padding: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ICON SPACING
+   Use data-icon="inline-start" or data-icon="inline-end" on icons.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-button>[data-icon="inline-start"] {
+    margin-inline-start: calc(var(--space-1) * -1);
+}
+
+.drams-button>[data-icon="inline-end"] {
+    margin-inline-end: calc(var(--space-1) * -1);
+}
+
+/* Adjust icon spacing for different sizes */
+.drams-button[data-size="xs"]>[data-icon="inline-start"],
+.drams-button[data-size="xs"]>[data-icon="inline-end"] {
+    margin: 0;
+}
+
+.drams-button[data-size="lg"]>[data-icon="inline-start"] {
+    margin-inline-start: calc(var(--space-1-5) * -1);
+}
+
+.drams-button[data-size="lg"]>[data-icon="inline-end"] {
+    margin-inline-end: calc(var(--space-1-5) * -1);
+}

@@ -1,0 +1,13 @@
+"""Knowledge socket exports for vendor-neutral contracts."""
+
+from eylo.common.contracts import knowledgebase as knowledgebase_contracts
+
+DOCUMENT_NAMESPACE = knowledgebase_contracts.DOCUMENT_NAMESPACE
+KnowledgeAccess = knowledgebase_contracts.KnowledgeAccess
+KnowledgeDocument = knowledgebase_contracts.KnowledgeDocument
+KnowledgeResult = knowledgebase_contracts.KnowledgeResult
+KnowledgeScope = knowledgebase_contracts.KnowledgeScope
+KnowledgebaseCapabilities = knowledgebase_contracts.KnowledgebaseCapabilities
+KnowledgebaseError = knowledgebase_contracts.KnowledgebaseError
+derive_document_id = knowledgebase_contracts.derive_document_id
+derive_identity = knowledgebase_contracts.derive_identity

@@ -1,0 +1,67 @@
+/**
+ * DRAMS3 Primitives Index
+ *
+ * PRIMARY PRIMITIVES ONLY — Components that introduce invariants.
+ *
+ * Categories:
+ * - Structural: reset, layout (Page, Section, Box, Flex, Grid, Stack)
+ * - Content: typography (headings, text, label)
+ * - Form Controls: button, input, select, checkbox, radio, switch, slider, toggle
+ * - Display: avatar, image, badge, kbd, progress, separator, skeleton, spinner
+ * - Layout: scroll-area
+ * - Overlay: modal, dropdown surfaces
+ * - Compositions: defined in /compositions/ (not imported here)
+ *
+ * Compositions (Alert, ButtonGroup, etc.) are NOT primitives.
+ * They are documented patterns using these primitives.
+ */
+
+/* Structural */
+@import './reset.css';
+@import './layout.css';
+
+/* Content */
+@import './typography.css';
+
+/* Form Controls */
+@import './form.css';
+@import './button.css';
+@import './input.css';
+@import './select.css';
+@import './checkbox.css';
+@import './radio.css';
+@import './switch.css';
+@import './slider.css';
+@import './toggle.css';
+
+/* Display */
+@import './avatar.css';
+@import './image.css';
+@import './kbd.css';
+@import './progress.css';
+@import './separator.css';
+@import './skeleton.css';
+@import './spinner.css';
+@import './card.css';
+
+/* Layout */
+@import './scroll-area.css';
+
+/* Overlay */
+@import './overlay.css';
+@import './dropdown-menu.css';
+@import './tooltip.css';
+@import './tabs.css';
+@import './dialog.css';
+@import './popover.css';
+@import './sheet.css';
+
+/* Feedback (shared with compositions) */
+@import './feedback.css';
+
+/* Composition CSS rules (minimal, for documented patterns) */
+@import './compositions.css';
+
+/* Accent — the canonical statement of what `accent` does to a control.
+   Imported LAST so it resolves consistently across every primitive. */
+@import './accent.css';

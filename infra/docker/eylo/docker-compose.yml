@@ -1,0 +1,85 @@
+name: eylo
+
+x-eylo-environment: &eylo-environment
+  # Safe base: environment-specific values come from one explicit overlay.
+  ENV: prod
+  HOSTING_MODE: docker
+  DB_HOST: postgres-17
+  DB_PORT: "5432"
+  REDIS_HOST: redis-7
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+
+services:
+  eylo-server:
+    image: eylo-server:local
+    build:
+      context: ../../..
+      dockerfile: infra/docker/eylo/Dockerfile
+    environment: *eylo-environment
+    command:
+      - /bin/sh
+      - -c
+      - >-
+        alembic upgrade head &&
+        exec gunicorn --workers 2 --bind 0.0.0.0:8000
+        --worker-class uvicorn.workers.UvicornWorker --timeout 120 main:app
+    depends_on:
+      postgres-17:
+        condition: service_healthy
+      redis-7:
+        condition: service_healthy
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  worker:
+    image: eylo-server:local
+    environment: *eylo-environment
+    command: python -m eylo.agent_run_worker
+    healthcheck:
+      test: ["CMD", "python", "scripts/check_worker_health.py"]
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 6
+    depends_on:
+      eylo-server:
+        condition: service_healthy
+      redis-7:
+        condition: service_healthy
+    stop_grace_period: 30s
+    restart: unless-stopped
+
+  postgres-17:
+    image: pgvector/pgvector:pg17
+    expose:
+      - "5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+  redis-7:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    expose:
+      - "6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+  redis-data:

@@ -1,0 +1,92 @@
+minimum_pre_commit_version: "4.5.1"
+default_install_hook_types:
+  - pre-commit
+  - pre-push
+
+repos:
+  - repo: local
+    hooks:
+      - id: no-hosted-automation
+        name: Hosted automation remains absent
+        entry: >-
+          python3 -c 'from pathlib import Path;
+          assert not any(path.is_file() for path in
+          Path(".github/workflows").rglob("*")),
+          "Hosted automation must remain absent."'
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit, pre-push]
+
+      - id: python-lint-changed
+        name: Python lint (changed files)
+        # Add lint policy in server/pyproject.toml only after its full baseline passes.
+        entry: >-
+          server/.venv/bin/ruff check
+          --config server/pyproject.toml
+          --force-exclude
+          --extend-ignore F401,F403,F811,E712
+        language: system
+        files: ^(server/eylo/|server/scripts/|cli/)
+        types: [python]
+        stages: [pre-commit, pre-push]
+
+      - id: documentation-contract
+        name: Documentation coverage and source docstrings
+        entry: server/.venv/bin/python server/scripts/verify_documentation.py
+        language: system
+        files: >-
+          ^(README\.md|AGENTS\.md|docs/|server/eylo/|server/main\.py|
+          server/scripts/verify_documentation\.py|cli/)
+        pass_filenames: false
+        stages: [pre-commit, pre-push]
+
+      - id: console-format-changed
+        name: Console format (changed files)
+        entry: web/node_modules/.bin/prettier --check --ignore-unknown
+        language: system
+        files: ^web/
+        exclude: ^web/src/api/generated/
+        stages: [pre-commit, pre-push]
+
+      - id: server-config-import
+        name: Server configuration import
+        entry: >-
+          bash -c 'cd server &&
+          ENV=local DB_USER=x DB_PASSWORD=x DB_HOST=localhost DB_NAME=x
+          AUTH_SECRET_KEY=local-hook-only
+          ENCRYPTION_KEY=abababababababababababababababababababababababababababababababab
+          AUTH_ALGORITHM=HS256 AUTH_ACCESS_TOKEN_EXPIRE_MINUTES=60
+          REDIS_HOST=localhost REDIS_PASSWORD="" HOSTING_MODE=local
+          SENTRY_ENABLE=false .venv/bin/python -c
+          "from eylo.common.config import settings; print(\"SERVER-CONFIG-OK\")"'
+        language: system
+        files: ^server/
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: widget-build
+        name: Widget build
+        entry: bash -c 'cd widget && pnpm build'
+        language: system
+        files: ^widget/
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: console-verification
+        name: Console lint, typecheck, and build
+        entry: >-
+          bash -c 'cd web && pnpm lint && pnpm exec tsc -b --pretty false &&
+          pnpm exec vite build'
+        language: system
+        files: ^web/
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: console-live-api-contract
+        name: Console contract against running local API
+        entry: bash -c 'cd web && pnpm typecheck && pnpm build'
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [manual]

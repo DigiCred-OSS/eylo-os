@@ -1,0 +1,179 @@
+/**
+ * DRAMS3 Toggle Primitive
+ *
+ * Two-state button that can be on or off.
+ * Uses Radix UI Toggle.
+ *
+ * SHADCN COMPATIBILITY:
+ * - Toggle with variant and size props
+ * - variant: default | outline
+ * - size: sm | default | lg
+ *
+ * @see https://ui.shadcn.com/docs/components/toggle
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   TOGGLE BASE
+   Physical button appearance.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-toggle {
+    /* Reset */
+    all: unset;
+    box-sizing: border-box;
+
+    /* Layout */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+
+    /* Size (default) */
+    height: var(--control-height-default);
+    min-width: var(--control-height-default);
+    padding: 0 var(--space-2-5);
+
+    /* Typography — use control size (sm) */
+    font: var(--type-control);
+
+    /* Surface — raised like button */
+    background-color: var(--surface-raised);
+    border-radius: var(--radius-md);
+    box-shadow:
+        inset 0 0 0 1px var(--border-default),
+        var(--elevation-raised);
+
+    /* Colors */
+    color: var(--text-secondary);
+
+    /* Cursor */
+    cursor: pointer;
+
+    /* Transitions */
+    transition: var(--transition-control);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HOVER STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-toggle:hover:not([data-disabled]) {
+    background-color: var(--surface-hover);
+    color: var(--text-primary);
+    box-shadow:
+        inset 0 0 0 1px var(--border-strong),
+        var(--elevation-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRESSED (ON) STATE
+   Shows accent color when toggled on.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-toggle[data-state="on"],
+.drams-toggle[aria-pressed="true"],
+.drams-toggle--pressed {
+    background-color: var(--surface-pressed);
+    color: var(--text-primary);
+    box-shadow:
+        inset 0 0 0 1px var(--border-strong),
+        var(--elevation-pressed);
+}
+
+/* Accent variant when pressed */
+.drams-toggle.accent[data-state="on"],
+.drams-toggle.accent[aria-pressed="true"],
+.drams-toggle--accent.drams-toggle--pressed {
+    background-color: var(--accent-muted);
+    color: var(--accent);
+    box-shadow:
+        inset 0 0 0 1px var(--accent),
+        var(--elevation-pressed);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-toggle:focus-visible {
+    outline: none;
+    box-shadow:
+        inset 0 0 0 1px var(--text-primary),
+        0 0 0 2px var(--surface-muted);
+}
+
+.drams-toggle.accent:focus-visible {
+    box-shadow: var(--focus-ring);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DISABLED STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-toggle[data-disabled],
+.drams-toggle:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   OUTLINE VARIANT
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-toggle--outline {
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1px var(--border-default);
+}
+
+.drams-toggle--outline:hover:not([data-disabled]) {
+    background-color: var(--surface-hover);
+    box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+.drams-toggle--outline[data-state="on"],
+.drams-toggle--outline[aria-pressed="true"] {
+    background-color: var(--surface-pressed);
+    box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZES
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-toggle--sm {
+    height: var(--control-height-sm);
+    min-width: var(--control-height-sm);
+    padding: 0 var(--space-2);
+    font-size: var(--font-size-sm);
+}
+
+.drams-toggle--lg {
+    height: var(--control-height-lg);
+    min-width: var(--control-height-lg);
+    padding: 0 var(--space-3);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ICON ONLY
+   Square toggle for icon-only use.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-toggle--icon {
+    padding: 0;
+}
+
+.drams-toggle--icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.drams-toggle--sm.drams-toggle--icon svg {
+    width: 14px;
+    height: 14px;
+}
+
+.drams-toggle--lg.drams-toggle--icon svg {
+    width: 18px;
+    height: 18px;
+}

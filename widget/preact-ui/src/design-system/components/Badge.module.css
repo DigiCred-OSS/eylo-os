@@ -1,0 +1,99 @@
+/* Badge Component Styles */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ew-radius-sm);
+  padding: var(--ew-spacing-2xs) var(--ew-spacing-xs);
+  font-size: var(--ew-text-xs);
+  font-weight: var(--ew-font-medium);
+  line-height: 1;
+  transition: var(--ew-transition-default);
+  white-space: nowrap;
+  border: 1px solid transparent;
+  width: fit-content;
+  gap: var(--ew-spacing-xs);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* SVG icon sizing - shadcn pattern */
+.badge > svg {
+  width: var(--ew-spacing-sm);
+  height: var(--ew-spacing-sm);
+  pointer-events: none;
+}
+
+.badge:focus-visible {
+  outline: none;
+  border-color: oklch(var(--ew-ring));
+  box-shadow: 0 0 0 3px oklch(var(--ew-ring) / 0.5);
+}
+
+/* Variants */
+.default {
+  border-color: transparent;
+  background-color: oklch(var(--ew-primary));
+  color: oklch(var(--ew-primary-foreground));
+}
+
+/* Hover for when badge is wrapped in a link */
+a:hover .badge.default {
+  background-color: oklch(var(--ew-primary) / 0.9);
+}
+
+.secondary {
+  border-color: transparent;
+  background-color: oklch(var(--ew-secondary));
+  color: oklch(var(--ew-secondary-foreground));
+}
+
+a:hover .badge.secondary {
+  background-color: oklch(var(--ew-secondary) / 0.9);
+}
+
+.destructive {
+  border-color: transparent;
+  background-color: oklch(var(--ew-destructive));
+  color: oklch(var(--ew-destructive-foreground));
+}
+
+.destructive:focus-visible {
+  box-shadow: 0 0 0 3px oklch(var(--ew-destructive) / 0.2);
+}
+
+a:hover .badge.destructive {
+  background-color: oklch(var(--ew-destructive) / 0.9);
+}
+
+.outline {
+  color: oklch(var(--ew-foreground));
+  border-color: oklch(var(--ew-border));
+  background-color: transparent;
+}
+
+a:hover .badge.outline {
+  background-color: oklch(var(--ew-accent));
+  color: oklch(var(--ew-accent-foreground));
+}
+
+.success {
+  border-color: transparent;
+  background-color: oklch(var(--ew-success));
+  color: oklch(var(--ew-success-foreground));
+}
+
+a:hover .badge.success {
+  background-color: oklch(var(--ew-success) / 0.9);
+}
+
+.warning {
+  border-color: transparent;
+  background-color: oklch(var(--ew-warning));
+  color: oklch(var(--ew-warning-foreground));
+}
+
+a:hover .badge.warning {
+  background-color: oklch(var(--ew-warning) / 0.9);
+}

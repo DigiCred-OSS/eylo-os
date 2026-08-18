@@ -1,0 +1,159 @@
+/* Typography components with semantic design tokens */
+
+/* Heading variants */
+.heading {
+  font-weight: var(--ew-font-semibold);
+  line-height: var(--ew-leading-tight);
+}
+
+.h1 {
+  font-size: var(--ew-text-2xl);
+  /* 24px */
+}
+
+.h2 {
+  font-size: var(--ew-text-xl);
+  /* 20px */
+}
+
+.h3 {
+  font-size: var(--ew-text-lg);
+  /* 18px */
+}
+
+.h4 {
+  font-size: var(--ew-text-base);
+  /* 16px */
+}
+
+.h5 {
+  font-size: var(--ew-text-sm);
+  /* 14px */
+}
+
+.h6 {
+  font-size: var(--ew-text-xs);
+  /* 12px */
+}
+
+/* Text variants */
+.text {
+  line-height: var(--ew-leading-normal);
+}
+
+.large {
+  font-size: var(--ew-text-lg);
+  /* 18px */
+}
+
+.base {
+  font-size: var(--ew-text-base);
+  /* 16px */
+}
+
+.small {
+  font-size: var(--ew-text-sm);
+  /* 14px */
+}
+
+.xs {
+  font-size: var(--ew-text-xs);
+  /* 12px */
+}
+
+/* Color variants - semantic usage */
+.variant-muted {
+  color: oklch(var(--ew-muted-foreground));
+}
+
+.variant-subtle {
+  color: oklch(var(--ew-muted-foreground) / 0.8);
+}
+
+.variant-destructive {
+  color: oklch(var(--ew-destructive));
+}
+
+.variant-success {
+  color: oklch(var(--ew-success));
+}
+
+.variant-warning {
+  color: oklch(var(--ew-warning));
+}
+
+/* Backwards compatibility */
+.muted {
+  color: oklch(var(--ew-muted-foreground));
+}
+
+.subtle {
+  color: oklch(var(--ew-muted-foreground) / 0.8);
+}
+
+/* Style modifiers */
+.bold {
+  font-weight: var(--ew-font-bold);
+}
+
+.semibold {
+  font-weight: var(--ew-font-semibold);
+}
+
+.uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Label - for section headers, form labels, etc. */
+.label {
+  font-size: var(--ew-text-xs);
+  /* 12px */
+  font-weight: var(--ew-font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: oklch(var(--ew-muted-foreground));
+  line-height: var(--ew-leading-normal);
+}
+
+/* Code/Monospace */
+.code {
+  font-family: var(--ew-font-mono);
+  font-size: var(--ew-text-sm);
+  background-color: oklch(var(--ew-muted));
+  padding: var(--ew-spacing-2xs) var(--ew-spacing-xs);
+  border-radius: var(--ew-radius-sm);
+  color: oklch(var(--ew-foreground));
+}
+
+/* Utility classes */
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.inlineBlock {
+  display: inline-block;
+}
+
+/* Text Alignment */
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}

@@ -1,0 +1,94 @@
+/**
+ * DRAMS3 Progress Primitive
+ *
+ * Progress bar indicator using Radix UI Progress.
+ *
+ * SHADCN COMPATIBILITY:
+ * - Progress component with value prop
+ *
+ * @see https://ui.shadcn.com/docs/components/progress
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   PROGRESS ROOT
+   The track/container.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-progress {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 8px;
+    background-color: var(--surface-pressed);
+    border-radius: var(--radius-full);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROGRESS INDICATOR
+   The filled portion.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-progress-indicator {
+    height: 100%;
+    background-color: var(--text-primary);
+    border-radius: var(--radius-full);
+    transition: width 200ms ease-out;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VARIANTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Accent (Braun Orange) */
+.drams-progress--accent .drams-progress-indicator {
+    background-color: var(--accent);
+}
+
+/* Status colors */
+.drams-progress--success .drams-progress-indicator {
+    background-color: var(--status-success);
+}
+
+.drams-progress--warning .drams-progress-indicator {
+    background-color: var(--status-warning);
+}
+
+.drams-progress--error .drams-progress-indicator {
+    background-color: var(--status-error);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZES
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-progress--sm {
+    height: 4px;
+}
+
+.drams-progress--lg {
+    height: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INDETERMINATE
+   Animated state when progress is unknown.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-progress--indeterminate .drams-progress-indicator {
+    width: 50% !important;
+    animation: drams-progress-indeterminate 1.5s ease-in-out infinite;
+}
+
+@keyframes drams-progress-indeterminate {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    50% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}

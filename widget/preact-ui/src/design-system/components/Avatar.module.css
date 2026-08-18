@@ -1,0 +1,58 @@
+/* Avatar Component Styles */
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: oklch(var(--ew-muted));
+  color: oklch(var(--ew-muted-foreground));
+  font-weight: 500;
+  user-select: none;
+}
+
+.image {
+  aspect-ratio: 1;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 0.875rem;
+}
+
+/* Sizes */
+.sm {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.75rem;
+}
+
+.md {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 0.875rem;
+}
+
+.lg {
+  width: 3rem;
+  height: 3rem;
+  font-size: 1rem;
+}
+
+.xl {
+  width: 4rem;
+  height: 4rem;
+  font-size: 1.25rem;
+}

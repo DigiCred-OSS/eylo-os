@@ -1,0 +1,20 @@
+# Server image build context: include only server sources.
+*
+!server/
+!server/**
+
+# Never send local environments, secrets, caches, or build output.
+server/.venv/
+server/**/.env
+server/**/.env.*
+!server/**/.env.example
+server/**/__pycache__/
+server/**/*.py[cod]
+server/**/.pytest_cache/
+server/**/.ruff_cache/
+server/**/.mypy_cache/
+server/**/.coverage
+server/**/htmlcov/
+server/**/dist/
+server/**/build/
+server/**/*.egg-info/

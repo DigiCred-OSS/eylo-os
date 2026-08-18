@@ -1,0 +1,267 @@
+/**
+ * DRAMS3 Composition CSS Rules
+ *
+ * Minimal CSS for documented composition patterns.
+ * These are NOT new primitives — they're layout rules for combining primitives.
+ *
+ * Compositions are documented in /compositions/*.md
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   BUTTON GROUP COMPOSITION
+   Connects adjacent buttons by removing internal border-radius.
+
+   Usage: <div data-composition="button-group">
+   See: /compositions/button-group.md
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-composition="button-group"] {
+    display: inline-flex;
+    align-items: stretch;
+}
+
+[data-composition="button-group"][data-orientation="vertical"] {
+    flex-direction: column;
+}
+
+/* Horizontal: remove left/right radius on middle buttons */
+[data-composition="button-group"]:not([data-orientation="vertical"])>.drams-button {
+    border-radius: 0;
+}
+
+[data-composition="button-group"]:not([data-orientation="vertical"])>.drams-button:first-child {
+    border-radius: var(--control-radius) 0 0 var(--control-radius);
+}
+
+[data-composition="button-group"]:not([data-orientation="vertical"])>.drams-button:last-child {
+    border-radius: 0 var(--control-radius) var(--control-radius) 0;
+}
+
+[data-composition="button-group"]:not([data-orientation="vertical"])>.drams-button:only-child {
+    border-radius: var(--control-radius);
+}
+
+/* Vertical: remove top/bottom radius on middle buttons */
+[data-composition="button-group"][data-orientation="vertical"]>.drams-button {
+    border-radius: 0;
+}
+
+[data-composition="button-group"][data-orientation="vertical"]>.drams-button:first-child {
+    border-radius: var(--control-radius) var(--control-radius) 0 0;
+}
+
+[data-composition="button-group"][data-orientation="vertical"]>.drams-button:last-child {
+    border-radius: 0 0 var(--control-radius) var(--control-radius);
+}
+
+[data-composition="button-group"][data-orientation="vertical"]>.drams-button:only-child {
+    border-radius: var(--control-radius);
+}
+
+/* Input within group */
+[data-composition="button-group"]>.drams-input {
+    border-radius: var(--input-radius) 0 0 var(--input-radius);
+    flex: 1;
+}
+
+[data-composition="button-group"]:not([data-orientation="vertical"])>.drams-input:first-child {
+    border-radius: var(--input-radius) 0 0 var(--input-radius);
+}
+
+[data-composition="button-group"]:not([data-orientation="vertical"])>.drams-input:last-child {
+    border-radius: 0 var(--input-radius) var(--input-radius) 0;
+}
+
+/* Separator */
+[data-composition="button-group"]>[data-slot="separator"] {
+    flex-shrink: 0;
+    background-color: var(--border-strong);
+}
+
+[data-composition="button-group"]:not([data-orientation="vertical"])>[data-slot="separator"] {
+    width: 1px;
+    align-self: stretch;
+}
+
+[data-composition="button-group"][data-orientation="vertical"]>[data-slot="separator"] {
+    height: 1px;
+    align-self: stretch;
+}
+
+/* Text element */
+[data-composition="button-group"]>[data-slot="text"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--space-3);
+    font: var(--type-body);
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ALERT COMPOSITION
+   Callout for user attention.
+
+   Usage: <div data-composition="alert">
+   See: /compositions/alert.md
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-composition="alert"] {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: var(--space-3);
+    padding: var(--layout-card);
+    border-radius: var(--radius-lg);
+    border-left: 3px solid var(--border-strong);
+    background-color: var(--surface-subtle);
+}
+
+[data-composition="alert"]>[data-slot="icon"] {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-top: 1px;
+    color: var(--text-primary);
+}
+
+[data-composition="alert"] [data-slot="title"] {
+    grid-column: 2;
+    font: var(--type-label);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    line-height: 1;
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+[data-composition="alert"] [data-slot="description"] {
+    grid-column: 2;
+    font: var(--type-body-sm);
+    color: var(--text-secondary);
+}
+
+/* When there's no icon */
+[data-composition="alert"] [data-slot="title"]:first-child {
+    grid-column: 1 / -1;
+}
+
+[data-composition="alert"] [data-slot="title"]:first-child~[data-slot="description"] {
+    grid-column: 1 / -1;
+}
+
+/* Destructive variant */
+[data-composition="alert"][data-variant="destructive"] {
+    border-left-color: var(--status-error);
+}
+
+[data-composition="alert"][data-variant="destructive"]>[data-slot="icon"] {
+    color: var(--status-error);
+}
+
+[data-composition="alert"][data-variant="destructive"] [data-slot="title"] {
+    color: var(--status-error-emphasis);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BADGE COMPOSITION
+   Compact status indicator.
+
+   Usage: <span data-composition="badge">
+   See: /compositions/badge.md
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-composition="badge"] {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-0-5) var(--space-2);
+    border-radius: var(--radius-full);
+    font: var(--type-caption);
+    font-weight: var(--font-weight-medium);
+    white-space: nowrap;
+
+    /* Default: dark background */
+    background-color: var(--control-default);
+    color: var(--text-inverse);
+}
+
+[data-composition="badge"][data-variant="secondary"] {
+    background-color: var(--control-default-subtle);
+    color: var(--text-secondary);
+}
+
+[data-composition="badge"][data-variant="destructive"] {
+    background-color: var(--status-error);
+    color: var(--text-inverse);
+}
+
+[data-composition="badge"][data-variant="outline"] {
+    background-color: transparent;
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+}
+
+/* Active state (selected) */
+[data-composition="badge"][data-active="true"] {
+    background-color: var(--control-active);
+    color: var(--text-inverse);
+}
+
+[data-composition="badge"][data-variant="outline"][data-active="true"] {
+    background-color: transparent;
+    border-color: var(--control-active);
+    color: var(--control-active);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   EMPTY STATE COMPOSITION
+   Blank-slate, no-results, and onboarding prompts.
+
+   Usage: <div data-composition="empty-state">
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-composition="empty-state"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    padding: var(--space-12) var(--space-6);
+    text-align: center;
+}
+
+[data-composition="empty-state"] [data-slot="icon"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    opacity: 0.35;
+}
+
+[data-composition="empty-state"] .drams-empty-state-icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+[data-composition="empty-state"] [data-slot="content"] {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    max-width: 32rem;
+}
+
+[data-composition="empty-state"] [data-slot="title"] {
+    color: var(--text-primary);
+    font: var(--type-heading-4);
+}
+
+[data-composition="empty-state"] [data-slot="description"] {
+    color: var(--text-secondary);
+    font: var(--type-body-sm);
+}
+
+[data-composition="empty-state"] [data-slot="action"] {
+    padding-top: var(--space-2);
+}

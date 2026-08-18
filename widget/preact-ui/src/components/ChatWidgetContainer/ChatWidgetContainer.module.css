@@ -1,0 +1,52 @@
+.widgetRoot {
+  content-visibility: auto;
+  z-index: 50;
+}
+
+.chatContainer {
+  border-radius: var(--ew-radius);
+  position: absolute;
+  animation:
+    ewFadeIn 0.3s ease-in,
+    ewslideUp 0.3s ease-in;
+  overflow: hidden;
+  border: 1px solid oklch(var(--ew-border));
+  transition: all 0.3s ease;
+  background-color: oklch(var(--ew-background));
+}
+
+.chatContainerProd {
+  max-width: 90vw;
+  width: 32rem;
+  max-height: 90vh;
+}
+
+.contentWrapper {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Define animations */
+@keyframes ewFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ewslideUp {
+  from {
+    transform: translateY(1.25rem);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}

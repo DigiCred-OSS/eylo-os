@@ -1,0 +1,12 @@
+/* AgentIntegrationsModal Component Styles */
+
+.dialogContent {
+  max-width: 56rem;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.integrationsList {
+  padding-bottom: var(--ew-spacing-6);
+}

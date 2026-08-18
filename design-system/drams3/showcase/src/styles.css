@@ -1,0 +1,123 @@
+/* Showcase-specific styles */
+
+/* Theme transition */
+:root {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.showcase-page {
+    padding: var(--space-8);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.showcase-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--border-default);
+}
+
+.showcase-title {
+    font: var(--type-heading-1);
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+}
+
+.showcase-subtitle {
+    font: var(--type-body);
+    color: var(--text-secondary);
+    max-width: 60ch;
+}
+
+.showcase-section {
+    margin-bottom: var(--space-16);
+}
+
+.showcase-section-title {
+    font: var(--type-heading-3);
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.showcase-section-description {
+    font: var(--type-body-sm);
+    color: var(--text-muted);
+    margin-bottom: var(--space-6);
+    max-width: 60ch;
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+}
+
+.showcase-card {
+    background-color: var(--surface-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--elevation-card);
+    padding: var(--space-6);
+}
+
+.showcase-card-title {
+    font: var(--type-label);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    margin-bottom: var(--space-4);
+}
+
+.showcase-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.showcase-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* State demonstration helpers */
+.state-demo {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+}
+
+.state-label {
+    font: var(--type-caption);
+    color: var(--text-muted);
+    min-width: 80px;
+}
+
+/* Comparison layout */
+.comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background-color: var(--surface-muted);
+    border-radius: var(--radius-lg);
+}
+
+.comparison-item {
+    text-align: center;
+}
+
+.comparison-label {
+    font: var(--type-caption);
+    color: var(--text-muted);
+    margin-top: var(--space-2);
+}
+
+/* Interactive demo area */
+.demo-area {
+    background-color: var(--surface-section);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+}

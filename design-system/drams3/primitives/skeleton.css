@@ -1,0 +1,126 @@
+/**
+ * DRAMS3 Skeleton Primitive
+ *
+ * Loading placeholder with pulse animation.
+ *
+ * SHADCN COMPATIBILITY:
+ * - Use className to set dimensions
+ *
+ * @see https://ui.shadcn.com/docs/components/skeleton
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   SKELETON BASE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-skeleton {
+    background-color: var(--surface-muted);
+    border-radius: var(--radius-md);
+    animation: drams-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes drams-skeleton-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SHAPE VARIANTS
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-skeleton--circle {
+    border-radius: 50%;
+}
+
+.drams-skeleton--rounded-full {
+    border-radius: var(--radius-full);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRESET SIZES
+   Common patterns for convenience.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Text line */
+.drams-skeleton--text {
+    height: 16px;
+    width: 100%;
+}
+
+.drams-skeleton--text-sm {
+    height: 12px;
+    width: 100%;
+}
+
+.drams-skeleton--text-lg {
+    height: 20px;
+    width: 100%;
+}
+
+/* Heading */
+.drams-skeleton--heading {
+    height: 24px;
+    width: 60%;
+}
+
+/* Avatar */
+.drams-skeleton--avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.drams-skeleton--avatar-sm {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.drams-skeleton--avatar-lg {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+/* Button */
+.drams-skeleton--button {
+    height: 36px;
+    width: 80px;
+    border-radius: var(--radius-md);
+}
+
+/* Input */
+.drams-skeleton--input {
+    height: 36px;
+    width: 100%;
+    border-radius: var(--radius-input);
+}
+
+/* Card */
+.drams-skeleton--card {
+    height: 200px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NO ANIMATION VARIANT
+   For reduced motion preference.
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+    .drams-skeleton {
+        animation: none;
+    }
+}
+
+.drams-skeleton--no-animate {
+    animation: none;
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link href="/src/index.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eylo Widget Playground</title>
+  <script type="module" crossorigin src="/eylo-widget.js"></script>
+
+</head>
+
+<body>
+  <div id="eylo-widget"></div>
+  <script>
+    // Configuration
+    const ORGANIZATION_ID = "YOUR_ORGANIZATION_ID"
+    const DEFAULT_CONTACT = {
+      externalId: "YOUR_CONTACT_EXTERNAL_ID",
+      name: "Jane Example",
+      primaryEmail: "jane@example.com",
+      preferences: {
+        floor: "1",
+        room: "101",
+        desk: "A1",
+        language: "en",
+        timezone: "UTC",
+      },
+    };
+  </script>
+  <script>
+    // Keep trying to initialize until EyloWidget is available
+    function initializeWhenReady() {
+      if (window.EyloWidget) {
+        // Widget is available, initialize it
+        window.EyloWidget.initialize({
+          organizationId: ORGANIZATION_ID,
+          contact: DEFAULT_CONTACT,
+        });
+      } else {
+        // Widget not ready yet, try again in 50ms
+        setTimeout(initializeWhenReady, 50);
+      }
+    }
+
+    // Start checking for widget availability
+    initializeWhenReady();
+  </script>
+
+</body>
+
+</html>

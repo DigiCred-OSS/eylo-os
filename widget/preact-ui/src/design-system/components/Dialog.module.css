@@ -1,0 +1,112 @@
+/* Dialog Component Styles */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ew-z-modal-backdrop);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(var(--ew-spacing-2xs));
+  animation: fadeIn 200ms ease-out;
+}
+
+.content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: var(--ew-z-modal);
+  transform: translate(-50%, -50%);
+  width: calc(100% - var(--ew-spacing-8));
+  max-width: 32rem;
+  background-color: oklch(var(--ew-background));
+  border: 1px solid oklch(var(--ew-border));
+  border-radius: var(--ew-radius);
+  box-shadow: var(--ew-shadow-lg);
+  animation: slideIn 200ms ease-out;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ew-spacing-sm);
+  padding: var(--ew-spacing);
+  border-bottom: 1px solid oklch(var(--ew-border));
+}
+
+.title {
+  font-size: var(--ew-text-lg);
+  font-weight: var(--ew-font-semibold);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: oklch(var(--ew-foreground));
+  margin: 0;
+}
+
+.description {
+  font-size: var(--ew-text-sm);
+  color: oklch(var(--ew-muted-foreground));
+  line-height: 1.4;
+  margin: 0;
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--ew-spacing);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ew-spacing-xs);
+  padding: var(--ew-spacing);
+  border-top: 1px solid oklch(var(--ew-border));
+}
+
+.close {
+  position: absolute;
+  right: var(--ew-spacing-4);
+  top: var(--ew-spacing-4);
+  border-radius: var(--ew-radius);
+  padding: var(--ew-spacing-1);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: oklch(var(--ew-muted-foreground));
+  transition: var(--ew-transition-default);
+}
+
+.close:hover {
+  background-color: oklch(var(--ew-accent));
+  color: oklch(var(--ew-foreground));
+}
+
+.close:focus-visible {
+  outline: 2px solid oklch(var(--ew-ring));
+  outline-offset: 2px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

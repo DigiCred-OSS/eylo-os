@@ -1,0 +1,50 @@
+.root {
+  min-height: 100vh;
+  padding: 2rem;
+  background: oklch(var(--ew-background));
+  color: oklch(var(--ew-foreground));
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr) 24rem;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.sidebar {
+  position: sticky;
+  top: 1.5rem;
+}
+
+.previewPanel {
+  min-height: 28rem;
+}
+
+.codeBlock {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+}
+
+.sampleList {
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.interactionLog {
+  max-height: 16rem;
+  overflow: auto;
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+}

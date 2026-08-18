@@ -1,0 +1,87 @@
+/**
+ * DRAMS3 Separator Primitive
+ *
+ * Visual divider between content sections.
+ * Uses Radix UI Separator.
+ *
+ * SHADCN COMPATIBILITY:
+ * - orientation="horizontal" | "vertical"
+ *
+ * @see https://ui.shadcn.com/docs/components/separator
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   SEPARATOR (HORIZONTAL)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-separator {
+    flex-shrink: 0;
+    background-color: var(--border-default);
+}
+
+/* Horizontal (default) */
+.drams-separator[data-orientation="horizontal"],
+.drams-separator--horizontal {
+    width: 100%;
+    height: 1px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SEPARATOR (VERTICAL)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-separator[data-orientation="vertical"],
+.drams-separator--vertical {
+    width: 1px;
+    height: auto;
+    align-self: stretch;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VARIANTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Subtle (lighter) */
+.drams-separator--subtle {
+    background-color: var(--border-muted);
+}
+
+/* Strong (darker) */
+.drams-separator--strong {
+    background-color: var(--border-strong);
+}
+
+/* Decorative (accent) */
+.drams-separator--accent {
+    background-color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SPACING HELPERS
+   Margin utilities for common use cases.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-separator--my-2 {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.drams-separator--my-4 {
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.drams-separator--my-6 {
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+.drams-separator--mx-2 {
+    margin-left: var(--space-2);
+    margin-right: var(--space-2);
+}
+
+.drams-separator--mx-4 {
+    margin-left: var(--space-4);
+    margin-right: var(--space-4);
+}

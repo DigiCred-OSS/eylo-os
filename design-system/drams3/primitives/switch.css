@@ -1,0 +1,221 @@
+/**
+ * DRAMS3 Switch Primitive
+ *
+ * Physical toggle switch with machined appearance.
+ * Uses Radix UI Switch structure.
+ *
+ * SHADCN COMPATIBILITY:
+ * - API matches shadcn/ui Switch exactly
+ * - Uses Radix UI Switch primitive
+ * - Props: checked, defaultChecked, onCheckedChange, disabled, aria-invalid
+ *
+ * States:
+ * - OFF: Neutral track, thumb positioned left
+ * - ON: Track color change, thumb positioned right
+ * - Disabled: Flat, muted
+ *
+ * Default: black track when ON.
+ * Accent variant: Braun Orange track when ON.
+ *
+ * @see https://ui.shadcn.com/docs/components/switch
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   BASE SWITCH (Radix Root)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-switch {
+    /* Reset */
+    all: unset;
+    box-sizing: border-box;
+
+    /* Size — track dimensions */
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+
+    /* Surface — track appearance (OFF state) */
+    background-color: var(--surface-muted);
+    border-radius: var(--radius-full);
+    box-shadow: var(--elevation-inset);
+
+    /* Layout for thumb */
+    display: inline-flex;
+    align-items: center;
+    padding: 2px;
+
+    /* Cursor */
+    cursor: pointer;
+
+    /* Transitions */
+    transition: var(--transition-control);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SWITCH THUMB (Radix Thumb)
+   The moving element.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-switch-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background-color: var(--surface-overlay);
+    box-shadow: var(--elevation-rest);
+
+    /* Same token as the track, so the knob arrives exactly as the track
+       finishes recolouring. These are one object, not two. */
+    transition: var(--transition-control);
+
+    /* Promote to its own layer — the thumb is the only thing on screen
+       that travels, and compositing it keeps the motion clean. */
+    will-change: transform;
+}
+
+/* Thumb moves right when checked */
+.drams-switch[data-state="checked"] .drams-switch-thumb {
+    transform: translateX(20px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HOVER STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-switch:hover:not([data-disabled]) {
+    background-color: var(--border-strong);
+}
+
+.drams-switch:hover:not([data-disabled]) .drams-switch-thumb {
+    box-shadow: var(--elevation-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CHECKED/ON STATE
+   Default: black track. Accent variant: Braun Orange track.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-switch[data-state="checked"] {
+    background-color: var(--text-primary);
+    box-shadow: var(--elevation-rest);
+}
+
+/* Checked + Hover */
+.drams-switch[data-state="checked"]:hover:not([data-disabled]) {
+    background-color: var(--surface-inverse-muted);
+}
+
+/* Accent variant — Braun Orange track when ON */
+.drams-switch.accent[data-state="checked"],
+.drams-switch[data-accent][data-state="checked"] {
+    background-color: var(--accent);
+}
+
+.drams-switch.accent[data-state="checked"]:hover:not([data-disabled]),
+.drams-switch[data-accent][data-state="checked"]:hover:not([data-disabled]) {
+    background-color: var(--accent-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-switch:focus-visible {
+    outline: none;
+    box-shadow: var(--elevation-focus);
+}
+
+.drams-switch[data-state="checked"]:focus-visible {
+    box-shadow:
+        0 0 0 2px var(--surface-background),
+        0 0 0 4px var(--text-primary);
+}
+
+.drams-switch.accent[data-state="checked"]:focus-visible,
+.drams-switch[data-accent][data-state="checked"]:focus-visible {
+    box-shadow:
+        0 0 0 2px var(--surface-background),
+        0 0 0 4px var(--accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DISABLED STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-switch[data-disabled] {
+    background-color: var(--surface-muted);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.drams-switch[data-disabled] .drams-switch-thumb {
+    background-color: var(--surface-hover);
+    box-shadow: none;
+}
+
+.drams-switch[data-disabled][data-state="checked"] {
+    background-color: var(--control-disabled);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INVALID STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-switch[aria-invalid="true"] {
+    box-shadow:
+        inset 0 0 0 1px var(--status-error),
+        var(--elevation-inset);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SWITCH WITH LABEL (utility class)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-switch-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    cursor: pointer;
+    font: var(--type-body);
+    color: var(--text-primary);
+    user-select: none;
+}
+
+.drams-switch-label:has(.drams-switch[data-disabled]) {
+    cursor: not-allowed;
+    color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZE VARIANTS
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-switch[data-size="sm"] {
+    width: 36px;
+    height: 20px;
+    padding: 2px;
+}
+
+.drams-switch[data-size="sm"] .drams-switch-thumb {
+    width: 16px;
+    height: 16px;
+}
+
+.drams-switch[data-size="sm"][data-state="checked"] .drams-switch-thumb {
+    transform: translateX(16px);
+}
+
+.drams-switch[data-size="lg"] {
+    width: 52px;
+    height: 28px;
+    padding: 2px;
+}
+
+.drams-switch[data-size="lg"] .drams-switch-thumb {
+    width: 24px;
+    height: 24px;
+}
+
+.drams-switch[data-size="lg"][data-state="checked"] .drams-switch-thumb {
+    transform: translateX(24px);
+}

@@ -1,0 +1,272 @@
+/**
+ * DRAMS3 Feedback Primitives
+ *
+ * Status messages, alerts, and feedback indicators.
+ *
+ * SHADCN COMPATIBILITY:
+ * - Alert API matches shadcn/ui exactly
+ * - Variants: "default" | "destructive"
+ * - Components: Alert, AlertTitle, AlertDescription, AlertAction
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   ALERT
+   Callout for user attention.
+   API matches shadcn/ui Alert.
+   @see https://ui.shadcn.com/docs/components/alert
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-alert {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    border-left: 3px solid var(--border-strong);
+    background-color: var(--surface-subtle);
+}
+
+/* Icon slot (first child svg/icon) */
+.drams-alert>svg,
+.drams-alert>[data-slot="icon"] {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-top: 1px;
+    color: var(--text-primary);
+}
+
+/* Title and description stack in the second column */
+.drams-alert-title {
+    grid-column: 2;
+    font: var(--type-label);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    line-height: 1;
+    letter-spacing: -0.01em;
+}
+
+.drams-alert-description {
+    grid-column: 2;
+    font: var(--type-body-sm);
+    color: var(--text-secondary);
+}
+
+/* When there's no icon, title/description span full width */
+.drams-alert-title:first-child {
+    grid-column: 1 / -1;
+}
+
+.drams-alert-title:first-child~.drams-alert-description {
+    grid-column: 1 / -1;
+}
+
+/* AlertAction — positioned top-right */
+.drams-alert-action {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VARIANT: destructive
+   For error/warning alerts.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-alert[data-variant="destructive"] {
+    border-left-color: var(--status-error);
+}
+
+.drams-alert[data-variant="destructive"]>svg,
+.drams-alert[data-variant="destructive"]>[data-slot="icon"] {
+    color: var(--status-error);
+}
+
+.drams-alert[data-variant="destructive"] .drams-alert-title {
+    color: var(--status-error-emphasis);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BADGE
+   Displays a badge or a component that looks like a badge.
+
+   SHADCN COMPATIBILITY:
+   - API matches shadcn/ui Badge exactly
+   - Variants: default, secondary, destructive, outline
+   - DRAMS3 extension: accent modifier
+
+   @see https://ui.shadcn.com/docs/components/badge
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-0-5) var(--space-2);
+    border-radius: var(--radius-badge);
+    font: var(--type-caption);
+    font-weight: var(--font-weight-medium);
+    white-space: nowrap;
+    transition: var(--transition-control);
+
+    /* Default variant — dark/black (like shadcn) */
+    background-color: var(--surface-inverse);
+    color: var(--text-inverse);
+}
+
+/* Variant: secondary — muted background */
+.drams-badge[data-variant="secondary"] {
+    background-color: var(--surface-muted);
+    color: var(--text-secondary);
+}
+
+/* Variant: destructive — error/danger */
+.drams-badge[data-variant="destructive"] {
+    background-color: var(--status-error);
+    color: var(--text-inverse);
+}
+
+/* Variant: outline — bordered, transparent */
+.drams-badge[data-variant="outline"] {
+    background-color: transparent;
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+}
+
+/* Accent modifier — Braun Orange (DRAMS3 extension) */
+.drams-badge.accent {
+    background-color: var(--accent);
+    color: var(--text-inverse);
+}
+
+/* Accent + outline combination */
+.drams-badge[data-variant="outline"].accent {
+    background-color: transparent;
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* PROGRESS lives in progress.css.
+   A second implementation used to sit here — a 6px track with a
+   `.drams-progress-bar` fill, against progress.css's 8px track and
+   `.drams-progress-indicator`. Both defined `.drams-progress`, so which
+   track height you got depended on @import order in primitives/index.css.
+   Nothing consumed `-bar`, so it was removed rather than reconciled.
+   See primitives/progress.css. */
+
+/* ═══════════════════════════════════════════════════════════════
+   SPINNER
+   Loading indicator.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--surface-muted);
+    border-top-color: var(--text-muted);
+    border-radius: var(--radius-full);
+    animation: drams-spin 0.6s linear infinite;
+}
+
+@keyframes drams-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Accent spinner for active states */
+.drams-spinner[data-variant="accent"] {
+    border-color: var(--accent-muted);
+    border-top-color: var(--accent);
+}
+
+/* Size variants */
+.drams-spinner[data-size="sm"] {
+    width: 14px;
+    height: 14px;
+    border-width: 1.5px;
+}
+
+.drams-spinner[data-size="lg"] {
+    width: 28px;
+    height: 28px;
+    border-width: 3px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SKELETON
+   Loading placeholder.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-skeleton {
+    background: linear-gradient(90deg,
+            var(--surface-muted) 25%,
+            var(--surface-subtle) 50%,
+            var(--surface-muted) 75%);
+    background-size: 200% 100%;
+    animation: drams-shimmer 1.5s ease-in-out infinite;
+    border-radius: var(--radius-sm);
+}
+
+@keyframes drams-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.drams-skeleton--text {
+    height: 1em;
+    width: 100%;
+}
+
+.drams-skeleton--circle {
+    border-radius: var(--radius-full);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SONNER / TOASTER
+   Toast notifications styled with DRAMS tokens.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-sonner-toast {
+    background: var(--surface-overlay) !important;
+    border: 1px solid var(--border-default) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--elevation-dropdown) !important;
+    color: var(--text-primary) !important;
+}
+
+.drams-sonner-title {
+    color: var(--text-primary) !important;
+    font-weight: var(--font-weight-medium) !important;
+}
+
+.drams-sonner-description {
+    color: var(--text-secondary) !important;
+}
+
+.drams-sonner-action,
+.drams-sonner-cancel {
+    border-radius: var(--radius-md) !important;
+    font: var(--type-control) !important;
+}
+
+.drams-sonner-action {
+    background: var(--control-default) !important;
+    color: var(--text-inverse) !important;
+}
+
+.drams-sonner-cancel {
+    background: var(--surface-muted) !important;
+    color: var(--text-primary) !important;
+}
+
+.drams-sonner-close {
+    color: var(--text-muted) !important;
+}

@@ -1,0 +1,57 @@
+name: eylo
+
+x-eylo-production-environment: &eylo-production-environment
+  ENV: prod
+  DB_USER: ${DB_USER:?Set DB_USER in the production environment file}
+  DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in the production environment file}
+  DB_NAME: ${DB_NAME:?Set DB_NAME in the production environment file}
+  AUTH_SECRET_KEY: ${AUTH_SECRET_KEY:?Set AUTH_SECRET_KEY in the production environment file}
+  ENCRYPTION_KEY: ${ENCRYPTION_KEY:?Set ENCRYPTION_KEY in the production environment file}
+  AUTH_ALGORITHM: ${AUTH_ALGORITHM:-HS256}
+  AUTH_ACCESS_TOKEN_EXPIRE_MINUTES: ${AUTH_ACCESS_TOKEN_EXPIRE_MINUTES:-60}
+  REDIS_PASSWORD: ${REDIS_PASSWORD:?Set REDIS_PASSWORD in the production environment file}
+  API_BASE_URL: ${API_BASE_URL:?Set API_BASE_URL in the production environment file}
+  OAUTH_CALLBACK_URL: ${OAUTH_CALLBACK_URL:?Set OAUTH_CALLBACK_URL in the production environment file}
+  FRONTEND_URL: ${FRONTEND_URL:?Set FRONTEND_URL in the production environment file}
+  WIDGET_URL: ${WIDGET_URL:?Set WIDGET_URL in the production environment file}
+  CORS_ORIGINS: ${CORS_ORIGINS:?Set CORS_ORIGINS in the production environment file}
+
+x-eylo-production-env-file: &eylo-production-env-file
+  - path: ../../../server/eylo/common/config/.env.production.docker
+    required: true
+
+services:
+  eylo-server:
+    environment: *eylo-production-environment
+    env_file: *eylo-production-env-file
+    ports:
+      - name: api
+        target: 8000
+        published: "${EYLO_API_PORT:-8000}"
+        host_ip: "${EYLO_API_BIND_ADDRESS:-127.0.0.1}"
+        protocol: tcp
+
+  worker:
+    environment: *eylo-production-environment
+    env_file: *eylo-production-env-file
+
+  postgres-17:
+    environment:
+      POSTGRES_DB: ${DB_NAME:?Set DB_NAME in the production environment file}
+      POSTGRES_USER: ${DB_USER:?Set DB_USER in the production environment file}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in the production environment file}
+
+  redis-7:
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?Set REDIS_PASSWORD in the production environment file}
+    command:
+      - /bin/sh
+      - -c
+      - exec redis-server --appendonly yes --requirepass "$$REDIS_PASSWORD"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - redis-cli --no-auth-warning -a "$$REDIS_PASSWORD" ping
+      interval: 5s
+      timeout: 5s
+      retries: 12

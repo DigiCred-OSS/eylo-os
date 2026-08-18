@@ -1,0 +1,623 @@
+/**
+ * DRAMS3 Skeuomorphic Theme
+ *
+ * Inspired by classic Mac OS, iOS 6, and physical hardware interfaces.
+ * Deep shadows, glossy highlights, textured surfaces, beveled edges.
+ *
+ * Usage:
+ *   <html data-theme="skeuomorphic">
+ *   <html data-theme="skeuomorphic" data-mode="dark">
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   SKEUOMORPHIC THEME — LIGHT MODE
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-theme="skeuomorphic"],
+[data-theme="skeuomorphic"][data-mode="light"] {
+    /* ───────────────────────────────────────────────────────────
+       SURFACES
+       Textured, layered appearance with depth
+       ─────────────────────────────────────────────────────────── */
+
+    /* Page background — subtle linen texture feel */
+    --surface-background: #e8e4df;
+    --surface-page: var(--surface-background);
+
+    /* Raised surfaces — glossy gradient effect via box-shadow */
+    --surface-default: #f5f5f5;
+    --surface-raised: #fafafa;
+    --surface-overlay: #ffffff;
+    --surface-card: #ffffff;
+
+    /* Interactive states */
+    --surface-hover: #f0f0f0;
+    --surface-pressed: #e0e0e0;
+    --surface-muted: #ececec;
+    --surface-subtle: #f8f8f8;
+
+    /* Control surfaces */
+    --surface-control: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+    --surface-control-hover: linear-gradient(180deg, #fafafa 0%, #e8e8e8 100%);
+    --surface-control-active: linear-gradient(180deg, #e0e0e0 0%, #d0d0d0 100%);
+
+    /* ───────────────────────────────────────────────────────────
+       BORDERS
+       More pronounced, beveled appearance
+       ─────────────────────────────────────────────────────────── */
+
+    --border-default: #c0c0c0;
+    --border-strong: #a0a0a0;
+    --border-muted: #d8d8d8;
+    --color-border-default: var(--border-default);
+    --color-border-strong: var(--border-strong);
+
+    /* Beveled border colors */
+    --border-highlight: #e0e0e0;
+    --border-shadow: rgba(0, 0, 0, 0.25);
+
+    /* ───────────────────────────────────────────────────────────
+       ELEVATION
+       Deep, realistic shadows with multiple layers
+       ─────────────────────────────────────────────────────────── */
+
+    /* Resting — soft outer shadow + subtle highlight */
+    --elevation-rest:
+        inset 0 1px 0 var(--border-highlight),
+        0 1px 2px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.08);
+
+    /* Hover — lifted appearance */
+    --elevation-hover:
+        inset 0 1px 0 var(--border-highlight),
+        0 2px 4px rgba(0, 0, 0, 0.12),
+        0 4px 8px rgba(0, 0, 0, 0.1);
+
+    /* Pressed — inset, concave appearance */
+    --elevation-pressed:
+        inset 0 2px 4px rgba(0, 0, 0, 0.15),
+        inset 0 1px 2px rgba(0, 0, 0, 0.1);
+
+    /* Card — deep layered shadow */
+    --elevation-card:
+        0 1px 1px rgba(0, 0, 0, 0.04),
+        0 2px 4px rgba(0, 0, 0, 0.06),
+        0 4px 8px rgba(0, 0, 0, 0.08),
+        0 8px 16px rgba(0, 0, 0, 0.06);
+
+    /* Dropdown — pronounced floating effect */
+    --elevation-dropdown:
+        0 2px 4px rgba(0, 0, 0, 0.08),
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.12),
+        0 16px 32px rgba(0, 0, 0, 0.08);
+
+    /* Modal — dramatic depth */
+    --elevation-modal:
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.12),
+        0 16px 32px rgba(0, 0, 0, 0.14),
+        0 24px 48px rgba(0, 0, 0, 0.1);
+
+    /* Inset — recessed controls */
+    --elevation-inset:
+        inset 0 1px 3px rgba(0, 0, 0, 0.12),
+        inset 0 1px 1px rgba(0, 0, 0, 0.08);
+
+    /* Focus — glowing ring */
+    --elevation-focus:
+        0 0 0 3px rgba(255, 85, 0, 0.3),
+        inset 0 1px 0 var(--border-highlight);
+
+    /* ───────────────────────────────────────────────────────────
+       RADII
+       More rounded, pill-shaped for tactile feel
+       ─────────────────────────────────────────────────────────── */
+
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 10px;
+    --radius-xl: 14px;
+    --radius-control: 6px;
+    --radius-button: 6px;
+    --radius-input: 6px;
+    --radius-card: 10px;
+    --radius-modal: 14px;
+    --radius-badge: 10px;
+
+    /* ───────────────────────────────────────────────────────────
+       ACCENT COLOR
+       Glossy, saturated appearance
+       ─────────────────────────────────────────────────────────── */
+
+    --color-accent: #ff6b1a;
+    --color-accent-light: #ff8844;
+    --color-accent-dark: #e55500;
+    --color-accent-muted: rgba(255, 107, 26, 0.2);
+
+    /* Glossy accent gradient for buttons */
+    --accent-gradient: linear-gradient(180deg, #ff8844 0%, #ff5500 50%, #e54400 100%);
+    --accent-gradient-hover: linear-gradient(180deg, #ff9955 0%, #ff6611 50%, #ee5500 100%);
+
+    /* ───────────────────────────────────────────────────────────
+       TEXT
+       Slightly embossed appearance
+       ─────────────────────────────────────────────────────────── */
+
+    --color-text-primary: #333333;
+    --color-text-secondary: #666666;
+    --color-text-muted: #888888;
+    --text-shadow-emboss: 0 1px 0 rgba(255, 255, 255, 0.5);
+    --text-shadow-deboss: 0 -1px 0 rgba(0, 0, 0, 0.2);
+
+    /* ───────────────────────────────────────────────────────────
+       CONTROL HEIGHTS
+       Slightly taller for tactile feel
+       ─────────────────────────────────────────────────────────── */
+
+    --control-height-xs: 26px;
+    --control-height-sm: 34px;
+    --control-height-default: 40px;
+    --control-height-lg: 48px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SKEUOMORPHIC THEME — DARK MODE
+   Brushed metal / dark aluminum aesthetic
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-theme="skeuomorphic"][data-mode="dark"],
+[data-theme="skeuomorphic"].dark {
+    /* ───────────────────────────────────────────────────────────
+       SURFACES
+       Dark aluminum / brushed metal feel
+       ─────────────────────────────────────────────────────────── */
+
+    --surface-background: #1a1a1e;
+    --surface-page: var(--surface-background);
+
+    --surface-default: #2a2a2e;
+    --surface-raised: #333338;
+    --surface-overlay: #3a3a40;
+    --surface-card: #2e2e34;
+
+    --surface-hover: #3a3a40;
+    --surface-pressed: #222226;
+    --surface-muted: #252528;
+    --surface-subtle: #2c2c30;
+
+    --surface-control: linear-gradient(180deg, #404048 0%, #2a2a30 100%);
+    --surface-control-hover: linear-gradient(180deg, #4a4a52 0%, #343438 100%);
+    --surface-control-active: linear-gradient(180deg, #222228 0%, #1a1a1e 100%);
+
+    /* ───────────────────────────────────────────────────────────
+       BORDERS
+       Metallic edge highlights
+       ─────────────────────────────────────────────────────────── */
+
+    --border-default: #4a4a50;
+    --border-strong: #5a5a60;
+    --border-muted: #3a3a40;
+    --color-border-default: var(--border-default);
+    --color-border-strong: var(--border-strong);
+
+    --border-highlight: rgba(255, 255, 255, 0.1);
+    --border-shadow: rgba(0, 0, 0, 0.4);
+
+    /* ───────────────────────────────────────────────────────────
+       ELEVATION
+       Deep shadows for dark surfaces
+       ─────────────────────────────────────────────────────────── */
+
+    --elevation-rest:
+        inset 0 1px 0 var(--border-highlight),
+        0 1px 2px rgba(0, 0, 0, 0.3),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+
+    --elevation-hover:
+        inset 0 1px 0 var(--border-highlight),
+        0 2px 4px rgba(0, 0, 0, 0.35),
+        0 4px 8px rgba(0, 0, 0, 0.25);
+
+    --elevation-pressed:
+        inset 0 2px 4px rgba(0, 0, 0, 0.4),
+        inset 0 1px 2px rgba(0, 0, 0, 0.3);
+
+    --elevation-card:
+        0 1px 2px rgba(0, 0, 0, 0.2),
+        0 2px 4px rgba(0, 0, 0, 0.15),
+        0 4px 8px rgba(0, 0, 0, 0.15),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+
+    --elevation-dropdown:
+        0 2px 4px rgba(0, 0, 0, 0.25),
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        0 8px 16px rgba(0, 0, 0, 0.2),
+        0 16px 32px rgba(0, 0, 0, 0.15);
+
+    --elevation-modal:
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.25),
+        0 16px 32px rgba(0, 0, 0, 0.25),
+        0 24px 48px rgba(0, 0, 0, 0.2);
+
+    --elevation-inset:
+        inset 0 1px 3px rgba(0, 0, 0, 0.4),
+        inset 0 1px 1px rgba(0, 0, 0, 0.3);
+
+    --elevation-focus:
+        0 0 0 3px rgba(255, 107, 26, 0.4),
+        inset 0 1px 0 var(--border-highlight);
+
+    /* ───────────────────────────────────────────────────────────
+       TEXT
+       Light text with subtle shadows
+       ─────────────────────────────────────────────────────────── */
+
+    --color-text-primary: #f0f0f0;
+    --color-text-secondary: #b0b0b0;
+    --color-text-muted: #808080;
+    --color-text-inverse: #1a1a1e;
+
+    --text-shadow-emboss: 0 1px 0 rgba(0, 0, 0, 0.5);
+    --text-shadow-deboss: 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    /* ───────────────────────────────────────────────────────────
+       ACCENT
+       Brighter for dark backgrounds
+       ─────────────────────────────────────────────────────────── */
+
+    --color-accent: #ff7733;
+    --color-accent-light: #ff9955;
+    --color-accent-dark: #ee5500;
+    --color-accent-muted: rgba(255, 119, 51, 0.25);
+
+    --accent-gradient: linear-gradient(180deg, #ff9955 0%, #ff6611 50%, #ee5500 100%);
+    --accent-gradient-hover: linear-gradient(180deg, #ffaa66 0%, #ff7722 50%, #ff6611 100%);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPONENT-SPECIFIC ENHANCEMENTS
+   Skeuomorphic treatments that need component-level CSS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Button — glossy gradient with bevel */
+[data-theme="skeuomorphic"] .drams-button {
+    background: var(--surface-control);
+    border: 1px solid var(--border-default);
+    border-top-color: var(--border-highlight);
+    border-bottom-color: var(--border-shadow);
+    color: var(--text-primary);
+    text-shadow: var(--text-shadow-emboss);
+}
+
+[data-theme="skeuomorphic"] .drams-button:disabled {
+    background: var(--surface-muted);
+    border-color: var(--border-muted);
+    box-shadow: none;
+    color: var(--text-muted);
+    text-shadow: none;
+    opacity: 0.6;
+}
+
+[data-theme="skeuomorphic"] .drams-button:hover:not(:disabled) {
+    background: var(--surface-control-hover);
+}
+
+[data-theme="skeuomorphic"] .drams-button:active:not(:disabled) {
+    background: var(--surface-control-active);
+    text-shadow: var(--text-shadow-deboss);
+}
+
+[data-theme="skeuomorphic"] .drams-button[data-variant="primary"] {
+    background: var(--accent-gradient);
+    border-color: var(--accent-pressed);
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="skeuomorphic"] .drams-button[data-variant="primary"]:hover:not(:disabled) {
+    background: var(--accent-gradient-hover);
+}
+
+/* Button accent modifier — glossy orange gradient */
+[data-theme="skeuomorphic"] .drams-button.accent {
+    background: var(--accent-gradient);
+    border-color: var(--accent-pressed);
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="skeuomorphic"] .drams-button.accent:hover:not(:disabled) {
+    background: var(--accent-gradient-hover);
+}
+
+[data-theme="skeuomorphic"] .drams-button.accent:active:not(:disabled) {
+    background: linear-gradient(180deg, #cc4400 0%, #ee5500 50%, #ff6611 100%);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="skeuomorphic"] .drams-button[data-variant="outline"] {
+    background: transparent;
+    border-width: 1px;
+    border-color: var(--border-muted);
+    border-top-color: var(--border-highlight);
+    border-bottom-color: var(--border-default);
+    text-shadow: none;
+}
+
+[data-theme="skeuomorphic"] .drams-button[data-variant="outline"].accent {
+    color: var(--accent);
+    border-color: var(--accent);
+    border-top-color: var(--accent-hover);
+    border-bottom-color: var(--accent-pressed);
+}
+
+[data-theme="skeuomorphic"] .drams-button[data-variant="outline"].accent:hover:not(:disabled),
+[data-theme="skeuomorphic"] .drams-button[data-variant="outline"].accent:active:not(:disabled) {
+    background: var(--surface-control-hover);
+    color: var(--accent);
+    border-color: var(--accent);
+    border-top-color: var(--accent-hover);
+    border-bottom-color: var(--accent-pressed);
+    text-shadow: none;
+}
+
+[data-theme="skeuomorphic"] .drams-button[data-variant="outline"].accent:active:not(:disabled) {
+    background: var(--surface-control-active);
+    text-shadow: none;
+}
+
+[data-theme="skeuomorphic"] .drams-button[data-variant="link"] {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: var(--accent);
+    text-shadow: none;
+}
+
+[data-theme="skeuomorphic"] .drams-button[data-variant="link"]:hover:not(:disabled),
+[data-theme="skeuomorphic"] .drams-button[data-variant="link"]:active:not(:disabled) {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: var(--accent-pressed);
+    text-shadow: none;
+}
+
+[data-theme="skeuomorphic"] [data-composition="button-group"]>.drams-button[data-variant="outline"] {
+    background: var(--surface-control);
+    box-shadow: var(--elevation-rest);
+}
+
+[data-theme="skeuomorphic"] [data-composition="button-group"]>.drams-button[data-variant="outline"]:hover:not(:disabled) {
+    background: var(--surface-control-hover);
+    box-shadow: var(--elevation-rest);
+}
+
+[data-theme="skeuomorphic"] [data-composition="button-group"]>.drams-button[data-variant="outline"]:active:not(:disabled) {
+    background: var(--surface-control-active);
+    box-shadow: var(--elevation-pressed);
+}
+
+[data-theme="skeuomorphic"] [data-composition="button-group"]>.drams-button[data-variant="outline"].accent {
+    border-color: var(--accent);
+    border-top-color: var(--accent-hover);
+    border-bottom-color: var(--accent-pressed);
+}
+
+[data-theme="skeuomorphic"] [data-composition="button-group"]>.drams-button[data-variant="outline"].accent:hover:not(:disabled) {
+    background: var(--surface-control-hover);
+    color: var(--accent);
+    border-color: var(--accent);
+    border-top-color: var(--accent-hover);
+    border-bottom-color: var(--accent-pressed);
+    text-shadow: none;
+}
+
+[data-theme="skeuomorphic"] [data-composition="button-group"]>.drams-button[data-variant="outline"].accent:active:not(:disabled) {
+    background: var(--surface-control-active);
+    color: var(--accent);
+    border-color: var(--accent);
+    border-top-color: var(--accent-hover);
+    border-bottom-color: var(--accent-pressed);
+    text-shadow: none;
+}
+
+/* Input — recessed appearance */
+[data-theme="skeuomorphic"] .drams-input,
+[data-theme="skeuomorphic"] .drams-select-trigger,
+[data-theme="skeuomorphic"] textarea.drams-input {
+    background: var(--surface-default);
+    border: 1px solid var(--border-default);
+    box-shadow: var(--elevation-inset);
+}
+
+[data-theme="skeuomorphic"] .drams-input:hover:not(:disabled):not(:focus),
+[data-theme="skeuomorphic"] textarea.drams-input:hover:not(:disabled):not(:focus),
+[data-theme="skeuomorphic"] .drams-select-trigger:hover:not([data-disabled]) {
+    background: var(--surface-default);
+    border-color: var(--border-default);
+    box-shadow: var(--elevation-inset);
+}
+
+[data-theme="skeuomorphic"] .drams-input:focus,
+[data-theme="skeuomorphic"] textarea.drams-input:focus,
+[data-theme="skeuomorphic"] .drams-select-trigger:focus,
+[data-theme="skeuomorphic"] .drams-select-trigger[data-state="open"] {
+    border-color: var(--border-default);
+    box-shadow: var(--elevation-inset);
+}
+
+[data-theme="skeuomorphic"] .drams-input:disabled,
+[data-theme="skeuomorphic"] textarea.drams-input:disabled,
+[data-theme="skeuomorphic"] .drams-select-trigger[data-disabled],
+[data-theme="skeuomorphic"] .drams-select-native:disabled {
+    background: var(--surface-muted);
+    border-color: var(--border-muted);
+    box-shadow: none;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* Switch — glossy track */
+[data-theme="skeuomorphic"] .drams-switch {
+    background: linear-gradient(180deg, #c0c0c0 0%, #a0a0a0 100%);
+    border: 1px solid var(--border-shadow);
+}
+
+[data-theme="skeuomorphic"] .drams-switch:hover:not([data-disabled]) {
+    background: linear-gradient(180deg, #c0c0c0 0%, #a0a0a0 100%);
+    border-color: var(--border-shadow);
+    box-shadow: none;
+}
+
+[data-theme="skeuomorphic"] .drams-switch[data-state="checked"] {
+    background: var(--accent-gradient);
+}
+
+/* Switch thumb — glossy ball */
+[data-theme="skeuomorphic"] .drams-switch-thumb {
+    background: linear-gradient(180deg, #ffffff 0%, #e8e8e8 100%);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="skeuomorphic"] .drams-switch:hover:not([data-disabled]) .drams-switch-thumb {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="skeuomorphic"] .drams-switch[data-disabled] {
+    background: var(--surface-muted);
+    border-color: var(--border-muted);
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+[data-theme="skeuomorphic"] .drams-switch[data-disabled] .drams-switch-thumb {
+    background: #d6d1ca;
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: none;
+}
+
+/* Progress — glossy bar */
+[data-theme="skeuomorphic"] .drams-progress {
+    background: linear-gradient(180deg, #d0d0d0 0%, #e0e0e0 100%);
+    box-shadow: var(--elevation-inset);
+    border: 1px solid var(--border-default);
+}
+
+[data-theme="skeuomorphic"] .drams-progress-bar {
+    background: var(--accent-gradient);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Card — raised panel with bevel */
+[data-theme="skeuomorphic"] .drams-card,
+[data-theme="skeuomorphic"] .drams-box--surface {
+    background: var(--surface-card);
+    border: 1px solid var(--border-muted);
+    border-top-color: var(--border-highlight);
+    box-shadow: var(--elevation-card);
+}
+
+/* Checkbox/Radio — recessed container */
+[data-theme="skeuomorphic"] .drams-checkbox,
+[data-theme="skeuomorphic"] .drams-radio {
+    background: var(--surface-default);
+    border: 1px solid var(--border-default);
+    box-shadow: var(--elevation-inset);
+}
+
+[data-theme="skeuomorphic"] .drams-checkbox:hover:not([data-disabled]),
+[data-theme="skeuomorphic"] .drams-radio:hover:not([data-disabled]),
+[data-theme="skeuomorphic"] .drams-checkbox[data-state="checked"]:hover:not([data-disabled]),
+[data-theme="skeuomorphic"] .drams-radio[data-state="checked"]:hover:not([data-disabled]) {
+    background: var(--surface-default);
+    border-color: var(--border-default);
+    box-shadow: var(--elevation-inset);
+}
+
+[data-theme="skeuomorphic"] .drams-checkbox[data-disabled],
+[data-theme="skeuomorphic"] .drams-radio[data-disabled] {
+    background: var(--surface-muted);
+    border-color: var(--border-muted);
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+/* Slider track — groove appearance */
+[data-theme="skeuomorphic"] .drams-slider-track {
+    background: linear-gradient(180deg, #c0c0c0 0%, #d8d8d8 100%);
+    box-shadow: var(--elevation-inset);
+    border: 1px solid var(--border-default);
+}
+
+/* Slider thumb — glossy knob */
+[data-theme="skeuomorphic"] .drams-slider-thumb {
+    background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+    border: 1px solid var(--border-default);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="skeuomorphic"] .drams-slider[data-disabled] {
+    opacity: 0.45;
+}
+
+[data-theme="skeuomorphic"] .drams-slider[data-disabled] .drams-slider-track,
+[data-theme="skeuomorphic"] .drams-slider[data-disabled] .drams-slider-thumb,
+[data-theme="skeuomorphic"] .drams-slider[data-disabled] .drams-slider-range {
+    box-shadow: none;
+}
+
+[data-theme="skeuomorphic"] .drams-slider[data-disabled] .drams-slider-track,
+[data-theme="skeuomorphic"] .drams-slider[data-disabled] .drams-slider-thumb {
+    background: var(--surface-muted);
+    border-color: var(--border-muted);
+}
+
+[data-theme="skeuomorphic"] .drams-slider[data-disabled] .drams-slider-range {
+    background: #b9b1a8;
+}
+
+/* Toggle — pill button with depth */
+[data-theme="skeuomorphic"] .drams-toggle {
+    background: var(--surface-control);
+    border: 1px solid var(--border-default);
+}
+
+[data-theme="skeuomorphic"] .drams-toggle[data-state="on"] {
+    background: var(--surface-control-active);
+    box-shadow: var(--elevation-pressed);
+}
+
+[data-theme="skeuomorphic"] .drams-toggle[data-disabled],
+[data-theme="skeuomorphic"] .drams-toggle:disabled {
+    background: var(--surface-muted);
+    border-color: var(--border-muted);
+    box-shadow: none;
+    color: var(--text-muted);
+    text-shadow: none;
+    opacity: 0.5;
+}
+
+/* Spinner — metallic ring */
+[data-theme="skeuomorphic"] .drams-spinner {
+    border-width: 3px;
+    border-color: var(--border-muted);
+    border-top-color: var(--accent);
+}
+
+/* Skeleton — subtle texture */
+[data-theme="skeuomorphic"] .drams-skeleton {
+    background: linear-gradient(90deg,
+            var(--surface-muted) 25%,
+            var(--surface-default) 50%,
+            var(--surface-muted) 75%);
+}

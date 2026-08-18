@@ -1,0 +1,406 @@
+/**
+ * DRAMS3 Select Primitive
+ *
+ * Radix UI Select with physical appearance.
+ * Trigger appears as a raised button, content as dropdown.
+ *
+ * SHADCN COMPATIBILITY:
+ * - API matches shadcn/ui Select exactly
+ * - Uses Radix UI Select primitive
+ * - Components: Select, SelectTrigger, SelectValue, SelectContent,
+ *   SelectItem, SelectGroup, SelectLabel, SelectSeparator
+ *
+ * @see https://ui.shadcn.com/docs/components/select
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   SELECT TRIGGER
+   The button that opens the dropdown.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-trigger {
+    /* Reset */
+    all: unset;
+    box-sizing: border-box;
+
+    /* Typography */
+    font: var(--type-control);
+
+    /* Layout */
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    width: 100%;
+    min-width: 180px;
+    height: var(--control-height-default);
+    padding: 0 var(--space-3);
+
+    /* Surface — inset like input */
+    background-color: var(--surface-input);
+    border-radius: var(--radius-input);
+    box-shadow:
+        inset 0 0 0 1px var(--border-default),
+        var(--elevation-inset);
+
+    /* Colors */
+    color: var(--text-primary);
+
+    /* Cursor */
+    cursor: pointer;
+
+    /* Transitions */
+    transition: var(--transition-control);
+}
+
+/* Placeholder text */
+.drams-select-trigger[data-placeholder] .drams-select-value {
+    color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HOVER STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-trigger:hover:not([data-disabled]) {
+    box-shadow:
+        inset 0 0 0 1px var(--border-strong),
+        var(--elevation-inset);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS STATE
+   Default: primary color border (like input).
+   Accent modifier: Braun Orange border.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-trigger:focus,
+.drams-select-trigger[data-state="open"] {
+    outline: none;
+    box-shadow:
+        inset 0 0 0 1px var(--text-primary),
+        0 0 0 2px var(--surface-muted);
+}
+
+/* Accent modifier — Braun Orange focus ring */
+.drams-select-trigger.accent:focus,
+.drams-select-trigger.accent[data-state="open"] {
+    box-shadow: var(--focus-ring);
+}
+
+/* Accent focus variant */
+.drams-select-trigger.accent:focus,
+.drams-select-trigger.accent[data-state="open"] {
+    box-shadow:
+        inset 0 0 0 1px var(--accent),
+        0 0 0 2px var(--accent-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DISABLED STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-trigger[data-disabled] {
+    background-color: var(--surface-input-disabled);
+    box-shadow: inset 0 0 0 1px var(--border-default);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INVALID STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-trigger[aria-invalid="true"] {
+    box-shadow:
+        inset 0 0 0 1px var(--status-error),
+        var(--elevation-inset);
+}
+
+.drams-select-trigger[aria-invalid="true"]:focus {
+    box-shadow:
+        inset 0 0 0 1px var(--status-error),
+        0 0 0 2px var(--status-error-subtle);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SELECT ICON (chevron)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    color: var(--text-muted);
+    transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.drams-select-trigger[data-state="open"] .drams-select-icon {
+    transform: rotate(180deg);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SELECT CONTENT (dropdown)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-content {
+    /* Surface */
+    background-color: var(--surface-overlay);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--elevation-dropdown);
+    border: 1px solid var(--border-default);
+
+    /* Size */
+    min-width: var(--radix-select-trigger-width);
+    max-height: var(--radix-select-content-available-height);
+    overflow: hidden;
+
+    /* Animation */
+    animation-duration: var(--duration-fast);
+    animation-timing-function: var(--ease-out);
+}
+
+.drams-select-content[data-state="open"] {
+    animation-name: drams-select-open;
+}
+
+.drams-select-content[data-state="closed"] {
+    animation-name: drams-select-close;
+}
+
+@keyframes drams-select-open {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes drams-select-close {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+}
+
+/* Position variants */
+.drams-select-content[data-side="top"] {
+    animation-name: drams-select-open-top;
+}
+
+@keyframes drams-select-open-top {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.drams-select-content[data-side="bottom"] {
+    animation-name: drams-select-open-bottom;
+}
+
+@keyframes drams-select-open-bottom {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SELECT VIEWPORT (scrollable area)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-viewport {
+    padding: var(--space-1);
+}
+
+/* Popper position (dropdown style) */
+.drams-select-content[data-position="popper"] .drams-select-viewport {
+    max-height: min(var(--radix-select-content-available-height), 300px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SELECT ITEM
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-item {
+    /* Reset */
+    all: unset;
+    box-sizing: border-box;
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    position: relative;
+    padding: var(--space-2) var(--space-3);
+    padding-left: var(--space-8);
+    border-radius: var(--radius-sm);
+
+    /* Typography */
+    font: var(--type-body-sm);
+    color: var(--text-primary);
+
+    /* Cursor */
+    cursor: pointer;
+
+    /* Transitions */
+    transition: var(--transition-colors);
+}
+
+/* Item states */
+.drams-select-item[data-highlighted] {
+    background-color: var(--surface-hover);
+    outline: none;
+}
+
+.drams-select-item[data-state="checked"] {
+    font-weight: var(--font-weight-medium);
+}
+
+.drams-select-item[data-disabled] {
+    color: var(--text-muted);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SELECT ITEM INDICATOR (checkmark)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-item-indicator {
+    position: absolute;
+    left: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    color: var(--text-primary);
+}
+
+/* Accent variant */
+.drams-select-item.accent .drams-select-item-indicator {
+    color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SELECT GROUP
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-group {
+    padding: var(--space-1) 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SELECT LABEL (group heading)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-label {
+    padding: var(--space-2) var(--space-3);
+    padding-left: var(--space-8);
+    font: var(--type-caption);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SELECT SEPARATOR
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-separator {
+    height: 1px;
+    margin: var(--space-1) calc(var(--space-1) * -1);
+    background-color: var(--border-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL BUTTONS
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-scroll-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    background-color: var(--surface-overlay);
+    color: var(--text-muted);
+    cursor: default;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NATIVE SELECT (fallback)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-select-native {
+    /* Reset */
+    appearance: none;
+    -webkit-appearance: none;
+
+    /* Typography */
+    font: var(--type-body);
+
+    /* Layout */
+    display: block;
+    width: 100%;
+    padding: var(--space-input-y) var(--space-input-x);
+    padding-right: var(--space-10);
+
+    /* Surface */
+    background-color: var(--surface-input);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5' stroke='%2357534E' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    border-radius: var(--radius-input);
+    box-shadow:
+        inset 0 0 0 1px var(--border-default),
+        var(--elevation-inset);
+
+    /* Colors */
+    color: var(--text-primary);
+
+    /* Cursor */
+    cursor: pointer;
+
+    /* Transitions */
+    transition: var(--transition-control);
+}
+
+.drams-select-native:hover:not(:disabled) {
+    box-shadow:
+        inset 0 0 0 1px var(--border-strong),
+        var(--elevation-inset);
+}
+
+.drams-select-native:focus {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+.drams-select-native:disabled {
+    background-color: var(--surface-input-disabled);
+    box-shadow: inset 0 0 0 1px var(--border-default);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    opacity: 0.7;
+}

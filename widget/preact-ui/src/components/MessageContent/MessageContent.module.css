@@ -1,0 +1,238 @@
+/* Message Content Typography Styles */
+
+.messageContent {
+  /* Base text styling */
+  min-width: 0;
+  font-size: var(--ew-text-sm);
+  line-height: var(--ew-leading-relaxed);
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+
+/* Paragraphs */
+.messageContent p {
+  margin: 0;
+  padding: 0;
+}
+
+.messageContent p + p {
+  margin-top: var(--ew-spacing-sm);
+}
+
+/* Headings */
+.messageContent h1,
+.messageContent h2,
+.messageContent h3,
+.messageContent h4,
+.messageContent h5,
+.messageContent h6 {
+  margin: 1em 0 0.5em 0;
+  line-height: var(--ew-leading-tight);
+  font-weight: var(--ew-font-semibold);
+}
+
+.messageContent h1:first-child,
+.messageContent h2:first-child,
+.messageContent h3:first-child,
+.messageContent h4:first-child,
+.messageContent h5:first-child,
+.messageContent h6:first-child {
+  margin-top: 0;
+}
+
+.messageContent h1 {
+  font-size: var(--ew-text-xl);
+}
+
+.messageContent h2 {
+  font-size: var(--ew-text-lg);
+}
+
+.messageContent h3 {
+  font-size: var(--ew-text);
+}
+
+.messageContent h4,
+.messageContent h5,
+.messageContent h6 {
+  font-size: var(--ew-text-sm);
+}
+
+/* Lists - Beautiful typography-focused design */
+.messageContent ul,
+.messageContent ol {
+  margin: var(--ew-spacing-sm) 0;
+  padding-left: var(--ew-spacing-md);
+  list-style-position: outside;
+}
+
+/* First/last list margin adjustment */
+.messageContent ul:first-child,
+.messageContent ol:first-child {
+  margin-top: 0;
+}
+
+.messageContent ul:last-child,
+.messageContent ol:last-child {
+  margin-bottom: 0;
+}
+
+/* Unordered lists - Custom bullet styling */
+.messageContent ul {
+  list-style-type: none;
+}
+
+.messageContent ul > li {
+  position: relative;
+  padding-left: var(--ew-spacing-xs);
+}
+
+.messageContent ul > li::before {
+  content: "•";
+  position: absolute;
+  left: -1em;
+  color: oklch(var(--ew-muted-foreground));
+  font-weight: var(--ew-font-bold);
+}
+
+/* Ordered lists - Enhanced numbering */
+.messageContent ol {
+  list-style-type: decimal;
+  counter-reset: item;
+}
+
+.messageContent ol > li {
+  padding-left: var(--ew-spacing-xs);
+}
+
+/* Nested lists - Progressive indentation with lighter bullets */
+.messageContent ul ul,
+.messageContent ol ul {
+  margin: var(--ew-spacing-2xs) 0;
+}
+
+.messageContent ul ul > li::before {
+  content: "◦";
+  color: oklch(var(--ew-muted-foreground) / 0.7);
+}
+
+.messageContent ul ul ul > li::before {
+  content: "▪";
+  color: oklch(var(--ew-muted-foreground) / 0.5);
+}
+
+/* Ordered list inside unordered */
+.messageContent ul ol,
+.messageContent ol ol {
+  margin: var(--ew-spacing-2xs) 0;
+}
+
+/* List items */
+.messageContent li {
+  margin: var(--ew-spacing-xs) 0;
+  line-height: var(--ew-leading-relaxed);
+}
+
+/* Tighter spacing for nested lists */
+.messageContent li li {
+  margin: var(--ew-spacing-2xs) 0;
+}
+
+/* Links */
+.messageContent a {
+  color: oklch(var(--ew-primary));
+  text-decoration: underline;
+  text-decoration-color: oklch(var(--ew-primary) / 0.3);
+  text-underline-offset: 0.15em;
+  transition: var(--ew-transition);
+  overflow-wrap: anywhere;
+}
+
+.messageContent a:hover {
+  text-decoration-color: oklch(var(--ew-primary));
+}
+
+/* Inline code */
+.messageContent code {
+  font-family: var(--ew-font-mono);
+  font-size: var(--ew-text-sm);
+  background-color: oklch(var(--ew-muted));
+  padding: var(--ew-spacing-2xs) var(--ew-spacing-xs);
+  border-radius: var(--ew-radius-sm);
+  overflow-wrap: anywhere;
+}
+
+/* Code blocks */
+.messageContent pre {
+  margin: var(--ew-spacing-sm) 0;
+  padding: var(--ew-spacing);
+  background-color: oklch(var(--ew-muted));
+  border-radius: var(--ew-radius);
+  overflow-x: hidden;
+  font-family: var(--ew-font-mono);
+  font-size: var(--ew-text-sm);
+  line-height: var(--ew-leading);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.messageContent pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Blockquotes */
+.messageContent blockquote {
+  margin: var(--ew-spacing-sm) 0;
+  padding-left: var(--ew-spacing);
+  border-left: 3px solid oklch(var(--ew-border));
+  color: oklch(var(--ew-muted-foreground));
+  font-style: italic;
+}
+
+/* Strong and emphasis */
+.messageContent strong,
+.messageContent b {
+  font-weight: var(--ew-font-semibold);
+}
+
+.messageContent em,
+.messageContent i {
+  font-style: italic;
+}
+
+/* Horizontal rules */
+.messageContent hr {
+  margin: var(--ew-spacing-md) 0;
+  border: none;
+  border-top: 1px solid oklch(var(--ew-border));
+}
+
+/* Tables */
+.messageContent table {
+  width: 100%;
+  table-layout: fixed;
+  margin: var(--ew-spacing-sm) 0;
+  border-collapse: collapse;
+}
+
+.messageContent th,
+.messageContent td {
+  padding: var(--ew-spacing-xs) var(--ew-spacing-sm);
+  border: 1px solid oklch(var(--ew-border));
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.messageContent th {
+  font-weight: var(--ew-font-semibold);
+  background-color: oklch(var(--ew-muted));
+}
+
+/* Images */
+.messageContent img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--ew-radius);
+  margin: var(--ew-spacing-sm) 0;
+}

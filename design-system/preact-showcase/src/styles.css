@@ -1,0 +1,143 @@
+/* Showcase chrome only — the frame around the components, never the components
+   themselves. Mirrors astryx-showcase/src/styles.css in layout, but written
+   against DRAMS token names: --space-* not --spacing-*, and
+   --surface-* / --text-* / --border-* not --color-background-* / --color-text-*. */
+
+body {
+    background-color: var(--surface-background);
+    color: var(--text-primary);
+    font-family: var(--font-family-sans);
+}
+
+.page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6) var(--space-12);
+}
+
+.masthead {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding-bottom: var(--space-6);
+    margin-bottom: var(--space-8);
+    border-bottom: 1px solid var(--border-default);
+    flex-wrap: wrap;
+}
+
+.masthead h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--space-2);
+}
+
+.masthead p {
+    margin: 0;
+    max-width: 54ch;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.55;
+}
+
+.masthead code {
+    font-family: var(--font-family-mono);
+    font-size: 0.8125rem;
+}
+
+.controls {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.controls-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+}
+
+/* Deliberately NOT a .drams-button — the showcase's own controls must never
+   be mistaken for the components being showcased. */
+.toggle {
+    font: inherit;
+    font-size: 0.8125rem;
+    padding: 6px 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-primary);
+    background-color: var(--surface-default);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-button);
+}
+
+.toggle[aria-pressed='true'] {
+    background-color: var(--surface-inverse);
+    color: var(--text-inverse);
+    border-color: transparent;
+}
+
+section.showcase {
+    margin-bottom: var(--space-10);
+    scroll-margin-top: var(--space-4);
+}
+
+section.showcase>h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 var(--space-1);
+}
+
+section.showcase>p.blurb {
+    margin: 0 0 var(--space-5);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    max-width: 76ch;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-4);
+    align-items: start;
+}
+
+.demo {
+    padding: var(--space-5);
+    background-color: var(--surface-raised);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-card);
+}
+
+.demo>h3 {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-4);
+}
+
+.row {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: flex-start;
+}
+
+.note {
+    margin-top: var(--space-3);
+    margin-bottom: 0;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}

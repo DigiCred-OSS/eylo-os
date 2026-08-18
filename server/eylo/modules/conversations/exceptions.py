@@ -1,0 +1,3 @@
+"""Errors for the `conversations` domain."""
+
+class ConversationNotFound(Exception): ...

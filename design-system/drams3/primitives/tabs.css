@@ -1,0 +1,304 @@
+/**
+ * Tabs - DRAMS3
+ *
+ * A set of layered sections of content—known as tab panels—that are
+ * displayed one at a time.
+ *
+ * Based on Radix UI Tabs primitive with shadcn-compatible API.
+ *
+ * @example
+ * <Tabs defaultValue="account">
+ *   <TabsList>
+ *     <TabsTrigger value="account">Account</TabsTrigger>
+ *     <TabsTrigger value="password">Password</TabsTrigger>
+ *   </TabsList>
+ *   <TabsContent value="account">Account content</TabsContent>
+ *   <TabsContent value="password">Password content</TabsContent>
+ * </Tabs>
+ */
+
+/* ==========================================================================
+   Tabs Root
+   ========================================================================== */
+
+.drams-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.drams-tabs[data-orientation="vertical"] {
+    flex-direction: row;
+}
+
+/* ==========================================================================
+   Tabs List (Container for triggers)
+   ========================================================================== */
+
+.drams-tabs-list {
+    /* Layout */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+
+    /* Spacing */
+    padding: var(--space-1);
+
+    /* Visual - Default variant (contained) */
+    background-color: var(--surface-muted);
+    border-radius: var(--radius-lg, 0.5rem);
+}
+
+/* Line variant - no background, border at bottom */
+.drams-tabs-list[data-variant="line"] {
+    background-color: transparent;
+    padding: 0;
+    gap: 0;
+    border-bottom: 1px solid var(--border-default);
+    border-radius: 0;
+    justify-content: flex-start;
+}
+
+/* Vertical orientation */
+.drams-tabs-list[data-orientation="vertical"] {
+    flex-direction: column;
+    width: auto;
+}
+
+.drams-tabs-list[data-orientation="vertical"][data-variant="line"] {
+    border-bottom: none;
+    border-right: 1px solid var(--border-default);
+    padding-right: 0;
+}
+
+/* ==========================================================================
+   Tabs Trigger (Individual tab buttons)
+   ========================================================================== */
+
+.drams-tabs-trigger {
+    /* Reset */
+    all: unset;
+    box-sizing: border-box;
+
+    /* Layout */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+
+    /* Spacing */
+    padding-block: var(--space-2);
+    padding-inline: var(--space-3);
+
+    /* Typography */
+    font-size: var(--font-size-sm, 0.875rem);
+    font-weight: var(--font-weight-medium, 500);
+    line-height: var(--line-height-none, 1);
+    white-space: nowrap;
+
+    /* Visual */
+    color: var(--text-muted);
+    border-radius: var(--radius-md, 0.375rem);
+
+    /* Interaction — shares the control token so the label, the face and the
+       underline all settle on the same beat. */
+    cursor: pointer;
+    user-select: none;
+    transition: var(--transition-control);
+}
+
+/* Focus state */
+.drams-tabs-trigger:focus-visible {
+    outline: 2px solid var(--control-active);
+    outline-offset: 2px;
+}
+
+/* Hover state */
+.drams-tabs-trigger:hover:not([data-disabled]):not([data-state="active"]) {
+    color: var(--text-primary);
+    background-color: var(--surface-hover);
+}
+
+/* Active state - Default variant */
+.drams-tabs-trigger[data-state="active"] {
+    color: var(--text-primary);
+    background-color: var(--surface-default);
+    box-shadow:
+        0 1px 3px 0 oklch(0 0 0 / 0.1),
+        0 1px 2px -1px oklch(0 0 0 / 0.1);
+}
+
+/* Disabled state */
+.drams-tabs-trigger[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   Line Variant Trigger Styles
+   ========================================================================== */
+
+.drams-tabs-list[data-variant="line"] .drams-tabs-trigger {
+    background-color: transparent;
+    border-radius: 0;
+    padding-inline: var(--space-4);
+    position: relative;
+    margin-bottom: -1px;
+    box-shadow: none;
+}
+
+.drams-tabs-list[data-variant="line"] .drams-tabs-trigger:hover:not([data-disabled]):not([data-state="active"]) {
+    background-color: transparent;
+    color: var(--text-primary);
+}
+
+.drams-tabs-list[data-variant="line"] .drams-tabs-trigger[data-state="active"] {
+    background-color: transparent;
+    box-shadow: none;
+    color: var(--text-primary);
+}
+
+/* Active indicator line — neutral by default, brand when opted in.
+   The underline exists on every trigger and fades, rather than being
+   created on the active one. Creating it made it pop in while the label
+   colour faded — two timings for one state change. */
+.drams-tabs-list[data-variant="line"] .drams-tabs-trigger::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--control-active);
+    opacity: 0;
+    transition: opacity var(--duration-control) var(--ease-control),
+                background-color var(--duration-control) var(--ease-control);
+}
+
+.drams-tabs-list[data-variant="line"] .drams-tabs-trigger[data-state="active"]::after {
+    opacity: 1;
+}
+
+.drams-tabs-list[data-variant="line"].accent .drams-tabs-trigger[data-state="active"]::after,
+.drams-tabs-list[data-variant="line"][data-accent] .drams-tabs-trigger[data-state="active"]::after {
+    background-color: var(--accent);
+}
+
+/* Vertical line variant */
+.drams-tabs-list[data-orientation="vertical"][data-variant="line"] .drams-tabs-trigger {
+    margin-bottom: 0;
+    margin-right: -1px;
+    justify-content: flex-start;
+}
+
+.drams-tabs-list[data-orientation="vertical"][data-variant="line"] .drams-tabs-trigger[data-state="active"]::after {
+    bottom: auto;
+    left: auto;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+}
+
+/* ==========================================================================
+   Tabs Content
+   ========================================================================== */
+
+.drams-tabs-content {
+    /* Layout */
+    flex: 1;
+
+    /* Focus */
+    outline: none;
+}
+
+.drams-tabs-content:focus-visible {
+    outline: 2px solid var(--control-active);
+    outline-offset: 2px;
+    border-radius: var(--radius-md, 0.375rem);
+}
+
+/* Animation */
+.drams-tabs-content[data-state="active"] {
+    animation: drams-tabs-fade-in 150ms ease;
+}
+
+/* ==========================================================================
+   Breadcrumb Tabs Composition
+   ========================================================================== */
+
+.drams-breadcrumb-tabs-list {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+.drams-breadcrumb-tabs-trigger {
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font: var(--type-body);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-tight);
+    transition: var(--transition-control);
+}
+
+.drams-breadcrumb-tabs-trigger:hover:not([data-disabled]) {
+    color: var(--text-primary);
+}
+
+.drams-breadcrumb-tabs-trigger[data-state="active"] {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1px;
+}
+
+.drams-breadcrumb-tabs-trigger[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.drams-breadcrumb-tabs-trigger:focus-visible {
+    outline: 2px solid var(--control-active);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+.drams-breadcrumb-tabs-separator {
+    color: var(--text-muted);
+    font: var(--type-body);
+    line-height: var(--line-height-none);
+    user-select: none;
+}
+
+@keyframes drams-tabs-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(2px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .drams-tabs-trigger,
+    .drams-tabs-content {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

@@ -1,0 +1,62 @@
+/* Field Component - Form wrapper with label, input, and error */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.fieldLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: oklch(var(--ew-foreground));
+}
+
+.fieldLabel[data-required="true"]::after {
+  content: " *";
+  color: oklch(var(--ew-destructive));
+}
+
+.fieldLabel[data-error="true"] {
+  color: oklch(var(--ew-destructive));
+}
+
+.fieldDescription {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: oklch(var(--ew-muted-foreground));
+  margin-top: -0.25rem;
+}
+
+.fieldError {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: oklch(var(--ew-destructive));
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.fieldErrorIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+}
+
+/* Horizontal Layout */
+.fieldHorizontal {
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fieldHorizontal .fieldLabel {
+  flex-shrink: 0;
+  min-width: 8rem;
+  margin-bottom: 0;
+}
+
+.fieldHorizontal .fieldContent {
+  flex: 1;
+}

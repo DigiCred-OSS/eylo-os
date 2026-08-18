@@ -1,0 +1,204 @@
+/**
+ * DRAMS3 Avatar Primitive
+ *
+ * User profile image with fallback.
+ * Uses Radix UI Avatar primitive.
+ *
+ * SHADCN COMPATIBILITY:
+ * - Avatar, AvatarImage, AvatarFallback, AvatarBadge
+ * - AvatarGroup, AvatarGroupCount
+ * - Sizes: sm, default, lg
+ *
+ * @see https://ui.shadcn.com/docs/components/avatar
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   AVATAR ROOT
+   Container for image and fallback.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-avatar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: visible;
+    border-radius: 50%;
+    background-color: var(--surface-raised);
+    border: 1px solid var(--border-default);
+
+    /* Default size */
+    width: 40px;
+    height: 40px;
+}
+
+/* Image and fallback need their own clipping */
+.drams-avatar-image,
+.drams-avatar-fallback {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZES
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-avatar--sm {
+    width: 32px;
+    height: 32px;
+}
+
+.drams-avatar--lg {
+    width: 48px;
+    height: 48px;
+}
+
+.drams-avatar--xl {
+    width: 64px;
+    height: 64px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCENT VARIANT
+   Accent border for selected/active state.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-avatar.accent {
+    border-color: var(--accent);
+    border-width: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   AVATAR IMAGE
+   The actual profile image.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   AVATAR FALLBACK
+   Shown when image fails to load.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-avatar-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font: var(--type-caption);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    background-color: var(--surface-raised);
+    text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   AVATAR BADGE
+   Status indicator dot positioned at bottom-right.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-avatar-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--status-success);
+    border: 2px solid var(--surface-background);
+}
+
+/* Badge status variants */
+.drams-avatar-badge--accent {
+    background-color: var(--accent);
+}
+
+.drams-avatar-badge--success {
+    background-color: var(--status-success);
+}
+
+.drams-avatar-badge--warning {
+    background-color: var(--status-warning);
+}
+
+.drams-avatar-badge--error {
+    background-color: var(--status-error);
+}
+
+.drams-avatar-badge--neutral {
+    background-color: var(--text-muted);
+}
+
+/* Badge sizes */
+.drams-avatar--sm .drams-avatar-badge {
+    width: 8px;
+    height: 8px;
+}
+
+.drams-avatar--lg .drams-avatar-badge {
+    width: 12px;
+    height: 12px;
+}
+
+.drams-avatar--xl .drams-avatar-badge {
+    width: 14px;
+    height: 14px;
+}
+
+/* Badge with icon */
+.drams-avatar-badge:has(svg) {
+    width: auto;
+    height: auto;
+    padding: 2px;
+}
+
+.drams-avatar-badge svg {
+    width: 10px;
+    height: 10px;
+    color: white;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   AVATAR GROUP
+   Overlapping avatars for teams/groups.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-avatar-group {
+    display: inline-flex;
+    flex-direction: row-reverse;
+}
+
+.drams-avatar-group .drams-avatar {
+    margin-left: -8px;
+    border: 2px solid var(--surface-background);
+}
+
+.drams-avatar-group .drams-avatar:last-child {
+    margin-left: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   AVATAR GROUP COUNT
+   Shows "+N" for additional members.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-avatar-group-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--surface-pressed);
+    border: 2px solid var(--surface-background);
+    margin-left: -8px;
+    font: var(--type-caption);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+}

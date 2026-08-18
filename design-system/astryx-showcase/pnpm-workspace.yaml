@@ -1,0 +1,6 @@
+# esbuild: needs its postinstall to fetch the platform binary (Vite depends on it).
+# @astryxdesign/core: its postinstall only prints a "run astryx init" nudge —
+#   no writes, no network — so there is nothing to gain by running it.
+allowBuilds:
+  esbuild: true
+  '@astryxdesign/core': false

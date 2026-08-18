@@ -1,0 +1,24 @@
+.cardButton {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.cardSelected {
+  outline: 2px solid oklch(var(--ew-ring));
+  outline-offset: 2px;
+}
+
+.cardMedia {
+  width: 100%;
+  height: 8rem;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 4px);
+}
+
+.featureList {
+  margin: 0;
+  padding-left: 1rem;
+}

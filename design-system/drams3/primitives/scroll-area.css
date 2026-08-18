@@ -1,0 +1,137 @@
+/**
+ * DRAMS3 Scroll Area Primitive
+ *
+ * Custom scrollable area with styled scrollbars.
+ * Uses Radix UI Scroll Area.
+ *
+ * SHADCN COMPATIBILITY:
+ * - ScrollArea, ScrollBar with orientation
+ *
+ * @see https://ui.shadcn.com/docs/components/scroll-area
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL AREA ROOT
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-scroll-area {
+    position: relative;
+    overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL AREA VIEWPORT
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-scroll-area-viewport {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+}
+
+.drams-scroll-area-viewport>div {
+    display: block !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-scrollbar {
+    display: flex;
+    touch-action: none;
+    user-select: none;
+    padding: 1px;
+    background-color: transparent;
+    transition: background-color 150ms ease;
+}
+
+.drams-scrollbar:hover {
+    background-color: var(--border-muted);
+}
+
+/* Vertical scrollbar */
+.drams-scrollbar[data-orientation="vertical"] {
+    width: 10px;
+    border-left: 1px solid transparent;
+}
+
+/* Horizontal scrollbar */
+.drams-scrollbar[data-orientation="horizontal"] {
+    flex-direction: column;
+    height: 10px;
+    border-top: 1px solid transparent;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLLBAR THUMB
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-scrollbar-thumb {
+    position: relative;
+    flex: 1;
+    background-color: var(--border-strong);
+    border-radius: var(--radius-full);
+    transition: background-color 150ms ease;
+}
+
+.drams-scrollbar-thumb::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.drams-scrollbar:hover .drams-scrollbar-thumb {
+    background-color: var(--text-muted);
+}
+
+/* Accent variant - colored scrollbar */
+.drams-scroll-area.accent .drams-scrollbar-thumb {
+    background-color: var(--accent);
+}
+
+.drams-scroll-area.accent .drams-scrollbar:hover .drams-scrollbar-thumb {
+    background-color: var(--accent-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CORNER
+   Where horizontal and vertical scrollbars meet.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-scroll-area-corner {
+    background-color: var(--border-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THIN VARIANT
+   Smaller scrollbars.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-scroll-area--thin .drams-scrollbar[data-orientation="vertical"] {
+    width: 6px;
+}
+
+.drams-scroll-area--thin .drams-scrollbar[data-orientation="horizontal"] {
+    height: 6px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   AUTO-HIDE VARIANT
+   Scrollbars appear only on hover/scroll.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-scroll-area--auto-hide .drams-scrollbar {
+    opacity: 0;
+    transition: opacity 150ms ease;
+}
+
+.drams-scroll-area--auto-hide:hover .drams-scrollbar {
+    opacity: 1;
+}

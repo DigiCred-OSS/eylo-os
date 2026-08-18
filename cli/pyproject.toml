@@ -1,0 +1,25 @@
+[project]
+name = "cli"
+version = "0.1.0"
+description = "Eylo Cli"
+license = "Apache-2.0"
+requires-python = ">=3.13"
+dependencies = [
+    "boto3>=1.40.64",
+    "rich>=13.9.4",
+    "typer>=0.15.2",
+]
+
+[project.scripts]
+eylo = "main:app"
+
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = [
+    "api_cli",
+    "deploy_frontend",
+    "main",
+]

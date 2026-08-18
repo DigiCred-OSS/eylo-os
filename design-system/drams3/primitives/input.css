@@ -1,0 +1,226 @@
+/**
+ * DRAMS3 Input Primitive
+ *
+ * Text input field with inset appearance.
+ * Appears as a recessed area ready for input.
+ *
+ * SHADCN COMPATIBILITY:
+ * - API matches shadcn/ui Input exactly
+ * - Uses native input element (no Radix wrapper needed)
+ * - Props: all standard HTML input attributes + className
+ * - Invalid state via aria-invalid attribute
+ * - Disabled state via disabled attribute
+ *
+ * States:
+ * - Rest: Subtle inset
+ * - Hover: Slightly deeper
+ * - Focus: Accent border (default) or Braun Orange (accent)
+ * - Disabled: Flat, muted
+ * - Invalid: Status red border
+ *
+ * @see https://ui.shadcn.com/docs/components/input
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   BASE INPUT
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-input {
+    /* Reset */
+    appearance: none;
+    border: none;
+    outline: none;
+
+    /* Typography */
+    font: var(--type-control);
+
+    /* Layout */
+    display: block;
+    width: 100%;
+    height: var(--control-height-default);
+    padding: 0 var(--space-input-x);
+
+    /* Surface — inset appearance */
+    background-color: var(--surface-input);
+    border-radius: var(--radius-input);
+    box-shadow:
+        inset 0 0 0 1px var(--border-default),
+        var(--elevation-inset);
+
+    /* Colors */
+    color: var(--text-primary);
+
+    /* Transitions */
+    transition: var(--transition-control);
+}
+
+/* Placeholder */
+.drams-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HOVER STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-input:hover:not(:disabled):not(:focus) {
+    box-shadow:
+        inset 0 0 0 1px var(--border-strong),
+        var(--elevation-inset);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS STATE
+   Default: primary color border.
+   Accent modifier: Braun Orange border.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-input:focus {
+    box-shadow:
+        inset 0 0 0 1px var(--text-primary),
+        0 0 0 2px var(--surface-muted);
+}
+
+/* Accent modifier — Braun Orange focus ring */
+.drams-input.accent:focus {
+    box-shadow:
+        inset 0 0 0 1px var(--accent),
+        0 0 0 2px var(--accent-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DISABLED STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-input:disabled {
+    background-color: var(--surface-input-disabled);
+    box-shadow: inset 0 0 0 1px var(--border-default);
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INVALID STATE
+   Status red border for validation errors.
+   Use aria-invalid="true" to trigger.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-input[aria-invalid="true"] {
+    box-shadow:
+        inset 0 0 0 1px var(--status-error),
+        var(--elevation-inset);
+}
+
+.drams-input[aria-invalid="true"]:focus {
+    box-shadow:
+        inset 0 0 0 1px var(--status-error),
+        0 0 0 2px var(--status-error-subtle);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SUCCESS STATE
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-input[data-success="true"] {
+    box-shadow:
+        inset 0 0 0 1px var(--status-success),
+        var(--elevation-inset);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZE VARIANTS
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-input[data-size="sm"] {
+    height: var(--control-height-sm);
+    font-size: var(--font-size-sm);
+    padding: 0 var(--space-2-5);
+}
+
+.drams-input[data-size="lg"] {
+    height: var(--control-height-lg);
+    font-size: var(--font-size-base);
+    padding: 0 var(--space-4);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TEXTAREA
+   Multi-line input.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-textarea {
+    height: auto;
+    min-height: 100px;
+    padding: var(--space-2-5) var(--space-input-x);
+    resize: vertical;
+    line-height: var(--line-height-normal);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INPUT GROUP
+   Input with prefix/suffix elements.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-input-group {
+    display: flex;
+    align-items: stretch;
+}
+
+.drams-input-group .drams-input {
+    flex: 1;
+    border-radius: 0;
+}
+
+.drams-input-group .drams-input:first-child {
+    border-radius: var(--radius-input) 0 0 var(--radius-input);
+}
+
+.drams-input-group .drams-input:last-child {
+    border-radius: 0 var(--radius-input) var(--radius-input) 0;
+}
+
+.drams-input-addon {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--space-3);
+    background-color: var(--surface-muted);
+    border: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.drams-input-addon:first-child {
+    border-right: none;
+    border-radius: var(--radius-input) 0 0 var(--radius-input);
+}
+
+.drams-input-addon:last-child {
+    border-left: none;
+    border-radius: 0 var(--radius-input) var(--radius-input) 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FORM FIELD WRAPPER
+   Label + Input + Helper text.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.drams-field-helper {
+    font: var(--type-caption);
+    color: var(--text-muted);
+}
+
+.drams-field-error {
+    font: var(--type-caption);
+    color: var(--status-error);
+}
+
+.drams-field-success {
+    font: var(--type-caption);
+    color: var(--status-success);
+}

@@ -1,0 +1,63 @@
+/* Switch Component Styles */
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.switchRoot {
+  position: relative;
+  width: 2rem;
+  height: 1.125rem;
+  background-color: oklch(var(--ew-muted));
+  border-radius: var(--ew-radius-full);
+  border: 1px solid oklch(var(--ew-control-border));
+  padding: 1px;
+  transition: var(--ew-transition-default);
+  cursor: pointer;
+}
+
+.switchRoot:focus-visible {
+  outline: 2px solid oklch(var(--ew-ring));
+  outline-offset: 2px;
+}
+
+.switchRoot[data-state="checked"] {
+  background-color: oklch(var(--ew-primary));
+  border-color: oklch(var(--ew-primary));
+}
+
+.switchRoot[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.switchThumb {
+  display: block;
+  width: 0.875rem;
+  height: 0.875rem;
+  background-color: oklch(var(--ew-background));
+  border-radius: var(--ew-radius-full);
+  transition: var(--ew-transition-default);
+  transform: translateX(0);
+  pointer-events: none;
+}
+
+.switchRoot[data-state="checked"] .switchThumb {
+  transform: translateX(0.875rem);
+}
+
+.label {
+  margin-left: var(--ew-spacing-sm);
+  font-size: var(--ew-text-sm);
+  color: oklch(var(--ew-foreground));
+  cursor: pointer;
+  user-select: none;
+}
+
+.label:has(+ .switchRoot[disabled]) {
+  cursor: not-allowed;
+  opacity: 0.7;
+}

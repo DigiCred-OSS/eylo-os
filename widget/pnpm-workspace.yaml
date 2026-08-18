@@ -1,0 +1,11 @@
+packages:
+  - preact-ui
+
+overrides:
+  "nanoid@": 3.3.18
+  "picomatch@": 4.0.4
+  "postcss@": 8.5.26
+  "rollup@": 4.59.0
+
+allowBuilds:
+  esbuild: true

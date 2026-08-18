@@ -1,0 +1,13 @@
+/* Read-only display for submitted date/time value */
+.selectedDisplay {
+  display: flex;
+  align-items: center;
+  gap: var(--ew-spacing-xs);
+  padding: var(--ew-spacing-xs) var(--ew-spacing-sm);
+  border-radius: var(--ew-radius);
+  background: oklch(var(--ew-muted));
+  color: oklch(var(--ew-foreground));
+  font-size: var(--ew-text-sm);
+  font-weight: var(--ew-font-medium);
+  min-height: var(--ew-spacing-xl);
+}

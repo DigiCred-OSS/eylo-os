@@ -1,0 +1,22 @@
+/**
+ * DRAMS3 Tokens Index
+ *
+ * Two-tier token system:
+ *
+ * 1. FOUNDATION — Raw materials (colors, sizes, etc.)
+ *    Never used directly by components.
+ *
+ * 2. SEMANTIC — Meaningful tokens (surface.*, text.*, control.*)
+ *    The ONLY tokens components may reference.
+ *
+ * This separation ensures:
+ * - Design changes happen in ONE place (foundation)
+ * - Components express INTENT, not implementation
+ * - New structural tokens require proving a new invariant
+ */
+
+/* Foundation tokens (raw values, internal use only) */
+@import './foundation.css';
+
+/* Semantic tokens (what components actually use) */
+@import './semantic.css';

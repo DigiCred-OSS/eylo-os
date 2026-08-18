@@ -1,0 +1,27 @@
+.dinoLoaderContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--ew-spacing-3xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: oklch(var(--ew-background));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--ew-transition-fast);
+  z-index: 1;
+}
+
+.dinoLoaderVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dinoCanvas {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}

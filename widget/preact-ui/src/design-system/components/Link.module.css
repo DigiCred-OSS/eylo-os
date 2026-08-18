@@ -1,0 +1,125 @@
+/* Link Component Styles */
+
+.link {
+  color: oklch(var(--ew-primary));
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    text-decoration 0.15s ease;
+  display: inline;
+}
+
+.link:hover {
+  color: oklch(var(--ew-primary) / 0.8);
+}
+
+.link:focus-visible {
+  outline: 2px solid oklch(var(--ew-primary));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Disabled State */
+.disabled {
+  color: oklch(var(--ew-muted-foreground));
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Size Variants */
+.size-xs {
+  font-size: var(--ew-text-xs);
+}
+
+.size-sm {
+  font-size: var(--ew-text-sm);
+}
+
+.size-base {
+  font-size: var(--ew-text-base);
+}
+
+.size-lg {
+  font-size: var(--ew-text-lg);
+}
+
+.size-xl {
+  font-size: var(--ew-text-xl);
+}
+
+/* Color Variants */
+.variant-muted {
+  color: oklch(var(--ew-muted-foreground));
+}
+
+.variant-muted:hover {
+  color: oklch(var(--ew-foreground));
+}
+
+.variant-primary {
+  color: oklch(var(--ew-primary));
+}
+
+.variant-primary:hover {
+  color: oklch(var(--ew-primary) / 0.8);
+}
+
+.variant-destructive {
+  color: oklch(var(--ew-destructive));
+}
+
+.variant-destructive:hover {
+  color: oklch(var(--ew-destructive) / 0.8);
+}
+
+.variant-success {
+  color: oklch(var(--ew-success));
+}
+
+.variant-success:hover {
+  color: oklch(var(--ew-success) / 0.8);
+}
+
+.variant-warning {
+  color: oklch(var(--ew-warning));
+}
+
+.variant-warning:hover {
+  color: oklch(var(--ew-warning) / 0.8);
+}
+
+/* Font Weight */
+.bold {
+  font-weight: 700;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+/* Underline Variants */
+.underline-none {
+  text-decoration: none;
+}
+
+.underline-none:hover {
+  text-decoration: none;
+}
+
+.underline-hover {
+  text-decoration: none;
+}
+
+.underline-hover:hover {
+  text-decoration: underline;
+}
+
+.underline-always {
+  text-decoration: underline;
+}
+
+.underline-always:hover {
+  text-decoration: underline;
+}

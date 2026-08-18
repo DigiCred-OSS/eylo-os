@@ -1,0 +1,213 @@
+/**
+ * Tooltip - DRAMS3
+ *
+ * A popup that displays information related to an element when the element
+ * receives keyboard focus or the mouse hovers over it.
+ *
+ * Based on Radix UI Tooltip primitive with shadcn-compatible API.
+ *
+ * @example
+ * <Tooltip>
+ *   <TooltipTrigger>Hover me</TooltipTrigger>
+ *   <TooltipContent>Tooltip text</TooltipContent>
+ * </Tooltip>
+ */
+
+/* ==========================================================================
+   Tooltip Content
+   ========================================================================== */
+
+.drams-tooltip-content {
+    /* Layout */
+    z-index: 50;
+    overflow: hidden;
+
+    /* Spacing */
+    padding-block: var(--space-1-5);
+    padding-inline: var(--space-3);
+
+    /* Typography */
+    font-size: var(--font-size-xs, 0.75rem);
+    line-height: var(--line-height-none, 1);
+
+    /* Visual */
+    background-color: var(--surface-inverse);
+    color: var(--text-inverse);
+    border-radius: var(--radius-md, 0.375rem);
+
+    /* Shadow for depth */
+    box-shadow:
+        0 4px 6px -1px oklch(0 0 0 / 0.1),
+        0 2px 4px -2px oklch(0 0 0 / 0.1);
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+/* Base animation setup */
+.drams-tooltip-content {
+    will-change: transform, opacity;
+}
+
+/* Enter animation */
+.drams-tooltip-content[data-state="delayed-open"],
+.drams-tooltip-content[data-state="instant-open"] {
+    animation-duration: 150ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-fill-mode: forwards;
+}
+
+/* Exit animation */
+.drams-tooltip-content[data-state="closed"] {
+    animation-duration: 100ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+/* Side-specific animations */
+.drams-tooltip-content[data-side="top"][data-state="delayed-open"],
+.drams-tooltip-content[data-side="top"][data-state="instant-open"] {
+    animation-name: drams-tooltip-slide-up-fade-in;
+}
+
+.drams-tooltip-content[data-side="top"][data-state="closed"] {
+    animation-name: drams-tooltip-slide-up-fade-out;
+}
+
+.drams-tooltip-content[data-side="bottom"][data-state="delayed-open"],
+.drams-tooltip-content[data-side="bottom"][data-state="instant-open"] {
+    animation-name: drams-tooltip-slide-down-fade-in;
+}
+
+.drams-tooltip-content[data-side="bottom"][data-state="closed"] {
+    animation-name: drams-tooltip-slide-down-fade-out;
+}
+
+.drams-tooltip-content[data-side="left"][data-state="delayed-open"],
+.drams-tooltip-content[data-side="left"][data-state="instant-open"] {
+    animation-name: drams-tooltip-slide-left-fade-in;
+}
+
+.drams-tooltip-content[data-side="left"][data-state="closed"] {
+    animation-name: drams-tooltip-slide-left-fade-out;
+}
+
+.drams-tooltip-content[data-side="right"][data-state="delayed-open"],
+.drams-tooltip-content[data-side="right"][data-state="instant-open"] {
+    animation-name: drams-tooltip-slide-right-fade-in;
+}
+
+.drams-tooltip-content[data-side="right"][data-state="closed"] {
+    animation-name: drams-tooltip-slide-right-fade-out;
+}
+
+/* ==========================================================================
+   Keyframes
+   ========================================================================== */
+
+@keyframes drams-tooltip-slide-up-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes drams-tooltip-slide-up-fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+}
+
+@keyframes drams-tooltip-slide-down-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes drams-tooltip-slide-down-fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes drams-tooltip-slide-left-fade-in {
+    from {
+        opacity: 0;
+        transform: translateX(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes drams-tooltip-slide-left-fade-out {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(4px);
+    }
+}
+
+@keyframes drams-tooltip-slide-right-fade-in {
+    from {
+        opacity: 0;
+        transform: translateX(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes drams-tooltip-slide-right-fade-out {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-4px);
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .drams-tooltip-content {
+        animation-duration: 0.01ms !important;
+    }
+}

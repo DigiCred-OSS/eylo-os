@@ -1,0 +1,96 @@
+/**
+ * DRAMS3 Form Primitives
+ *
+ * Form structure elements for organizing form controls.
+ * These provide semantic structure, not visual styling.
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   FORM
+   The form container.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FORM FIELD
+   Groups a label, control, and description together.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1-5);
+}
+
+/* Invalid state */
+.drams-form-field[data-invalid] .drams-label {
+    color: var(--status-error);
+}
+
+.drams-form-field[data-invalid] .drams-input,
+.drams-form-field[data-invalid] .drams-select {
+    box-shadow:
+        inset 0 0 0 1px var(--status-error),
+        var(--elevation-inset);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FORM DESCRIPTION
+   Helper text below a form control.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-form-description {
+    font: var(--type-caption);
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FORM MESSAGE
+   Error or validation message for a form control.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-form-message {
+    font: var(--type-caption);
+    margin: 0;
+}
+
+.drams-form-message[data-variant="error"] {
+    color: var(--status-error);
+}
+
+.drams-form-message[data-variant="success"] {
+    color: var(--status-success);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FIELDSET
+   Groups related form fields.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LEGEND
+   Caption for a fieldset.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-legend {
+    font: var(--type-label);
+    color: var(--text-primary);
+    font-weight: var(--font-weight-semibold);
+    padding: 0;
+    margin-bottom: var(--space-3);
+}

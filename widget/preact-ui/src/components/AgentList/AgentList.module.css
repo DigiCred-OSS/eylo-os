@@ -1,0 +1,34 @@
+.agentCard {
+  gap: var(--ew-spacing-xs);
+  padding: var(--ew-spacing-sm) var(--ew-spacing);
+  border-bottom: 1px solid oklch(var(--ew-border));
+}
+
+.agentCard:last-child {
+  border-bottom: 0;
+}
+
+.agentHeader {
+  gap: var(--ew-spacing-2xs);
+}
+
+.agentTitle {
+  font-size: var(--ew-text-sm);
+}
+
+.agentDescription {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.integrations {
+  min-width: 0;
+}
+
+.agentFooter {
+  justify-content: flex-end;
+}

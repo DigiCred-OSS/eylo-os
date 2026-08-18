@@ -1,0 +1,177 @@
+/* Card Component Styles */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ew-spacing-xs);
+  border-radius: var(--ew-radius-xl);
+  background-color: oklch(var(--ew-card));
+  color: oklch(var(--ew-card-foreground));
+  padding: var(--ew-spacing);
+  box-shadow: none;
+}
+
+.header {
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-template-rows: auto auto;
+  align-items: start;
+  gap: var(--ew-spacing-xs);
+  container-type: inline-size;
+}
+
+/* When CardAction is present, create two columns */
+.header:has([data-slot="card-action"]) {
+  grid-template-columns: 1fr auto;
+}
+
+/* Add border-bottom when header has .border-b class */
+.header.border-b {
+  padding-bottom: var(--ew-spacing-md);
+}
+
+.title {
+  font-weight: var(--ew-font-semibold);
+  line-height: var(--ew-leading-tight);
+  color: oklch(var(--ew-foreground));
+  overflow-wrap: anywhere;
+}
+
+.description {
+  font-size: var(--ew-text-sm);
+  color: oklch(var(--ew-muted-foreground));
+  line-height: 1.4;
+}
+
+.action {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: start;
+  justify-self: end;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+/* Add negative margin when content follows header with border-b */
+.header.border-b + .content {
+  margin-top: calc(var(--ew-spacing-xs) * -1);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+}
+
+/* Visual Variants */
+.variant-muted {
+  background-color: oklch(var(--ew-muted) / 0.5);
+}
+
+.variant-bordered {
+  border: 1px solid oklch(var(--ew-border));
+}
+
+/* Border */
+.border {
+  border: 1px solid oklch(var(--ew-border));
+}
+
+/* Interactive */
+.interactive {
+  cursor: pointer;
+  transition: var(--ew-transition);
+}
+
+.interactive:hover {
+  background-color: oklch(var(--ew-muted));
+}
+
+/* Border Radius */
+.radius-none {
+  border-radius: 0;
+}
+
+.radius-sm {
+  border-radius: var(--ew-radius-sm);
+}
+
+.radius-md {
+  border-radius: var(--ew-radius-md);
+}
+
+.radius-lg {
+  border-radius: var(--ew-radius-lg);
+}
+
+.radius-xl {
+  border-radius: var(--ew-radius-xl);
+}
+
+.radius-full {
+  border-radius: var(--ew-radius-full);
+}
+
+/* Shadow */
+.shadow-xs {
+  box-shadow: var(--ew-shadow-xs);
+}
+
+.shadow-sm {
+  box-shadow: var(--ew-shadow-sm);
+}
+
+.shadow-md {
+  box-shadow: var(--ew-shadow-md);
+}
+
+.shadow-lg {
+  box-shadow: var(--ew-shadow-lg);
+}
+
+.shadow-xl {
+  box-shadow: var(--ew-shadow-xl);
+}
+
+.shadow-none {
+  box-shadow: none;
+}
+
+/* Padding */
+.padding-2xs {
+  padding: var(--ew-spacing-2xs);
+}
+
+.padding-xs {
+  padding: var(--ew-spacing-xs);
+}
+
+.padding-sm {
+  padding: var(--ew-spacing-sm);
+}
+
+.padding-md {
+  padding: var(--ew-spacing);
+}
+
+.padding-lg {
+  padding: var(--ew-spacing-lg);
+}
+
+.padding-xl {
+  padding: var(--ew-spacing-xl);
+}
+
+.padding-2xl {
+  padding: var(--ew-spacing-2xl);
+}
+
+.padding-3xl {
+  padding: var(--ew-spacing-3xl);
+}
+
+.padding-4xl {
+  padding: var(--ew-spacing-4xl);
+}

@@ -1,0 +1,68 @@
+/* VoiceWaveform.module.css */
+.waveformContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--ew-spacing-2);
+  flex: 1;
+  background-color: oklch(var(--ew-muted) / 0.3);
+  border-radius: var(--ew-radius-md);
+  padding: var(--ew-spacing-2) var(--ew-spacing-4);
+  border: 1px solid oklch(var(--ew-border));
+  min-height: var(--ew-spacing-12);
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: var(--ew-spacing-1);
+  flex: 1;
+  height: var(--ew-spacing-8);
+  justify-content: center;
+}
+
+.bar {
+  width: var(--ew-spacing-1);
+  background-color: oklch(var(--ew-primary));
+  border-radius: var(--ew-radius-sm);
+  min-height: var(--ew-spacing-2);
+  transition: height 0.08s ease-out;
+}
+
+/* Active state for waveform animation */
+.active {
+  /* Placeholder for active state - can be extended */
+}
+
+.listeningText {
+  font-size: var(--ew-text-sm);
+  color: oklch(var(--ew-muted-foreground));
+  font-weight: var(--ew-font-medium);
+  white-space: nowrap;
+}
+
+.statusContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--ew-spacing-2);
+}
+
+.spinner {
+  width: var(--ew-spacing-4);
+  height: var(--ew-spacing-4);
+  border: 2px solid oklch(var(--ew-muted));
+  border-top-color: oklch(var(--ew-primary));
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.statusText {
+  font-size: var(--ew-text-sm);
+  color: oklch(var(--ew-muted-foreground));
+  font-weight: var(--ew-font-medium);
+}

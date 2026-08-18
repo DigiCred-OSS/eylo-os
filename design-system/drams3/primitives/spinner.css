@@ -1,0 +1,259 @@
+/**
+ * DRAMS3 Spinner Primitive
+ *
+ * Classic rotating border loading indicator.
+ *
+ * SHADCN COMPATIBILITY:
+ * - Spinner with size variants
+ *
+ * @see https://ui.shadcn.com/docs/components/spinner
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   SPINNER
+   Rotating border animation.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-spinner {
+    display: inline-block;
+    border: 2px solid var(--surface-muted);
+    border-top-color: var(--text-primary);
+    border-radius: 50%;
+    animation: drams-spin 0.6s linear infinite;
+
+    /* Default size */
+    width: 20px;
+    height: 20px;
+}
+
+@keyframes drams-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZES
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-spinner--xs {
+    width: 12px !important;
+    height: 12px !important;
+    border-width: 1.5px !important;
+}
+
+.drams-spinner--sm {
+    width: 16px !important;
+    height: 16px !important;
+    border-width: 2px !important;
+}
+
+.drams-spinner--md {
+    width: 24px !important;
+    height: 24px !important;
+    border-width: 2.5px !important;
+}
+
+.drams-spinner--lg {
+    width: 32px !important;
+    height: 32px !important;
+    border-width: 3px !important;
+}
+
+.drams-spinner--xl {
+    width: 48px !important;
+    height: 48px !important;
+    border-width: 4px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COLOR VARIANTS
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-spinner--accent {
+    border-color: var(--accent-muted) !important;
+    border-top-color: var(--accent) !important;
+}
+
+.drams-spinner--muted {
+    border-color: var(--surface-hover) !important;
+    border-top-color: var(--text-muted) !important;
+}
+
+.drams-spinner--inverse {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    border-top-color: white !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DOT VARIANT
+   Fixed dot with expanding ripple ring.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-spinner--dot {
+    position: relative !important;
+    border: none !important;
+    background: transparent !important;
+    animation: none !important;
+}
+
+/* Fixed center dot */
+.drams-spinner--dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--text-primary);
+    border-radius: 50%;
+}
+
+/* Expanding ripple ring */
+.drams-spinner--dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--text-primary);
+    border-radius: 50%;
+    animation: drams-spinner-ripple 1.5s ease-out infinite;
+}
+
+@keyframes drams-spinner-ripple {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+/* Dot sizes - container size for ripple room */
+.drams-spinner--dot.drams-spinner--xs {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.drams-spinner--dot.drams-spinner--xs::before {
+    width: 4px;
+    height: 4px;
+}
+
+.drams-spinner--dot.drams-spinner--xs::after {
+    width: 4px;
+    height: 4px;
+    border-width: 1px;
+}
+
+.drams-spinner--dot.drams-spinner--sm {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.drams-spinner--dot.drams-spinner--sm::before {
+    width: 6px;
+    height: 6px;
+}
+
+.drams-spinner--dot.drams-spinner--sm::after {
+    width: 6px;
+    height: 6px;
+    border-width: 1.5px;
+}
+
+/* Default dot size */
+.drams-spinner--dot:not([class*="drams-spinner--xs"]):not([class*="drams-spinner--sm"]):not([class*="drams-spinner--md"]):not([class*="drams-spinner--lg"]):not([class*="drams-spinner--xl"]) {
+    width: 28px !important;
+    height: 28px !important;
+}
+
+.drams-spinner--dot.drams-spinner--md {
+    width: 36px !important;
+    height: 36px !important;
+}
+
+.drams-spinner--dot.drams-spinner--md::before {
+    width: 10px;
+    height: 10px;
+}
+
+.drams-spinner--dot.drams-spinner--md::after {
+    width: 10px;
+    height: 10px;
+    border-width: 2px;
+}
+
+.drams-spinner--dot.drams-spinner--lg {
+    width: 48px !important;
+    height: 48px !important;
+}
+
+.drams-spinner--dot.drams-spinner--lg::before {
+    width: 12px;
+    height: 12px;
+}
+
+.drams-spinner--dot.drams-spinner--lg::after {
+    width: 12px;
+    height: 12px;
+    border-width: 2.5px;
+}
+
+.drams-spinner--dot.drams-spinner--xl {
+    width: 64px !important;
+    height: 64px !important;
+}
+
+.drams-spinner--dot.drams-spinner--xl::before {
+    width: 16px;
+    height: 16px;
+}
+
+.drams-spinner--dot.drams-spinner--xl::after {
+    width: 16px;
+    height: 16px;
+    border-width: 3px;
+}
+
+/* Dot color variants */
+.drams-spinner--dot.drams-spinner--accent::before {
+    background-color: var(--accent) !important;
+}
+
+.drams-spinner--dot.drams-spinner--accent::after {
+    border-color: var(--accent) !important;
+}
+
+.drams-spinner--dot.drams-spinner--muted::before {
+    background-color: var(--text-muted) !important;
+}
+
+.drams-spinner--dot.drams-spinner--muted::after {
+    border-color: var(--text-muted) !important;
+}
+
+.drams-spinner--dot.drams-spinner--inverse::before {
+    background-color: white !important;
+}
+
+.drams-spinner--dot.drams-spinner--inverse::after {
+    border-color: white !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+    .drams-spinner {
+        animation-duration: 1.5s;
+    }
+}

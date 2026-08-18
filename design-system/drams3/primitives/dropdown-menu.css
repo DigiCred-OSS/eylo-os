@@ -1,0 +1,319 @@
+/**
+ * DRAMS3 Dropdown Menu Primitive
+ *
+ * Dropdown menu with physical surface appearance.
+ * Uses Radix UI DropdownMenu for behavior.
+ *
+ * SHADCN COMPATIBILITY:
+ * - API matches shadcn/ui DropdownMenu exactly
+ * - Components: DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
+ *   DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuRadioItem,
+ *   DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut,
+ *   DropdownMenuGroup, DropdownMenuSub, DropdownMenuSubTrigger,
+ *   DropdownMenuSubContent, DropdownMenuRadioGroup
+ *
+ * @see https://ui.shadcn.com/docs/components/dropdown-menu
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   DROPDOWN CONTENT
+   The popup container.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-dropdown-content {
+    /* Reset */
+    z-index: 50;
+
+    /* Surface */
+    background-color: var(--surface-overlay);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--elevation-dropdown);
+    border: 1px solid var(--border-default);
+
+    /* Size */
+    min-width: 180px;
+    overflow: hidden;
+
+    /* Padding */
+    padding: var(--space-1);
+
+    /* Animation */
+    animation-duration: var(--duration-fast);
+    animation-timing-function: var(--ease-out);
+}
+
+.drams-dropdown-content[data-state="open"] {
+    animation-name: drams-dropdown-open;
+}
+
+.drams-dropdown-content[data-state="closed"] {
+    animation-name: drams-dropdown-close;
+}
+
+@keyframes drams-dropdown-open {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes drams-dropdown-close {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+}
+
+/* Position-based animations */
+.drams-dropdown-content[data-side="top"] {
+    animation-name: drams-dropdown-open-top;
+}
+
+@keyframes drams-dropdown-open-top {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.drams-dropdown-content[data-side="bottom"] {
+    animation-name: drams-dropdown-open-bottom;
+}
+
+@keyframes drams-dropdown-open-bottom {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.drams-dropdown-content[data-side="left"] {
+    animation-name: drams-dropdown-open-left;
+}
+
+@keyframes drams-dropdown-open-left {
+    from {
+        opacity: 0;
+        transform: translateX(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.drams-dropdown-content[data-side="right"] {
+    animation-name: drams-dropdown-open-right;
+}
+
+@keyframes drams-dropdown-open-right {
+    from {
+        opacity: 0;
+        transform: translateX(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DROPDOWN ITEM
+   Standard menu item.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-dropdown-item {
+    /* Reset */
+    all: unset;
+    box-sizing: border-box;
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    position: relative;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+
+    /* Typography */
+    font: var(--type-body-sm);
+    color: var(--text-primary);
+
+    /* Cursor */
+    cursor: pointer;
+
+    /* Transitions */
+    transition: var(--transition-colors);
+}
+
+/* Highlighted state (keyboard navigation or hover) */
+.drams-dropdown-item[data-highlighted] {
+    background-color: var(--surface-hover);
+    outline: none;
+}
+
+/* Disabled state */
+.drams-dropdown-item[data-disabled] {
+    color: var(--text-muted);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Inset item (aligns with items that have indicators) */
+.drams-dropdown-item[data-inset] {
+    padding-left: var(--space-8);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DROPDOWN ITEM WITH INDICATOR (checkbox/radio items)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-dropdown-item[data-has-indicator] {
+    padding-left: var(--space-8);
+}
+
+.drams-dropdown-item-indicator {
+    position: absolute;
+    left: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    color: var(--text-primary);
+}
+
+/* Accent variant */
+.drams-dropdown-item.accent .drams-dropdown-item-indicator {
+    color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DROPDOWN LABEL
+   Group heading.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-dropdown-label {
+    padding: var(--space-2) var(--space-3);
+    font: var(--type-caption);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-muted);
+}
+
+/* Inset label (aligns with items that have indicators) */
+.drams-dropdown-label[data-inset] {
+    padding-left: var(--space-8);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DROPDOWN SEPARATOR
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-dropdown-separator {
+    height: 1px;
+    margin: var(--space-1) calc(var(--space-1) * -1);
+    background-color: var(--border-default);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DROPDOWN SHORTCUT
+   Keyboard shortcut hint.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-dropdown-shortcut {
+    margin-left: auto;
+    font: var(--type-caption);
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SUBMENU TRIGGER
+   Item that opens a submenu.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-dropdown-subtrigger {
+    /* Inherits from dropdown-item */
+}
+
+.drams-dropdown-subtrigger[data-state="open"] {
+    background-color: var(--surface-hover);
+}
+
+.drams-dropdown-subtrigger-icon {
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+    color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SUBMENU CONTENT
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-dropdown-subcontent {
+    /* Same as main content */
+    z-index: 50;
+    background-color: var(--surface-overlay);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--elevation-dropdown);
+    border: 1px solid var(--border-default);
+    min-width: 180px;
+    overflow: hidden;
+    padding: var(--space-1);
+    animation-duration: var(--duration-fast);
+    animation-timing-function: var(--ease-out);
+}
+
+.drams-dropdown-subcontent[data-state="open"] {
+    animation-name: drams-dropdown-open;
+}
+
+.drams-dropdown-subcontent[data-state="closed"] {
+    animation-name: drams-dropdown-close;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DROPDOWN GROUP
+   Logical grouping of items.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-dropdown-group {
+    /* No visual styling, just logical grouping */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DESTRUCTIVE VARIANT
+   For dangerous actions (delete, remove, etc.)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-dropdown-item[data-variant="destructive"] {
+    color: var(--status-error);
+}
+
+.drams-dropdown-item[data-variant="destructive"][data-highlighted] {
+    background-color: var(--status-error);
+    color: white;
+}

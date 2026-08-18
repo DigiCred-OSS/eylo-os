@@ -1,0 +1,38 @@
+/* Empty State Component Styles */
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--ew-spacing-lg) var(--ew-spacing);
+  gap: var(--ew-spacing-sm);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: oklch(var(--ew-muted-foreground));
+  font-size: var(--ew-text-2xl);
+}
+
+.title {
+  font-size: var(--ew-text-base);
+  font-weight: var(--ew-font-semibold);
+  color: oklch(var(--ew-foreground));
+  margin: 0;
+}
+
+.description {
+  font-size: var(--ew-text-sm);
+  color: oklch(var(--ew-muted-foreground));
+  max-width: 28rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.action {
+  margin-top: var(--ew-spacing-sm);
+}

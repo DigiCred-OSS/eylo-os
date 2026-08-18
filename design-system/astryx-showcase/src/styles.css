@@ -1,0 +1,137 @@
+/* Astryx base — order matters: reset, then components, then the base theme. */
+@import '@astryxdesign/core/reset.css';
+@import '@astryxdesign/core/astryx.css';
+@import '@astryxdesign/theme-neutral/theme.css';
+
+/* Showcase chrome only. Everything below styles the page around the
+   components, never the components themselves — those come from the theme. */
+
+body {
+    background-color: var(--color-background-body);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-body, Inter, system-ui, sans-serif);
+}
+
+.page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: var(--spacing-8) var(--spacing-6) var(--spacing-12);
+}
+
+.masthead {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--spacing-6);
+    padding-bottom: var(--spacing-6);
+    margin-bottom: var(--spacing-8);
+    border-bottom: 1px solid var(--color-border);
+    flex-wrap: wrap;
+}
+
+.masthead h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--spacing-2);
+}
+
+.masthead p {
+    margin: 0;
+    max-width: 52ch;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.55;
+}
+
+.controls {
+    display: flex;
+    gap: var(--spacing-2);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.controls-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-secondary);
+}
+
+/* Plain toggle chrome — deliberately not an Astryx Button, so the
+   showcase controls never get mistaken for showcased components. */
+.toggle {
+    font: inherit;
+    font-size: 0.8125rem;
+    padding: 6px 10px;
+    cursor: pointer;
+    color: var(--color-text-primary);
+    background-color: var(--color-background-surface);
+    border: 1px solid var(--color-border-emphasized);
+    border-radius: var(--radius-element);
+}
+
+.toggle[aria-pressed='true'] {
+    background-color: var(--color-background-inverted);
+    color: var(--color-background-body);
+    border-color: transparent;
+}
+
+section.showcase {
+    margin-bottom: var(--spacing-10);
+    scroll-margin-top: var(--spacing-4);
+}
+
+section.showcase > h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 var(--spacing-1);
+}
+
+section.showcase > p.blurb {
+    margin: 0 0 var(--spacing-5);
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-4);
+}
+
+.demo {
+    padding: var(--spacing-5);
+    background-color: var(--color-background-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-container);
+}
+
+.demo > h3 {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--spacing-4);
+}
+
+.row {
+    display: flex;
+    gap: var(--spacing-3);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    align-items: flex-start;
+}
+
+.note {
+    margin-top: var(--spacing-3);
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}

@@ -1,0 +1,15 @@
+/**
+ * DRAMS3 Theme Index
+ *
+ * Import this file to include all available themes.
+ * Themes override semantic tokens when data-theme attribute is set.
+ *
+ * Usage:
+ *   <html data-theme="skeuomorphic" data-mode="light">
+ *   <html data-theme="skeuomorphic" data-mode="dark">
+ */
+
+@import "./skeuomorphic.css";
+@import "./neumorphic.css";
+/* @import "./corporate.css"; */
+/* @import "./minimal.css"; */

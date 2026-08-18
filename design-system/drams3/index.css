@@ -1,0 +1,20 @@
+/**
+ * DRAMS3 — Complete Design System
+ *
+ * Import this single file to get the entire system.
+ *
+ * Usage:
+ *   @import 'drams3/index.css';
+ *
+ * Or in HTML:
+ *   <link rel="stylesheet" href="drams3/index.css">
+ */
+
+/* Design Tokens — single source of truth */
+@import './tokens/index.css';
+
+/* CSS Primitives — framework-agnostic components */
+@import './primitives/index.css';
+
+/* Themes — optional theme overrides */
+@import './themes/index.css';

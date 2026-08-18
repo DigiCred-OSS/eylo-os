@@ -1,0 +1,127 @@
+/* Textarea Component Styles */
+
+.textarea {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--ew-spacing-4xl);
+  border-radius: var(--ew-radius);
+  border: 1px solid oklch(var(--ew-control-border));
+  background-color: transparent;
+  padding: var(--ew-spacing-sm) var(--ew-spacing-sm);
+  font-size: var(--ew-text-base);
+  line-height: 1.5;
+  color: oklch(var(--ew-foreground));
+  box-shadow: none;
+  transition: var(--ew-transition-default);
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+}
+
+/* Responsive text size */
+@media (min-width: 768px) {
+  .textarea {
+    font-size: var(--ew-text-sm);
+  }
+}
+
+.textarea::placeholder {
+  color: oklch(var(--ew-muted-foreground));
+}
+
+/* Selection styles */
+.textarea::selection {
+  background-color: oklch(var(--ew-primary));
+  color: oklch(var(--ew-primary-foreground));
+}
+
+/* Focus state - use focus-visible for accessibility */
+.textarea:focus-visible {
+  border-color: oklch(var(--ew-ring));
+  box-shadow: 0 0 0 2px oklch(var(--ew-ring) / 0.5);
+}
+
+/* Disabled state */
+.textarea:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  border-color: oklch(var(--ew-border));
+  background-color: oklch(var(--ew-muted));
+  color: oklch(var(--ew-muted-foreground));
+}
+
+/* Height Variants - Min Height */
+.minHeight-sm {
+  min-height: 2.25rem;
+  /* 36px */
+}
+
+.minHeight-md {
+  min-height: var(--ew-spacing-xl);
+  /* 48px */
+}
+
+.minHeight-lg {
+  min-height: var(--ew-spacing-2xl);
+  /* 64px */
+}
+
+.minHeight-xl {
+  min-height: var(--ew-spacing-3xl);
+  /* 96px */
+}
+
+.minHeight-2xl {
+  min-height: var(--ew-spacing-4xl);
+  /* 128px */
+}
+
+/* Height Variants - Max Height */
+.maxHeight-sm {
+  max-height: var(--ew-spacing-lg);
+  /* 32px */
+}
+
+.maxHeight-md {
+  max-height: var(--ew-spacing-xl);
+  /* 48px */
+}
+
+.maxHeight-lg {
+  max-height: var(--ew-spacing-2xl);
+  /* 64px */
+}
+
+.maxHeight-xl {
+  max-height: var(--ew-spacing-3xl);
+  /* 96px */
+}
+
+.maxHeight-2xl {
+  max-height: var(--ew-spacing-4xl);
+  /* 128px */
+}
+
+.maxHeight-none {
+  max-height: none;
+}
+
+/* Error state (deprecated - use aria-invalid) */
+.error {
+  border-color: oklch(var(--ew-destructive));
+}
+
+.error:focus-visible {
+  border-color: oklch(var(--ew-destructive));
+  box-shadow: 0 0 0 3px oklch(var(--ew-destructive) / 0.2);
+}
+
+/* aria-invalid state (preferred over error class) */
+.textarea[aria-invalid="true"] {
+  border-color: oklch(var(--ew-destructive));
+}
+
+.textarea[aria-invalid="true"]:focus-visible {
+  box-shadow: 0 0 0 3px oklch(var(--ew-destructive) / 0.2);
+}

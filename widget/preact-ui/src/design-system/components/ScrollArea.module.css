@@ -1,0 +1,32 @@
+/* ScrollArea Component Styles */
+
+.scrollArea {
+  position: relative;
+  overflow: hidden;
+}
+
+.viewport {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: oklch(var(--ew-border)) transparent;
+}
+
+.viewport::-webkit-scrollbar {
+  width: var(--ew-spacing-sm);
+  height: var(--ew-spacing-sm);
+}
+
+.viewport::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.viewport::-webkit-scrollbar-thumb {
+  background-color: oklch(var(--ew-border));
+  border-radius: var(--ew-radius);
+}
+
+.viewport::-webkit-scrollbar-thumb:hover {
+  background-color: oklch(var(--ew-muted-foreground) / 0.5);
+}

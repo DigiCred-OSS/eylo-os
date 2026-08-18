@@ -1,0 +1,92 @@
+/**
+ * DRAMS3 Image Primitive
+ *
+ * Responsive image with loading states and aspect ratio support.
+ *
+ * FEATURES:
+ * - Maintains aspect ratio
+ * - Loading skeleton
+ * - Rounded variants
+ * - Object-fit options
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   IMAGE CONTAINER
+   Wrapper for responsive images with aspect ratio.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    background-color: var(--surface-raised);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   OBJECT FIT
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-image--contain {
+    object-fit: contain;
+}
+
+.drams-image--cover {
+    object-fit: cover;
+}
+
+.drams-image--fill {
+    object-fit: fill;
+}
+
+.drams-image--none {
+    object-fit: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BORDER RADIUS
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-image--rounded {
+    border-radius: var(--radius-md);
+}
+
+.drams-image--rounded-lg {
+    border-radius: var(--radius-lg);
+}
+
+.drams-image--circle {
+    border-radius: 50%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOADING STATE
+   Skeleton animation while loading.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-image--loading {
+    animation: drams-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ASPECT RATIO CONTAINER
+   Radix UI AspectRatio compatible.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-aspect-ratio {
+    position: relative;
+    width: 100%;
+}
+
+.drams-aspect-ratio>* {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.drams-aspect-ratio img,
+.drams-aspect-ratio video {
+    object-fit: cover;
+}

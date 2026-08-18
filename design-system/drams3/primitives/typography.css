@@ -1,0 +1,210 @@
+/**
+ * DRAMS3 Typography Primitives
+ *
+ * Text elements with semantic meaning.
+ * Typography serves content, not decoration.
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADINGS
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-h1 {
+    font: var(--type-heading-1);
+    color: var(--text-primary);
+    letter-spacing: var(--letter-spacing-tighter);
+}
+
+.drams-h2 {
+    font: var(--type-heading-2);
+    color: var(--text-primary);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.drams-h3 {
+    font: var(--type-heading-3);
+    color: var(--text-primary);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.drams-h4 {
+    font: var(--type-heading-4);
+    color: var(--text-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BODY TEXT
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-text {
+    font: var(--type-body);
+    color: var(--text-primary);
+}
+
+.drams-text--sm {
+    font: var(--type-body-sm);
+}
+
+.drams-text--lg {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+}
+
+/* Text colors */
+.drams-text--secondary {
+    color: var(--text-secondary);
+}
+
+.drams-text--muted {
+    color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LABEL
+   Form labels associated with controls.
+
+   SHADCN COMPATIBILITY:
+   - API matches shadcn/ui Label exactly
+   - Uses Radix UI Label primitive
+   - Supports peer-disabled styling via data attributes
+
+   @see https://ui.shadcn.com/docs/components/label
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-label {
+    display: block;
+    font: var(--type-label);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-1-5);
+    cursor: default;
+}
+
+/* Disabled state — when associated control is disabled */
+.drams-label[data-disabled] {
+    color: var(--text-muted);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Required indicator */
+.drams-label[data-required]::after {
+    content: ' *';
+    color: var(--status-error);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CAPTION
+   Small helper text.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-caption {
+    font: var(--type-caption);
+    color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LEAD
+   Introductory paragraph with emphasis.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-lead {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CODE
+   Monospace text for code samples.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-code {
+    font: var(--type-code);
+    color: var(--text-primary);
+    background-color: var(--surface-muted);
+    padding: var(--space-0-5) var(--space-1-5);
+    border-radius: var(--radius-sm);
+}
+
+.drams-code-block {
+    display: block;
+    font: var(--type-code);
+    color: var(--text-primary);
+    background-color: var(--surface-muted);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    white-space: pre;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROSE
+   Long-form content with sensible defaults.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-prose {
+    max-width: 65ch;
+    font: var(--type-body);
+    color: var(--text-primary);
+}
+
+.drams-prose>*+* {
+    margin-top: var(--space-4);
+}
+
+.drams-prose h1,
+.drams-prose h2,
+.drams-prose h3,
+.drams-prose h4 {
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-4);
+}
+
+.drams-prose p {
+    line-height: var(--line-height-relaxed);
+}
+
+.drams-prose a {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.drams-prose a:hover {
+    color: var(--text-secondary);
+}
+
+/* Brand links in prose — opt in on the container. */
+.drams-prose.accent a,
+.drams-prose[data-accent] a {
+    color: var(--accent);
+}
+
+.drams-prose.accent a:hover,
+.drams-prose[data-accent] a:hover {
+    color: var(--accent-pressed);
+}
+
+.drams-prose ul,
+.drams-prose ol {
+    padding-left: var(--space-6);
+}
+
+.drams-prose ul {
+    list-style-type: disc;
+}
+
+.drams-prose ol {
+    list-style-type: decimal;
+}
+
+.drams-prose li {
+    margin-top: var(--space-2);
+}
+
+.drams-prose blockquote {
+    padding-left: var(--space-4);
+    border-left: 3px solid var(--border-default);
+    color: var(--text-secondary);
+    font-style: italic;
+}

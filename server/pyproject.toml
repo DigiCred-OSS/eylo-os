@@ -1,0 +1,155 @@
+[project]
+name = "eylo-server"
+version = "0.1.0"
+authors = [{ name = "Eylo Contributors" }]
+description = "Eylo Server"
+license = "Apache-2.0"
+requires-python = ">=3.12,<4"
+dependencies = [
+    "absurd-sdk==0.4.0",
+    "aiortc==1.14.0",
+    "alembic==1.17.2",
+    "anthropic[bedrock]==0.75.0",
+    "arrow==1.4.0",
+    "asgiref==3.11.0",
+    "asyncpg==0.31.0",
+    "beautifulsoup4==4.14.3",
+    "fastapi-camelcase==2.0.0",
+    "fastapi[all]==0.141.1",
+    "google-genai==1.56.0",
+    "greenlet==3.3.0",
+    "gunicorn==23.0.0",
+    "librosa==0.11.0",
+    "loguru==0.7.3",
+    "msgpack==1.2.1",
+    "openai==2.14.0",
+    "passlib[bcrypt]==1.7.4",
+    "bcrypt==4.3.0",
+    "python-dotenv==1.2.2",
+    "python-slugify==8.0.4",
+    "pytz==2025.2",
+    "pyventus==0.7.2",
+    "redis[hiredis]==7.1.0",
+    "requests==2.33.0",
+    "scipy==1.16.3",
+    "sendgrid==6.12.5",
+    "sqlalchemy==2.0.45",
+    "tiktoken==0.12.0",
+    "uuid-utils==0.12.0",
+    "plivo==4.59.3",
+    "PyJWT==2.13.0",
+    "twilio==9.9.0",
+    "google-cloud-speech==2.35.0",
+    "markdown-it-py[linkify,plugins]==4.0.0",
+    "mdit-py-plugins==0.5.0",
+    "nh3==0.3.2",
+    "phonenumbers==9.0.21",
+    "sqlparse==0.5.5",
+    "toonify==1.5.1",
+    "pandas==2.3.3",
+    "tabulate==0.9.0",
+    "aiosmtplib==5.1.1",
+    "cerebras-cloud-sdk==1.67.0",
+    "cryptography==50.0.0",
+    "groq==1.1.1",
+    "jsonschema>=4.23,<5",
+    "referencing>=0.35,<1",
+    "tenacity==9.1.2",
+    "sarvamai>=0.1.28",
+    "pydantic[email,timezone]>=2.11.10",
+    "aioboto3>=13.0.0",
+    "pypdf>=6.14.2",
+    "openpyxl>=3.1.5",
+    "python-docx>=1.2.0",
+    "xlrd>=2.0.2",
+    "docker>=7.2.0",
+    "aws-sdk-transcribe-streaming==0.7.0",
+    "aws-sdk-bedrock-runtime==0.7.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipython==9.8.0",
+    "pre-commit==4.5.1",
+    "prek==0.3.0",
+    "psycopg2-binary==2.9.11",
+    "pyrefly==0.38.2",
+    "ruff==0.14.10",
+    "watchdog==6.0.0",
+]
+
+[tool.ruff]
+# Set maximum line length
+line-length = 88
+
+# Exclude files or directories
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    ".venv",
+    "static",
+]
+
+# Set the target Python version
+target-version = "py312"
+
+
+[tool.ruff.lint]
+# Enable Pyflakes, McCabe, isort, pydocstyle, and eradicate codes.
+select = ["E", "F", "I", "D", "C90", "ERA"]
+# Allow autofix for all enabled rules (when `--fix` is used)
+fixable = ["ALL"]
+# Ignore specific rules (examples below - adjust as needed)
+ignore = [
+    "D301", # D301 Use `r"""` if any backslashes in a docstring
+    "D203", # one-blank-line-before-class
+    "D213", # multi-line-summary-second-line
+    "D100", # missing docstring
+    "D101", # missing docstring
+    "D102", # missing docstring
+    "D103", # missing docstring
+    "D104", # missing docstring
+    "D105", # missing docstring
+    "D106", # missing docstring
+    "D107", # missing docstring
+    "D200", # One-line docstring should fit on one line with quotes
+    "D205", # 1 blank line required between summary line and description
+    "D404", # First word of the docstring should not be "This"
+    "D400", # First line should end with a period
+    "D401", # First line should be in imperative mood
+    "D415", # First line should end with a period, question mark, or exclamation point
+    "D417", # Missing argument description in the docstring for `convert_to_utc`: `timezone_str`
+    "E501", # line too long (88 > 79 characters)
+]
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+known-first-party = ["eylo"]
+
+[tool.ruff.lint.mccabe]
+# Flag errors (`C901`) whenever the complexity level exceeds 15.
+max-complexity = 30
+
+[tool.pyrefly]
+project_includes = ["eylo"]
+
+[tool.ty.environment]
+root = [".", "./eylo"]

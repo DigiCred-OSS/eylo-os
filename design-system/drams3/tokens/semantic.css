@@ -1,0 +1,490 @@
+/**
+ * DRAMS3 Semantic Tokens
+ *
+ * THE ONLY TOKENS COMPONENTS MAY USE.
+ *
+ * These tokens have semantic meaning — they describe WHAT something is,
+ * not what color/size it happens to be. When the design changes,
+ * only this file needs updating.
+ *
+ * Token Categories:
+ * - surface.*   — Background colors for containers and controls
+ * - text.*      — Text colors
+ * - border.*    — Border colors
+ * - control.*   — Interactive control states
+ * - focus.*     — Focus indicators
+ * - status.*    — Semantic feedback (success/error/info)
+ */
+
+:root {
+   /* ═══════════════════════════════════════════════════════════════
+       SURFACE
+       Background colors for different contexts.
+       ═══════════════════════════════════════════════════════════════ */
+
+   /* Page-level backgrounds */
+   --surface-background: var(--color-neutral-50);
+   --surface-default: var(--color-neutral-0);
+   --surface-muted: var(--color-neutral-100);
+   --surface-subtle: var(--color-neutral-150);
+
+   /* Raised surfaces (cards, overlays) */
+   --surface-raised: var(--color-neutral-0);
+   --surface-overlay: var(--color-neutral-0);
+   --surface-backdrop: rgba(28, 25, 23, 0.4);
+
+   /* Top-edge highlight on a raised surface (single light source, above).
+      Mode-invariant by design: the same translucent white reads correctly on
+      light and dark housings, so it is not overridden per mode or theme. */
+   --surface-highlight: var(--color-white-alpha-10);
+
+   /* Interactive surface states */
+   --surface-hover: var(--color-neutral-100);
+   --surface-pressed: var(--color-neutral-200);
+   --surface-inverse: var(--color-neutral-900);
+   --surface-inverse-muted: var(--color-neutral-700);
+   /* For hover on inverse surfaces */
+
+   /* ═══════════════════════════════════════════════════════════════
+       TEXT
+       Text colors for different emphasis levels.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --text-primary: var(--color-neutral-800);
+   --text-secondary: var(--color-neutral-600);
+   --text-muted: var(--color-neutral-500);
+   --text-disabled: var(--color-neutral-400);
+   --text-inverse: var(--color-neutral-0);
+
+   /* ═══════════════════════════════════════════════════════════════
+       BORDER
+       Border colors for different contexts.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --border-default: var(--color-neutral-200);
+   --border-strong: var(--color-neutral-300);
+   --border-muted: var(--color-neutral-150);
+
+   /* ═══════════════════════════════════════════════════════════════
+       CONTROL
+       Interactive control states.
+
+       Invariant: Controls have exactly 4 visual states:
+       - default: resting state
+       - active: selected/checked/on state
+       - hover: pointer over (derived, not always needed)
+       - disabled: non-interactive state
+       ═══════════════════════════════════════════════════════════════ */
+
+   /* Default state (resting) */
+   --control-default: var(--color-neutral-900);
+   --control-default-subtle: var(--color-neutral-150);
+
+   /* Active state (selected, checked, on) — NEUTRAL BY DEFAULT.
+      An engaged control is emphasised, not branded. Colour is not what
+      communicates the state change; elevation, fill and inset do.
+      Opt a component into `accent` and these are swapped for the brand.
+      See --accent-* below. */
+   --control-active: var(--color-neutral-900);
+   --control-active-hover: var(--color-neutral-800);
+   --control-active-pressed: var(--color-neutral-900);
+   --control-active-subtle: var(--color-neutral-150);
+
+   /* Accent state — the SAME control states, rendered in the brand.
+      Reached only when a component opts in (`.accent` / `[data-accent]`). */
+   --accent: var(--brand-primary-500);
+   --accent-hover: var(--brand-primary-400);
+   --accent-pressed: var(--brand-primary-600);
+   --accent-subtle: var(--brand-primary-alpha-10);
+   --accent-muted: var(--brand-primary-alpha-20);
+   --on-accent: var(--color-neutral-0);
+
+   /* Disabled state */
+   --control-disabled: var(--color-neutral-400);
+   --control-disabled-subtle: var(--color-neutral-200);
+
+   /* ═══════════════════════════════════════════════════════════════
+       CONTROL STRUCTURE
+       Structural tokens for control dimensions.
+
+       These require proving a new invariant to extend.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --control-height-sm: 32px;
+   --control-height-default: 36px;
+   --control-height-lg: 44px;
+
+   --control-radius: var(--radius-md);
+   --control-padding-x: var(--space-4);
+   --control-padding-y: var(--space-2-5);
+
+   /* ═══════════════════════════════════════════════════════════════
+       CONTROL ELEVATION
+       Physical appearance of controls.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --control-elevation-rest: var(--shadow-xs);
+   --control-elevation-hover: var(--shadow-sm);
+   --control-elevation-pressed: var(--shadow-inset-md);
+   --control-elevation-disabled: none;
+
+   /* ═══════════════════════════════════════════════════════════════
+       FOCUS
+       Focus indicators for accessibility.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --focus-ring: 0 0 0 2px var(--surface-background), 0 0 0 4px var(--control-active);
+   --focus-ring-inset: inset 0 0 0 2px var(--control-active);
+
+   /* ═══════════════════════════════════════════════════════════════
+       STATUS
+       Semantic feedback colors.
+
+       Invariant: Status colors appear ONLY for semantic feedback,
+       never for interaction states or decoration.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --status-success: var(--color-success-500);
+   --status-success-emphasis: var(--color-success-600);
+   --status-success-subtle: var(--color-success-alpha-10);
+
+   --status-error: var(--color-error-500);
+   --status-error-emphasis: var(--color-error-600);
+   --status-error-subtle: var(--color-error-alpha-10);
+
+   --status-info: var(--color-info-500);
+   --status-info-emphasis: var(--color-info-600);
+   --status-info-subtle: var(--color-info-alpha-10);
+
+   --status-warning: var(--color-warning-500);
+   --status-warning-emphasis: var(--color-warning-600);
+   --status-warning-subtle: var(--color-warning-alpha-10);
+
+   /* ═══════════════════════════════════════════════════════════════
+       INPUT
+       Form input specific tokens.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --input-background: var(--surface-default);
+   --input-border: var(--border-strong);
+   --input-border-focus: var(--control-active);
+   --input-border-invalid: var(--status-error);
+   --input-elevation: var(--shadow-inset-sm);
+   --input-radius: var(--radius-md);
+
+   /* ═══════════════════════════════════════════════════════════════
+       TYPOGRAPHY (Semantic)
+       Composite type styles for specific uses.
+       ═══════════════════════════════════════════════════════════════ */
+
+   /* Headings */
+   --type-heading-1: var(--font-weight-semibold) var(--font-size-4xl)/var(--line-height-tight) var(--font-family-sans);
+   --type-heading-2: var(--font-weight-semibold) var(--font-size-3xl)/var(--line-height-tight) var(--font-family-sans);
+   --type-heading-3: var(--font-weight-semibold) var(--font-size-2xl)/var(--line-height-snug) var(--font-family-sans);
+   --type-heading-4: var(--font-weight-medium) var(--font-size-xl)/var(--line-height-snug) var(--font-family-sans);
+
+   /* Body */
+   --type-body: var(--font-weight-normal) var(--font-size-base)/var(--line-height-normal) var(--font-family-sans);
+   --type-body-sm: var(--font-weight-normal) var(--font-size-sm)/var(--line-height-normal) var(--font-family-sans);
+
+   /* UI */
+   --type-label: var(--font-weight-medium) var(--font-size-sm)/var(--line-height-none) var(--font-family-sans);
+   --type-caption: var(--font-weight-normal) var(--font-size-xs)/var(--line-height-normal) var(--font-family-sans);
+   --type-control: var(--font-weight-normal) var(--font-size-sm)/var(--line-height-none) var(--font-family-sans);
+
+   /* Code */
+   --type-code: var(--font-weight-normal) var(--font-size-sm)/var(--line-height-normal) var(--font-family-mono);
+
+   /* ═══════════════════════════════════════════════════════════════
+       TRANSITIONS (Semantic)
+       ═══════════════════════════════════════════════════════════════ */
+
+   /* One duration, one curve, every animated property. A control changing
+      state is ONE event: fill, border, elevation and position must start
+      and finish together. Mixed durations are what made this feel jerky —
+      the colour landing before the knob reads as two separate objects. */
+   --transition-control:
+      background-color var(--duration-control) var(--ease-control),
+      border-color var(--duration-control) var(--ease-control),
+      color var(--duration-control) var(--ease-control),
+      box-shadow var(--duration-control) var(--ease-control),
+      outline-color var(--duration-control) var(--ease-control),
+      transform var(--duration-control) var(--ease-control);
+
+   --transition-colors:
+      color var(--duration-fast) var(--ease-default),
+      background-color var(--duration-fast) var(--ease-default),
+      border-color var(--duration-fast) var(--ease-default);
+
+   /* ═══════════════════════════════════════════════════════════════
+       LAYOUT (Semantic spacing)
+       ═══════════════════════════════════════════════════════════════ */
+
+   --layout-section: var(--space-16);
+   --layout-card: var(--space-6);
+   --layout-stack: var(--space-4);
+   --layout-inline: var(--space-2);
+
+   /* ═══════════════════════════════════════════════════════════════
+       BACKWARD COMPATIBILITY ALIASES
+       ═══════════════════════════════════════════════════════════════
+       These map old token names to the new foundation/semantic tokens.
+       Allows existing primitives to work without immediate refactoring.
+
+       TODO: Gradually migrate primitives to use semantic tokens directly,
+       then remove these aliases.
+       ═══════════════════════════════════════════════════════════════ */
+
+   /* Accent shortcuts */
+   /* Status shortcuts */
+   /* Text aliases */
+   /* Background aliases */
+   /* Border aliases */
+   /* Surface aliases */
+   --surface-page: var(--surface-background);
+   --surface-section: var(--surface-muted);
+   --surface-card: var(--surface-default);
+   --surface-input: var(--surface-default);
+   --surface-input-disabled: var(--surface-muted);
+
+   /* Elevation aliases (old names → new) */
+   --elevation-rest: var(--shadow-xs);
+   --elevation-hover: var(--shadow-sm);
+   --elevation-pressed: var(--shadow-inset-md);
+   --elevation-disabled: none;
+   --elevation-card: var(--shadow-xs);
+   --elevation-dropdown: var(--shadow-md);
+   --elevation-modal: var(--shadow-lg);
+   --elevation-inset: var(--shadow-inset-sm);
+   --elevation-inset-deep: var(--shadow-inset-md);
+   --elevation-focus: var(--focus-ring);
+
+   /* Radius aliases */
+   --radius-button: var(--radius-md);
+   --radius-input: var(--radius-md);
+   --radius-card: var(--radius-lg);
+   --radius-modal: var(--radius-xl);
+   --radius-checkbox: var(--radius-sm);
+   --radius-badge: var(--radius-full);
+
+   /* Spacing aliases for old component-specific names */
+   --space-button-x: var(--space-4);
+   --space-button-y: var(--space-2-5);
+   --space-input-x: var(--space-3);
+   --space-input-y: var(--space-2-5);
+   --space-section: var(--space-16);
+   --space-card: var(--space-6);
+   --space-stack: var(--space-4);
+   --space-inline: var(--space-2);
+
+   /* Typography aliases */
+   --font-sans: var(--font-family-sans);
+   --font-mono: var(--font-family-mono);
+   --type-button: var(--type-control);
+
+   /* Transition aliases */
+   --transition-button: var(--transition-control);
+   --transition-input: var(--transition-control);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DARK MODE
+   Override semantic tokens for dark theme.
+
+   Activated via:
+   - data-mode="dark"   on html/body  (the mode axis; works with any theme)
+   - .dark class        on html/body  (equivalent, and what the showcases set)
+   - data-theme="dark"  on html/body  (legacy: overloads the theme axis)
+   - System preference via prefers-color-scheme, unless light is pinned
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="dark"],
+[data-mode="dark"],
+.dark {
+   /* ═══════════════════════════════════════════════════════════════
+       SURFACE (Dark)
+       Inverted backgrounds - dark base, lighter for elevation.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --surface-background: var(--color-neutral-900);
+   --surface-default: var(--color-neutral-800);
+   --surface-muted: var(--color-neutral-700);
+   --surface-subtle: var(--color-neutral-800);
+
+   --surface-raised: var(--color-neutral-700);
+   --surface-overlay: var(--color-neutral-800);
+   --surface-backdrop: rgba(0, 0, 0, 0.6);
+
+   /* Surface aliases */
+   --surface-page: var(--surface-background);
+   --surface-section: var(--surface-muted);
+   --surface-card: var(--surface-default);
+   --surface-input: var(--color-neutral-900);
+   --surface-input-disabled: var(--color-neutral-800);
+
+   /* Hover/pressed states */
+   --surface-hover: var(--color-neutral-600);
+   --surface-pressed: var(--color-neutral-700);
+   --surface-inverse: var(--color-neutral-100);
+   --surface-inverse-muted: var(--color-neutral-200);
+   /* For hover on inverse surfaces */
+
+   /* ═══════════════════════════════════════════════════════════════
+       TEXT (Dark)
+       Light text on dark backgrounds.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --text-primary: var(--color-neutral-50);
+   --text-secondary: var(--color-neutral-300);
+   --text-muted: var(--color-neutral-400);
+   --text-disabled: var(--color-neutral-500);
+   --text-inverse: var(--color-neutral-900);
+
+   /* Text aliases */
+   /* ═══════════════════════════════════════════════════════════════
+       BORDER (Dark)
+       Subtle borders that work on dark backgrounds.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --border-default: var(--color-neutral-700);
+   --border-strong: var(--color-neutral-600);
+   --border-muted: var(--color-neutral-800);
+
+   /* Border aliases */
+   /* ═══════════════════════════════════════════════════════════════
+       CONTROL (Dark)
+       Interactive control states adjusted for dark mode.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --control-default: var(--color-neutral-100);
+   --control-default-subtle: var(--color-neutral-700);
+
+   /* Active stays neutral in dark too — it inverts with the surface,
+      exactly like control-default. Brand only ever arrives via accent. */
+   --control-active: var(--color-neutral-100);
+   --control-active-hover: var(--color-neutral-50);
+   --control-active-pressed: var(--color-neutral-200);
+   --control-active-subtle: var(--color-neutral-700);
+
+   /* Accent lifts one step in dark, like the status colours. */
+   --accent: var(--color-accent-400);
+   --accent-hover: var(--brand-primary-400);
+   --accent-pressed: var(--color-accent-500);
+   --accent-subtle: var(--color-accent-alpha-20);
+
+   --control-disabled: var(--color-neutral-500);
+   --control-disabled-subtle: var(--color-neutral-700);
+
+   /* ═══════════════════════════════════════════════════════════════
+       SHADOWS (Dark)
+       Darker, more subtle shadows for dark mode.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+   --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+   --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.4);
+   --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
+
+   --shadow-inset-sm: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+   --shadow-inset-md: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+
+   /* ═══════════════════════════════════════════════════════════════
+       FOCUS (Dark)
+       Focus rings visible on dark backgrounds.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --focus-ring: 0 0 0 2px var(--surface-background), 0 0 0 4px var(--control-active);
+
+   /* ═══════════════════════════════════════════════════════════════
+       STATUS (Dark)
+       Slightly lighter status colors for dark mode visibility.
+       ═══════════════════════════════════════════════════════════════ */
+
+   --status-success: var(--color-success-400);
+   --status-success-emphasis: var(--color-success-500);
+   --status-success-subtle: rgba(45, 138, 78, 0.2);
+
+   --status-error: var(--color-error-400);
+   --status-error-emphasis: var(--color-error-500);
+   --status-error-subtle: rgba(196, 69, 54, 0.2);
+
+   --status-info: var(--color-info-400);
+   --status-info-emphasis: var(--color-info-500);
+   --status-info-subtle: rgba(59, 110, 143, 0.2);
+
+   --status-warning: var(--color-warning-400);
+   --status-warning-emphasis: var(--color-warning-500);
+   --status-warning-subtle: rgba(176, 121, 15, 0.2);
+
+   /* Status shortcuts */
+   /* ═══════════════════════════════════════════════════════════════
+       BACKGROUND ALIASES (Dark)
+       ═══════════════════════════════════════════════════════════════ */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SYSTEM PREFERENCE (Auto Dark Mode)
+   Respects user's OS preference when no explicit theme is set.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-color-scheme: dark) {
+   :root:not([data-theme="light"]):not([data-mode="light"]):not(.light) {
+      /* Surface */
+      --surface-background: var(--color-neutral-900);
+      --surface-default: var(--color-neutral-800);
+      --surface-muted: var(--color-neutral-700);
+      --surface-subtle: var(--color-neutral-800);
+      --surface-raised: var(--color-neutral-700);
+      --surface-overlay: var(--color-neutral-800);
+      --surface-backdrop: rgba(0, 0, 0, 0.6);
+      --surface-page: var(--color-neutral-900);
+      --surface-section: var(--color-neutral-700);
+      --surface-card: var(--color-neutral-800);
+      --surface-input: var(--color-neutral-900);
+      --surface-input-disabled: var(--color-neutral-800);
+      --surface-hover: var(--color-neutral-600);
+      --surface-pressed: var(--color-neutral-700);
+      --surface-inverse: var(--color-neutral-100);
+      --surface-inverse-muted: var(--color-neutral-200);
+
+      /* Text */
+      --text-primary: var(--color-neutral-50);
+      --text-secondary: var(--color-neutral-300);
+      --text-muted: var(--color-neutral-400);
+      --text-disabled: var(--color-neutral-500);
+      --text-inverse: var(--color-neutral-900);
+      /* Border */
+      --border-default: var(--color-neutral-700);
+      --border-strong: var(--color-neutral-600);
+      --border-muted: var(--color-neutral-800);
+      /* Control */
+      --control-default: var(--color-neutral-100);
+      --control-default-subtle: var(--color-neutral-700);
+      --control-active: var(--color-neutral-100);
+      --control-active-hover: var(--color-neutral-50);
+      --control-active-pressed: var(--color-neutral-200);
+      --control-active-subtle: var(--color-neutral-700);
+      --control-disabled: var(--color-neutral-500);
+      --control-disabled-subtle: var(--color-neutral-700);
+
+      /* Shadows */
+      --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.4);
+      --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
+      --shadow-inset-sm: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+      --shadow-inset-md: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+
+      /* Focus */
+      --focus-ring: 0 0 0 2px var(--color-neutral-900), 0 0 0 4px var(--control-active);
+
+      /* Status */
+      --status-success: var(--color-success-400);
+      --status-error: var(--color-error-400);
+      --status-info: var(--color-info-400);
+      --status-warning: var(--color-warning-400);
+      /* Background aliases */
+   }
+}

@@ -1,0 +1,1 @@
+"""Email config bounded context — org-scoped email provider configs."""

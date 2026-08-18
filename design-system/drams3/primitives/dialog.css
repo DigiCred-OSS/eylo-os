@@ -1,0 +1,229 @@
+/**
+ * Dialog - DRAMS3
+ *
+ * Modal dialog styles for Dialog, AlertDialog components.
+ * Based on Radix UI primitives with shadcn-compatible API.
+ */
+
+/* ==========================================================================
+   Dialog Overlay (Backdrop)
+   ========================================================================== */
+
+.drams-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: oklch(0 0 0 / 0.8);
+
+  /* Animation */
+  animation: drams-dialog-overlay-show 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.drams-dialog-overlay[data-state="closed"] {
+  animation: drams-dialog-overlay-hide 100ms ease-out;
+}
+
+@keyframes drams-dialog-overlay-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drams-dialog-overlay-hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Dialog Content
+   ========================================================================== */
+
+.drams-dialog-content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+
+  /* Layout */
+  display: grid;
+  width: 100%;
+  max-width: 32rem; /* 512px */
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+
+  /* Transform (centered) */
+  transform: translate(-50%, -50%);
+
+  /* Spacing */
+  padding: var(--space-6);
+  gap: var(--space-4);
+
+  /* Visual */
+  background-color: var(--surface-default);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg, 0.5rem);
+  box-shadow:
+    0 25px 50px -12px oklch(0 0 0 / 0.25),
+    0 10px 15px -3px oklch(0 0 0 / 0.1);
+
+  /* Animation */
+  animation: drams-dialog-content-show 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.drams-dialog-content[data-state="closed"] {
+  animation: drams-dialog-content-hide 100ms ease-out;
+}
+
+@keyframes drams-dialog-content-show {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes drams-dialog-content-hide {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+}
+
+/* Size variants */
+.drams-dialog-content[data-size="sm"] {
+  max-width: 24rem; /* 384px */
+}
+
+.drams-dialog-content[data-size="lg"] {
+  max-width: 40rem; /* 640px */
+}
+
+.drams-dialog-content[data-size="xl"] {
+  max-width: 48rem; /* 768px */
+}
+
+.drams-dialog-content[data-size="full"] {
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100vh - 2rem);
+}
+
+/* ==========================================================================
+   Dialog Close Button
+   ========================================================================== */
+
+.drams-dialog-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+
+  /* Reset */
+  background: transparent;
+  border: none;
+  padding: var(--space-1);
+
+  /* Visual */
+  border-radius: var(--radius-sm, 0.25rem);
+  color: var(--text-muted);
+  opacity: 0.7;
+  cursor: pointer;
+
+  /* Transition */
+  transition: opacity 150ms ease;
+}
+
+.drams-dialog-close:hover {
+  opacity: 1;
+}
+
+.drams-dialog-close:focus-visible {
+  outline: 2px solid var(--control-active);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Dialog Header
+   ========================================================================== */
+
+.drams-dialog-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .drams-dialog-header {
+    text-align: left;
+  }
+}
+
+/* ==========================================================================
+   Dialog Footer
+   ========================================================================== */
+
+.drams-dialog-footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-2);
+}
+
+@media (min-width: 640px) {
+  .drams-dialog-footer {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+/* ==========================================================================
+   Dialog Title
+   ========================================================================== */
+
+.drams-dialog-title {
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: var(--font-weight-semibold, 600);
+  line-height: var(--line-height-none, 1);
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Dialog Description
+   ========================================================================== */
+
+.drams-dialog-description {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Alert Dialog Specifics
+   ========================================================================== */
+
+.drams-alert-dialog-content {
+  /* No close button by design - must choose action or cancel */
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .drams-dialog-overlay,
+  .drams-dialog-content {
+    animation-duration: 0.01ms !important;
+  }
+}

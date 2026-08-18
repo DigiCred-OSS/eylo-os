@@ -1,0 +1,58 @@
+/* Tooltip Component Styles */
+
+.tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+.trigger {
+  display: inline-flex;
+}
+
+.content {
+  position: absolute;
+  z-index: 50;
+  background-color: oklch(var(--ew-primary));
+  color: oklch(var(--ew-primary-foreground));
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  border-radius: var(--ew-radius);
+  animation: fadeIn 0.2s ease-out;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--ew-shadow-md);
+}
+
+.content[data-side="top"] {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-0.5rem);
+}
+
+.content[data-side="bottom"] {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(0.5rem);
+}
+
+.content[data-side="left"] {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-0.5rem);
+}
+
+.content[data-side="right"] {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(0.5rem);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

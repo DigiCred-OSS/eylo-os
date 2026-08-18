@@ -1,0 +1,61 @@
+/* Light mode styling (default) */
+.floatingButtonContainer {
+  position: fixed;
+  bottom: var(--ew-button-bottom, 1rem);
+  top: var(--ew-button-top, auto);
+  right: var(--ew-button-right, 1rem);
+  left: var(--ew-button-left, auto);
+  z-index: var(--ew-button-z-index, 50);
+  height: var(--ew-button-size, 3.5rem);
+  width: var(--ew-button-size, 3.5rem);
+  border-radius: var(--ew-button-radius, 50%);
+  border: 1px solid oklch(var(--ew-border));
+  background: oklch(var(--ew-button-bg, var(--ew-primary)));
+  box-shadow: var(--ew-shadow-lg);
+}
+
+/* Mobile visibility */
+@media (max-width: 768px) {
+  .floatingButtonContainer {
+    display: var(--ew-button-mobile-display, flex);
+  }
+}
+
+/* Dark mode styling */
+:global(#eylo-widget.dark) .floatingButtonContainer {
+  background: oklch(var(--ew-white));
+  border-color: oklch(var(--ew-border));
+}
+
+:global(#eylo-widget.dark) .icon {
+  color: oklch(var(--ew-primary-foreground));
+}
+
+.buttonInner {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.buttonInner:hover {
+  box-shadow: var(--ew-shadow-xl);
+  transform: scale(1.05);
+}
+
+.buttonInner:active {
+  box-shadow: var(--ew-shadow-md);
+  transform: scale(0.95);
+}
+
+/* Light mode icon styling (default) */
+.icon {
+  height: var(--ew-button-icon-size, 2rem);
+  width: var(--ew-button-icon-size, 2rem);
+  color: oklch(var(--ew-button-icon-color, var(--ew-primary-foreground)));
+  transition: transform 100ms linear;
+}

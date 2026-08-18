@@ -1,0 +1,1 @@
+"""Voice config bounded context — organization-scoped STT/TTS provider configs."""

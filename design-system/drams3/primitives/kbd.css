@@ -1,0 +1,86 @@
+/**
+ * DRAMS3 Kbd Primitive
+ *
+ * Keyboard shortcut display component.
+ *
+ * SHADCN COMPATIBILITY:
+ * - Kbd, KbdGroup
+ *
+ * @see https://ui.shadcn.com/docs/components/kbd
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   KBD
+   Single keyboard key.
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 var(--space-1-5);
+
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    line-height: 1;
+    color: var(--text-secondary);
+
+    background-color: var(--surface-raised);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    box-shadow:
+        0 1px 0 0 var(--border-strong),
+        inset 0 1px 0 0 var(--surface-highlight);
+
+    /* Prevent selection */
+    user-select: none;
+}
+
+/* Smaller variant for inline use */
+.drams-kbd--sm {
+    min-width: 16px;
+    height: 16px;
+    padding: 0 var(--space-1);
+    font-size: 10px;
+}
+
+/* Accent variant - for active/pressed keys */
+.drams-kbd.accent {
+    color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   KBD GROUP
+   Multiple keys together (e.g., Ctrl + K)
+   ═══════════════════════════════════════════════════════════════ */
+
+.drams-kbd-group {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-px);
+}
+
+/* Plus sign between keys */
+.drams-kbd-group .drams-kbd+.drams-kbd::before {
+    position: absolute;
+    left: calc(-1 * var(--space-1) - 8px);
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-xs);
+}
+
+.drams-kbd-group .drams-kbd {
+    position: relative;
+}
+
+/* No plus before first key */
+.drams-kbd-group .drams-kbd:first-child::before {
+    display: none;
+}
+
+/* Alternative: space between without plus */
+.drams-kbd-group--no-plus .drams-kbd::before {
+    display: none;
+}

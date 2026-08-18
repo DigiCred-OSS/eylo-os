@@ -1,0 +1,64 @@
+.content {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.messageWrapper {
+  margin-bottom: var(--ew-spacing-sm);
+  max-width: 85%;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Message wrapper alignment variants */
+.userMessageWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.botMessageWrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.userMessage {
+  background-color: oklch(var(--ew-message-user));
+  color: oklch(var(--ew-message-user-foreground));
+  border-radius: var(--ew-radius-lg) var(--ew-radius-lg) 0 var(--ew-radius-lg);
+  padding: var(--ew-spacing-xs) var(--ew-spacing-sm);
+  margin-left: auto;
+  box-shadow: var(--ew-shadow-sm);
+}
+
+.botMessage {
+  background-color: oklch(var(--ew-message-bot));
+  color: oklch(var(--ew-message-bot-foreground));
+  border-radius: var(--ew-radius-lg) var(--ew-radius-lg) var(--ew-radius-lg) 0;
+  padding: var(--ew-spacing-xs) var(--ew-spacing-sm);
+  margin-right: auto;
+  box-shadow: var(--ew-shadow-sm);
+}
+
+.timestamp {
+  font-size: var(--ew-text-xs);
+  color: oklch(var(--ew-muted-foreground));
+  margin-top: var(--ew-spacing-2xs);
+  text-align: right;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
